@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-The firm is an Intellectual Property holding company. We develop novel and lean technology for general time series forecasting, and pervasive mobile, cloud computing. We care about the following problems.
+We develop novel and lean technology for general time series forecasting, and pervasive mobile, cloud computing. We care about the following problems.
 
 ## How to forecast
 We consider that any two objects _may_ boast of predictive power for each other. The problem is to compute the conditional distribution of <math><mi>B</mi></math>'s change in the future given <math><mi>A</mi></math>'s change at present. We build [TS Terminal](https://tsterm.com).
