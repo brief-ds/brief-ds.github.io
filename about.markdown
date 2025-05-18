@@ -14,11 +14,11 @@ Koenker, R. (2005). Quantile Regression (Econometric Society Monographs). Cambri
 ## How to compute: a unified look
 We see two phases: process current information into memory, then based on the memory, generates by self what to attend to in the next step, and receive new information (from memory or outside) in the next step. The three architectures are fundamentally very similar:
 
-* [Turing Machine](https://en.wikipedia.org/wiki/Turing_machine)
+* [Turing machine](https://en.wikipedia.org/wiki/Turing_machine)
 * attention-based mechanism
-* [Long-Short Term Memory](https://en.wikipedia.org/wiki/Long_short-term_memory)
+* [Long-short term memory](https://en.wikipedia.org/wiki/Long_short-term_memory)
 
-## Lean Hardware and Software
+## Lean hardware and software
 We favour simple hardware and software. Something a high schooler can play with.
 
 * [RISC-V](https://riscv.org): an open ISA (Instruction set architecture) for CPU, the chip that performs computing.
