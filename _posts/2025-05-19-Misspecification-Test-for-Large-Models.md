@@ -1,17 +1,17 @@
 ---
-title: "Misspecification test for large models, or why there is need for a high degree of sparsity for them to be statistically verified"
+title: "Misspecification test, or why there is need for a high degree of sparsity for a large neural network to be statistically verified"
 layout: post
 ---
 
 
 # Introduction
-Suppose some human being is asked to score any input text with a [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function). A piece of input text could describe a real-life or hypothetical situation or a sequence of problem solving, and the human being is asked to indicate how likely or reasonable the whole piece looks according to the person's experience, judgements, and perceived social conventions.
+Suppose some human being is asked to score any input text with a [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function). A piece of input text could describe a real-life or hypothetical situation or a sequence of problem solving, and the human being is asked to score how likely the statement is as in reality. Suppose he is always capable of producing scores equal to the true likelihoods in real life.
 
 Now a model is asked to simulate the human being and output the likelihood as well. It may be trained on human-produced data first and settle on a learned computational mechanism to output a likelihood score for any input text.
 
 Below, we'll check if the model has likely learned a "true" likelihood function just as the human being's. It is also called misspecification test in statistics: whether the learned likelihood function is good or not, aka correctly specified.
 
-## Misspecification Test
+## Misspecification test
 In econometrics, the **[Information matrix test](https://en.wikipedia.org/wiki/Information_matrix_test)** is used to determine whether a regression model is misspecified.
 
 Following the same notations as in the Wikipedia article, after learning, the model's <math><mi>r</mi></math> parameters are stored in the vector <math><mi>&theta;</mi></math>, and the logarithm of the learned likelihood function is denoted by <math><mrow><mi>l</mi><mo>(</mo><mi>&theta;</mi><mo>)</mo></mrow></math>.
@@ -91,21 +91,18 @@ Again, if the model was a neural network and densely connected, i.e. with each n
 
 Over <math><mi>N</mi></math> input texts, we would have evaluated <math><mi>N</mi></math> copies, or realisations of the above matrix, probably obtaining a different one for different input text.
 
-If the machine learned well the human being's likelihood function, the [information matrix test](https://en.wikipedia.org/wiki/Information_matrix_test) says that, each of the <math><msup><mi>r</mi><mn>2</mn></msup></math> elements of the matrix should be independent [white noise](https://en.wikipedia.org/wiki/Normal_distribution) centred around zero.
+If the machine learned well the human being's likelihood function, the [information matrix test](https://en.wikipedia.org/wiki/Information_matrix_test) says that, each of the <math><msup><mi>r</mi><mn>2</mn></msup></math> elements of the matrix should be independent [white noise](https://en.wikipedia.org/wiki/Normal_distribution) centred around zero. So one will have to perform statistical test on the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) between the <math><msup><mi>r</mi><mn>2</mn></msup></math> elements. 
 
+According to [White, Halbert et al 1992](#ref-white92), if the model was correctly specified, this [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) is computable by a formula. The result is a matrix of size <math><mrow><msup><mi>r</mi><mn>2</mn></msup><mo>&times;</mo><msup><mi>r</mi><mn>2</mn></msup></mrow></math>, and would take <math><msup><mi>r</mi><mn>4</mn></msup></math> scale of computation.
 
-Furthermore, if the model was correctly specified, according to [White, Halbert et al 1992](#ref-white92), the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) between the <math><msup><mi>r</mi><mn>2</mn></msup></math> elements, a matrix of size <math><mrow><msup><mi>r</mi><mn>2</mn></msup><mo>&times;</mo><msup><mi>r</mi><mn>2</mn></msup></mrow></math>, shall be computable by a formula. The formula however, would take <math><msup><mi>r</mi><mn>4</mn></msup></math> scale of computation.
-
-Once the <math><mrow><msup><mi>r</mi><mn>2</mn></msup><mo>&times;</mo><msup><mi>r</mi><mn>2</mn></msup></mrow></math> covariance matrix is computed under the hypothesis of good model specification, a statistical test can be readily carried out to indicate how conflict-free the evidence is against the hypothesis of good model specification, assuming the model *is* already correctly specified.
-
-## The <math><msup><mi>r</mi><mn>4</mn></msup></math> Scale of Computation
+## The <math><msup><mi>r</mi><mn>4</mn></msup></math> scale of computation
 For Large Language Models (LLM), the number of parameters <math><mi>r</mi></math> is usually in the order of billions, or <math><msup><mn>10</mn><mn>9</mn></msup></math>, if not more, e.g. Facebook (aka Meta)'s open sourced [Llama](#ref-llama). Then <math><msup><mi>r</mi><mn>4</mn></msup></math> would take it to the order of <math><msup><mn>10</mn><mn>36</mn></msup></math> at minimum.
 
 According to a [list of ranking of fastest computers](https://en.wikipedia.org/wiki/List_of_fastest_computers), the fastest one may execute at 1.102 exaFLOPS, or <math><mn>1.102</mn><mo>&times;</mo><msup><mn>10</mn><mn>18</mn></msup></math> floating-point operations per second. If we have 1,000 of them, the time for our computation would be in the order of <math><msup><mn>10</mn><mn>15</mn></msup></math> seconds, that is, 31 million years.
 
 Hence it may be close to impossible to find out if a LLM was correctly specified as its modelling objective, if the LLM was densely connected inside, i.e. one neuron connected to most other neurons.
 
-## If there were a High Sparsity in the Neural Network
+## If there were a high degree of sparsity in the neural network
 If relative to the total number of neurons, one neuron is only connected to few fellow neurons, so sparse that for a given input text, only a tiny fraction of the neurons would be involved in crunching out the final likelihood value, the matrix
 <math display="block">
 <mrow>
@@ -171,10 +168,11 @@ If relative to the total number of neurons, one neuron is only connected to few 
 </mrow>
 </math>
 
-would consequentially be highly sparse, or with many elements being zero. The number of non-zero elements would be in the order of <math><mi>r</mi></math>, arranged sporadically on and symmetrically off the diagonal line of the matrix.
+would consequentially be highly sparse, or with many elements being zero. The number of non-zero elements would be in the order of <math><mi>r</mi></math>, mostly on the diagonal of the matrix.
 
-As regards the covariance matrix of these non-zero elements, the number of non-zero elements could still be in the order of <math><mi>r</mi></math>, assuming <math><mi>r</mi></math> is a very big number, and the neurons comparatively are very sparsely connected.
+The covariance matrix of the above matrix, would have at most about <math><msup><mi>r</mi><mn>2</mn></msup></math> non-zero elements. In the example for Llama, the scale of computation drops to <math><msup><mn>10</mn><mn>18</mn></msup></math>. The 1,000 supercomputers would just need 0.001 second to run the statistical test.
 
+## Human's number of neurons and their interconnections (synapses)
 If we check this Wikipedia article on [Neuron](https://en.wikipedia.org/wiki/Neuron),
 
 > The human brain has some <math><mrow><mn>8.6</mn><mo>&times;</mo><msup><mn>10</mn><mn>10</mn></msup></mrow></math> (eighty six billion) neurons.[28] Each neuron has on average 7,000 synaptic connections to other neurons. It has been estimated that the brain of a three-year-old child has about <math><msup><mn>10</mn><mn>15</mn></msup></math> synapses (1 quadrillion). This number declines with age, stabilizing by adulthood. Estimates vary for an adult, ranging from <math><msup><mn>10</mn><mn>14</mn></msup></math> to <math><mrow><mn>5</mn><mo>&times;</mo><msup><mn>10</mn><mn>14</mn></msup></mrow></math> synapses (100 to 500 trillion).
@@ -186,9 +184,6 @@ first, for an adult human brain, relatively to the total number of neurons, aver
 second, the total number of synapses, our <math><mi>r</mi></math>, decreases as the human grows from child to adult. Take the 3-year old child, <math><mi>r</mi></math> is circa <math><msup><mn>10</mn><mn>15</mn></msup></math>.
 
 From what we said above, in this case of high sparsity, every step of computation would be in the order of <math><mi>r</mi></math>, in order to carry out the misspecification test. When <math><mi>r</mi></math> is in the order of <math><msup><mn>10</mn><mn>15</mn></msup></math>, on a single typical laptop microprocessor, it may take at most weeks to finish the computation, provided that it can sustain working at full power and heat for that long.
-
-## Parallel Processing for Multiple Objectives in a Large Model
-Broadly, if for any given specific task, only a tiny fraction of neurons is involved in computation, it becomes possible to dedicate different assemblies of neurons to different computational tasks at once. At the end, the human may weigh the results of all the tasks and make a final decision. Is that why we as human are always puzzled about life's conundrums?
 
 ## REFERENCES
 <a name="ref-white92">White, Halbert et al, 1992, Artificial Neural Networks: Approximation and Learning Theory.</a>
