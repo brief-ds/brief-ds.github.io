@@ -1,5 +1,5 @@
 ---
-title: "Misspecification test for large models, or why there is need for a high degree of sparsity in them so to be statistically verified"
+title: "Misspecification test for large models, or why there is need for a high degree of sparsity for them to be statistically verified"
 layout: post
 ---
 
@@ -7,12 +7,14 @@ layout: post
 # Introduction
 Suppose some human being is asked to score any input text with a [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function). A piece of input text could describe a real-life or hypothetical situation or a sequence of problem solving, and the human being is asked to indicate how likely or reasonable the whole piece looks according to the person's experience, judgements, and perceived social conventions.
 
-Now a Large Model is asked to simulate the human being and output the likelihood as well. It may be trained on human-produced data first and settle on a learned computational mechanism to output a likelihood score for any input text. 
+Now a model is asked to simulate the human being and output the likelihood as well. It may be trained on human-produced data first and settle on a learned computational mechanism to output a likelihood score for any input text.
 
 Below, we'll check if the model has likely learned a "true" likelihood function just as the human being's. It is also called misspecification test in statistics: whether the learned likelihood function is good or not, aka correctly specified.
 
 ## Misspecification Test
-Following the notations as in [Information matrix test](https://en.wikipedia.org/wiki/Information_matrix_test), after learning, the model's <math><mi>r</mi></math> parameters are stored in the vector <math><mi>&theta;</mi></math>, and the logarithm of the learned likelihood function is denoted by <math><mrow><mi>l</mi><mo>(</mo><mi>&theta;</mi><mo>)</mo></mrow></math>.
+In econometrics, the **[Information matrix test](https://en.wikipedia.org/wiki/Information_matrix_test)** is used to determine whether a regression model is misspecified.
+
+Following the same notations as in the Wikipedia article, after learning, the model's <math><mi>r</mi></math> parameters are stored in the vector <math><mi>&theta;</mi></math>, and the logarithm of the learned likelihood function is denoted by <math><mrow><mi>l</mi><mo>(</mo><mi>&theta;</mi><mo>)</mo></mrow></math>.
 
 As a note, if the model was a neural network, the <math><mi>r</mi></math> parameters in <math><mi>&theta;</mi></math> would represent the weights inside the neural network.
 
@@ -89,7 +91,8 @@ Again, if the model was a neural network and densely connected, i.e. with each n
 
 Over <math><mi>N</mi></math> input texts, we would have evaluated <math><mi>N</mi></math> copies, or realisations of the above matrix, probably obtaining a different one for different input text.
 
-If the machine learned well the human being's likelihood function, the [information matrix test](https://en.wikipedia.org/wiki/Information_matrix_test) says that, every of the <math><msup><mi>r</mi><mn>2</mn></msup></math> elements of the matrix should be independent [white noise](https://en.wikipedia.org/wiki/Normal_distribution) centred around zero.
+If the machine learned well the human being's likelihood function, the [information matrix test](https://en.wikipedia.org/wiki/Information_matrix_test) says that, each of the <math><msup><mi>r</mi><mn>2</mn></msup></math> elements of the matrix should be independent [white noise](https://en.wikipedia.org/wiki/Normal_distribution) centred around zero.
+
 
 Furthermore, if the model was correctly specified, according to [White, Halbert et al 1992](#ref-white92), the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) between the <math><msup><mi>r</mi><mn>2</mn></msup></math> elements, a matrix of size <math><mrow><msup><mi>r</mi><mn>2</mn></msup><mo>&times;</mo><msup><mi>r</mi><mn>2</mn></msup></mrow></math>, shall be computable by a formula. The formula however, would take <math><msup><mi>r</mi><mn>4</mn></msup></math> scale of computation.
 
