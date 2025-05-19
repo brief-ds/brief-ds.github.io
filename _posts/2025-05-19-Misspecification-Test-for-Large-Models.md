@@ -188,7 +188,7 @@ second, the total number of synapses, our <math><mi>r</mi></math>, decreases as 
 From what we said above, in this case of high sparsity, every step of computation would be in the order of <math><mi>r</mi></math>, in order to carry out the misspecification test. When <math><mi>r</mi></math> is in the order of <math><msup><mn>10</mn><mn>15</mn></msup></math>, on a single typical laptop microprocessor, it may take at most weeks to finish the computation, provided that it can sustain working at full power and heat for that long.
 
 ## Parallel Processing for Multiple Objectives in a Large Model
-In the section above, we supposed that for a given input text, only a tiny fraction of the neurons would be involved in the computation. Broadly, if for any given specific task, only a tiny fraction of neurons would be involved in computing the result, it is possible to imagine a practical Large Model always computing for multiple tasks or objectives at the same time, dedicating largely different fractions of neurons to different tasks or objectives. At the outcome, it may weigh the results obtained for the various objectives and take an action. Is that why we as human are always puzzled about life's conundrums?
+Broadly, if for any given specific task, only a tiny fraction of neurons is involved in computation, it becomes possible to dedicate different assemblies of neurons to different computational tasks at once. At the end, the human may weigh the results of all the tasks and make a final decision. Is that why we as human are always puzzled about life's conundrums?
 
 ## REFERENCES
 <a name="ref-white92">White, Halbert et al, 1992, Artificial Neural Networks: Approximation and Learning Theory.</a>
