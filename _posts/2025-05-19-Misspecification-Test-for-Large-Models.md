@@ -14,9 +14,7 @@ Below, we'll check if the model has likely learned a "true" likelihood function 
 ## Misspecification test
 In econometrics, the **[Information matrix test](https://en.wikipedia.org/wiki/Information_matrix_test)** is used to determine whether a regression model is misspecified.
 
-Following the same notations as in the Wikipedia article, after learning, the model's <math><mi>r</mi></math> parameters are stored in the vector <math><mi>&theta;</mi></math>, and the logarithm of the learned likelihood function is denoted by <math><mrow><mi>l</mi><mo>(</mo><mi>&theta;</mi><mo>)</mo></mrow></math>.
-
-As a note, if the model is a neural network, the <math><mi>r</mi></math> parameters in <math><mi>&theta;</mi></math> would represent the weights inside the neural network.
+Following the same notations as in the Wikipedia article, after learning, the model's <math><mi>r</mi></math> parameters are stored in the vector <math><mi>&theta;</mi></math>, and the logarithm of the learned likelihood function is denoted by <math><mrow><mi>l</mi><mo>(</mo><mi>&theta;</mi><mo>)</mo></mrow></math>. If the model is a neural network, the <math><mi>r</mi></math> parameters in <math><mi>&theta;</mi></math> would represent the weights inside the neural network.
 
 Now, for each input-output training sample, one'd evaluate the matrix below
 <math display="block">
@@ -95,9 +93,9 @@ For Large Language Models (LLM), the number of parameters <math><mi>r</mi></math
 
 According to a [list of ranking of fastest computers](https://en.wikipedia.org/wiki/List_of_fastest_computers), the fastest one may execute at 1.102 exaFLOPS, or <math><mn>1.102</mn><mo>&times;</mo><msup><mn>10</mn><mn>18</mn></msup></math> floating-point operations per second. If we have 1,000 of them, the time for our computation would be in the order of <math><msup><mn>10</mn><mn>15</mn></msup></math> seconds, that is, 31 million years.
 
-Hence it may be close to impossible to find out if a LLM was correctly specified as its modelling objective, if the LLM was densely connected inside, i.e. one neuron connected to most other neurons.
+Hence it may be close to impossible to statistically test if a LLM was misspecified, if the LLM was densely connected inside, i.e. one neuron connected to most other neurons.
 
-## If there were a high degree of sparsity in the neural network
+## If there is a high degree of sparsity in the neural network
 If relative to the total number of neurons, one neuron is only connected to few fellow neurons, so sparse that for a given input text, only a tiny fraction of the neurons would be involved in crunching out the final likelihood value, the matrix
 <math display="block">
 <mrow>
@@ -165,7 +163,7 @@ If relative to the total number of neurons, one neuron is only connected to few 
 
 would consequentially be highly sparse, or with many elements being zero. The number of non-zero elements would be in the order of <math><mi>r</mi></math>, mostly on the diagonal of the matrix.
 
-The covariance matrix of the above matrix, would have at most about <math><msup><mi>r</mi><mn>2</mn></msup></math> non-zero elements. In the example for Llama, the scale of computation drops to <math><msup><mn>10</mn><mn>18</mn></msup></math>. The 1,000 supercomputers would just need 0.001 second to run the statistical test.
+The covariance matrix of about <math><mi>r</mi></math> non-zero elements, would be of size of order <math><msup><mi>r</mi><mn>2</mn></msup></math>. In the example for Llama, the scale of computation drops to <math><msup><mn>10</mn><mn>18</mn></msup></math>. The 1,000 supercomputers would just need 0.001 second to run the statistical test.
 
 ## Human's number of neurons and their interconnections (synapses)
 If we check this Wikipedia article on [Neuron](https://en.wikipedia.org/wiki/Neuron),
@@ -178,7 +176,7 @@ first, for an adult human brain, relatively to the total number of neurons, aver
 
 second, the total number of synapses, our <math><mi>r</mi></math>, decreases as the human grows from child to adult. Take the 3-year old child, <math><mi>r</mi></math> is circa <math><msup><mn>10</mn><mn>15</mn></msup></math>.
 
-From what we said above, in this case of high sparsity, every step of computation would be in the order of <math><mi>r</mi></math>, in order to carry out the misspecification test. When <math><mi>r</mi></math> is in the order of <math><msup><mn>10</mn><mn>15</mn></msup></math>, on a single typical laptop microprocessor, it may take at most weeks to finish the computation, provided that it can sustain working at full power and heat for that long.
+For a 3-year old child, We can only hope any single task has involved far fewer than <math><msup><mn>10</mn><mn>15</mn></msup></math> synapses to statistically verify a computational model of it.
 
 ## REFERENCES
 <a name="ref-white92">White, Halbert et al, 1992, Artificial Neural Networks: Approximation and Learning Theory.</a>
