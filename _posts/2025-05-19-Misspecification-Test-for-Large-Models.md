@@ -1,14 +1,11 @@
 ---
-title: Misspecification Test for Large Models
+title: "Misspecification test for large models, or why there is need for a high degree of sparsity in them so to be statistically verified"
 layout: post
-excerpt: misspecification test on the log-likelihood function for large models, or why there may be need for a high degree of sparsity in large neural network models
 ---
 
 
-## Introduction
-Suppose a specific (or a group of) human being is asked to score any input text with a [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function). A piece of input text could describe a real-life or hypothetical situation or a sequence of problem solving, and the human being is asked to indicate how likely or reasonable the whole piece looks according to the person's own instincts, reasonings, and perceived social conventions.
-
-If the human being encountered the same situation in the real world as described by an input text, he would act in consistence with his likelihood function. As an example, one input text says "In situation S, take action A", another says "In the same situation S, take action B", if the person gave the former likelihood 0.3, the latter likelihood 0.2, then in situation S in the real world, his chances of taking A vs B would be 3-to-2. This requirement transports a "mental" likelihood function to a real-world, physical likelihood function.
+# Introduction
+Suppose some human being is asked to score any input text with a [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function). A piece of input text could describe a real-life or hypothetical situation or a sequence of problem solving, and the human being is asked to indicate how likely or reasonable the whole piece looks according to the person's experience, judgements, and perceived social conventions.
 
 Now a Large Model is asked to simulate the human being and output the likelihood as well. It may be trained on human-produced data first and settle on a learned computational mechanism to output a likelihood score for any input text. 
 
