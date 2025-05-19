@@ -16,9 +16,9 @@ In econometrics, the **[Information matrix test](https://en.wikipedia.org/wiki/I
 
 Following the same notations as in the Wikipedia article, after learning, the model's <math><mi>r</mi></math> parameters are stored in the vector <math><mi>&theta;</mi></math>, and the logarithm of the learned likelihood function is denoted by <math><mrow><mi>l</mi><mo>(</mo><mi>&theta;</mi><mo>)</mo></mrow></math>.
 
-As a note, if the model was a neural network, the <math><mi>r</mi></math> parameters in <math><mi>&theta;</mi></math> would represent the weights inside the neural network.
+As a note, if the model is a neural network, the <math><mi>r</mi></math> parameters in <math><mi>&theta;</mi></math> would represent the weights inside the neural network.
 
-Now, given any input text, whether already seen in the training phase or brand new, one'd evaluate the matrix below
+Now, for each input-output training sample, one'd evaluate the matrix below
 <math display="block">
 <mrow>
 <mfrac>
@@ -84,14 +84,9 @@ Now, given any input text, whether already seen in the training phase or brand n
 </mrow>
 </math>
 
+a square matrix of size <math><mrow><mi>r</mi><mo>&times;</mo><mi>r</mi></mrow></math>.
 
-a square one of size <math><mrow><mi>r</mi><mo>&times;</mo><mi>r</mi></mrow></math>, i.e. with <math><msup><mi>r</mi><mn>2</mn></msup></math> elements in total.
-
-Again, if the model was a neural network and densely connected, i.e. with each neuron connected to many other neurons, the above square matrix could also be dense, i.e. with many non-zero elements and rare zero elements in it.
-
-Over <math><mi>N</mi></math> input texts, we would have evaluated <math><mi>N</mi></math> copies, or realisations of the above matrix, probably obtaining a different one for different input text.
-
-If the machine learned well the human being's likelihood function, the [information matrix test](https://en.wikipedia.org/wiki/Information_matrix_test) says that, each of the <math><msup><mi>r</mi><mn>2</mn></msup></math> elements of the matrix should be independent [white noise](https://en.wikipedia.org/wiki/Normal_distribution) centred around zero. So one will have to perform statistical test on the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) between the <math><msup><mi>r</mi><mn>2</mn></msup></math> elements. 
+If the machine learned well the human being's function, the [information matrix test](https://en.wikipedia.org/wiki/Information_matrix_test) says that, each of the <math><msup><mi>r</mi><mn>2</mn></msup></math> elements of the matrix should be independent [white noise](https://en.wikipedia.org/wiki/Normal_distribution) centred around zero, statistically. The test of that hypothesis will involve computing the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) between the <math><msup><mi>r</mi><mn>2</mn></msup></math> elements of the above matrix, over the training samples. 
 
 According to [White, Halbert et al 1992](#ref-white92), if the model was correctly specified, this [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) is computable by a formula. The result is a matrix of size <math><mrow><msup><mi>r</mi><mn>2</mn></msup><mo>&times;</mo><msup><mi>r</mi><mn>2</mn></msup></mrow></math>, and would take <math><msup><mi>r</mi><mn>4</mn></msup></math> scale of computation.
 
