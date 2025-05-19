@@ -7,7 +7,7 @@ layout: post
 # Introduction
 Suppose some human being is given a list of logical or practical questions, and has answered each of them.
 
-Now a model is asked to simulate the human being with a [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function). The likelihood function outputs a likelihood for _any_ input-output pair. But for an input statement in the training data, the likelihood should be generally higher when the correpsonding output matches the human's output, and lower otherwsie.
+Now a model is asked to simulate the human being with a [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function). The likelihood function outputs a likelihood for _any_ input-output pair. But for an input statement in the training data, the calculated likelihood should be generally higher when the correpsonding output matches the human's output, and lower otherwsie.
 
 Below, we'll check if the model has learned the "true" human function. It is also called misspecification test in statistics: whether the learned likelihood function is correctly specified.
 
@@ -176,7 +176,7 @@ first, for an adult human brain, relatively to the total number of neurons, aver
 
 second, the total number of synapses, our <math><mi>r</mi></math>, decreases as the human grows from child to adult. Take the 3-year old child, <math><mi>r</mi></math> is circa <math><msup><mn>10</mn><mn>15</mn></msup></math>.
 
-For a 3-year old child, We can only hope any single task has involved far fewer than <math><msup><mn>10</mn><mn>15</mn></msup></math> synapses to be able to statistically verify a computational model of it with the current machinery.
+For a 3-year old child, we can only hope any single task has involved far fewer than <math><msup><mn>10</mn><mn>15</mn></msup></math> synapses to be able to statistically verify a computational model of it with the current machinery.
 
 ## REFERENCES
 <a name="ref-white92">White, Halbert et al, 1992, Artificial Neural Networks: Approximation and Learning Theory.</a>
