@@ -12,7 +12,7 @@ We consider that any two objects _may_ boast of predictive power for each other.
 Koenker, R. (2005). Quantile Regression (Econometric Society Monographs). Cambridge: Cambridge University Press. [doi:10.1017/CBO9780511754098](https://www.cambridge.org/core/books/quantile-regression/C18AE7BCF3EC43C16937390D44A328B1)
 
 ## MaxSave
-We are raising for [maxsave.net](https://maxsave.net), individual-facing platform for *the* long-term saving and investment need in the UK. It will be content-led on the front page, targeting people looking for finanical knowledge. Ground-breaking predictive technology will be tucked behind.
+We are raising for [maxsave.net](https://maxsave.net), individual-facing platform for *the* long-term saving and investment need in the UK. It will be content-led on the front page, targeting people looking for finanical knowledge, offering insights about market driving forces for up to one year ahead.
 
 ## How to compute: a unified look
 We see two phases: process current information into memory, then based on the memory, generates by self what to attend to in the next step, and receive new information (from memory or outside) in the next step. The three architectures are fundamentally very similar:
