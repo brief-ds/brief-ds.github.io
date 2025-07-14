@@ -15,6 +15,7 @@ Version 6.6.5 is the latest version as of writing. Click on it. The LDR and STR 
 ## LDR (load register)
 LDR reads a word (32-bit) at specified address. We will look at two versions of `ldr.s` that does the same thing.
 
+### version 1
 ```asm
 .global _start
 
@@ -109,6 +110,7 @@ What it says is that from address 0x004100bc to 0x004100bf, to record the number
 
 which explains starting from the address 0x004100bc, why the content looks to be 0x05000000.
 
+### version 2
 We look at an variety of `ldr.s`:
 
 ```asm
@@ -154,7 +156,9 @@ Disassembly of section .text:
   4000c4:	00000000 	.word	0x00000000
 ```
 
-Note the (32-bit) word at address 0x4000c0 would be loaded into register `x1`. From the disassembled code several lines down, at 0x4000c0 is the word 0x004100cc, which will be read into `x1`. The next line `ldr x0, [x1]` would read the word found at address 0x004100cc into `x0`. Let's check if `0x004100cc` is an address in the section `.data`.
+The line `ldr x1, 4000c0` would load the (32-bit) word at address 0x4000c0 into register `x1`. Several lines down, `4000c0: 004100cc`: at 0x4000c0 is the word 0x004100cc, which will be read into `x1`.
+
+The next line `ldr x0, [x1]` would read the word found at address 0x004100cc into `x0`. Let's check if `0x004100cc` is an address in the section `.data`.
 
 ```sh
 $ readelf -x .data ldr
@@ -165,6 +169,11 @@ Hex dump of section '.data':
 ```
 
 So at address 0x004100c8 is some content 0x05000000, at the next address which would be 0x004100c8 + 0x00000004 = 0x004100cc is some content 0x06000000. For what we explained about endianness, that would be heximal number 0x6, or decimal number 6.
+
+### conclusion
+We see from the above code,
+- plain `var2` refers to an address (or a "**pointer**" in C programming language's jargon), at which the number 6 is stored;
+- `=var2` is a **pointer** to the address at which number 6 is stored ("**pointer to a pointer**").
 
 ## STR (store register)
 STR stores the content in a register to a specified address. The ARM64 code is not much different from the ARM32 one in Laurie's lesson.
