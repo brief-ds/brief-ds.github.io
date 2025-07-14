@@ -5,6 +5,7 @@ layout: post
 
 This article accompanies the Lesson 1 "Exit syscall" of LaurieWired in the [ARM assembly tutorial](https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg).
 
+## Set up the toolchain
 Launch a virtual machine with Graviton (ARM) core on Amazon Web Services (AWS). Install a 64-bit Linux on it and the gcc toolchain.
 
 ## The first assembly calling exit()
