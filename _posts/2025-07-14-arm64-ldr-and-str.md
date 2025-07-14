@@ -109,10 +109,8 @@ What it says is that from address 0x004100bc to 0x004100bf, to record the number
 
 which explains starting from the address 0x004100bc, why the content looks to be 0x05000000.
 
-The manual page of `readelf` command is at [https://www.man7.org/linux/man-pages/man1/readelf.1.html](https://www.man7.org/linux/man-pages/man1/readelf.1.html).
-
 We look at an variety of `ldr.s`:
-`
+
 ```asm
 .global _start
 
@@ -126,4 +124,74 @@ _start:
 .data
 var1: .word 5
 var2: .word 6
+```
+
+It would still return decimal number 6:
+
+```sh
+$ rm ldr.o; as -o ldr.o ldr.s
+$ gcc -o ldr ldr.o -nostdlib -static
+$ ./ldr; echo $?
+6
+```
+
+Let's look at the dissembled `ldr`:
+
+```sh
+$ objdump -d ldr
+
+ldr:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000004000b0 <_start>:
+  4000b0:	58000081 	ldr	x1, 4000c0 <_start+0x10>
+  4000b4:	f9400020 	ldr	x0, [x1]
+  4000b8:	d2800ba8 	mov	x8, #0x5d                  	// #93
+  4000bc:	d4000001 	svc	#0x0
+  4000c0:	004100cc 	.word	0x004100cc
+  4000c4:	00000000 	.word	0x00000000
+```
+
+Note the (32-bit) word at address 0x4000c0 would be loaded into register `x1`. From the disassembled code several lines down, at 0x4000c0 is the word 0x004100cc, which will be read into `x1`. The next line `ldr x0, [x1]` would read the word found at address 0x004100cc into `x0`. Let's check if `0x004100cc` is an address in the section `.data`.
+
+```sh
+$ readelf -x .data ldr
+
+Hex dump of section '.data':
+  0x004100c8 05000000 06000000                   ........
+
+```
+
+So at address 0x004100c8 is some content 0x05000000, at the next address which would be 0x004100c8 + 0x00000004 = 0x004100cc is some content 0x06000000. For what we explained about endianness, that would be heximal number 0x6, or decimal number 6.
+
+## STR (store register)
+STR stores the content in a register to a specified address. The ARM64 code is not much different from the ARM32 one in Laurie's lesson.
+
+```asm
+.global _start
+
+.text
+_start:
+    ldr x2, =var1
+    ldr x3, =var2
+    mov x1, #5
+    str x1, [x3]
+    ldr x0, [x3]
+    mov x8, #0x5d
+    svc #0
+
+.data
+var1: .word 6
+var2: .word 7
+```
+
+To run it,
+
+```sh
+$ rm str.o; as -o str.o str.s
+$ gcc -o str str.o -nostdlib -static
+$ ./str; echo $?
+5
 ```
