@@ -4,7 +4,7 @@ layout: post
 ---
 
 ## Project Overview
-In previous posts, normally at last of execution we ask the Linux `exit()` to return an integer result. But in this post we'll do pointing point arithmetic, so we have to change the game plan -- we'll use the C function `printf()` to print out a floating number.
+In previous posts, normally at last of execution we ask the Linux `exit()` to return an integer result. But in this post we'll do pointing point arithmetic, so we have to change the game plan -- we'll use the C function `printf()` to print out the floating number.
 
 We write out `add.h` and `main.c`:
 
@@ -28,7 +28,7 @@ int main() {
 
 what remains is to write an `add.s`, and eventually link it with `main.c` to produce the executable file.
 
-## `add.s`
+## The `add.s` assembly program
 Recall that all constants are preceded by `#`. `0x` denotes heximal, otherwise decimal. So `#0x10` is the heximal 10, equivalent to decimal 16. `#12` is just the decimal 12.
 
 ```asm
