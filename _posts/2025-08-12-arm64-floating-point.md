@@ -28,7 +28,7 @@ int main() {
 
 what remains is to write an `add.s`, and eventually link it with `main.c` to produce the executable file.
 
-## The `add.s` assembly program
+## The `add.s`
 Recall that all constants are preceded by `#`. `0x` denotes heximal, otherwise decimal. So `#0x10` is the heximal 10, equivalent to decimal 16. `#12` is just the decimal 12.
 
 ```asm
