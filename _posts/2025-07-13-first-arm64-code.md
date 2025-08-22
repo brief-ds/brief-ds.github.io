@@ -15,7 +15,7 @@ ARM architecture defines three profiles:
 * M-profile (Microcontroller): Used in deeply embedded systems (e.g., Cortex-M).
 
 ## Aarch64 (ARM64)
-Aarch64 is the 64-bit architecture only in the A profile.
+[Aarch64](https://en.wikipedia.org/wiki/AArch64), also known as ARM64, is the 64-bit architecture that debuted with ARMv8.
 
 ## Set up the toolchain
 A toolchain is the collection of assembler, compiler, and linker that translate any assembly, C programs in text to executable binary ones.
@@ -89,6 +89,8 @@ Disassembly of section .text:
 For the same code on Apple Silicon, refer to [Intro to 64bit ARM Assembly](https://www.youtube.com/watch?v=3ixTKrE8lv8) by Nick Thompson.
 
 ## References
+Aarch64, [https://en.wikipedia.org/wiki/AArch64](https://en.wikipedia.org/wiki/AArch64).
+
 ARM assembly tutorial, @LaurieWired, [https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg](https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg)
 
 Linux System Call Table, [https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/syscalls/#arm64-64-bit](https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/syscalls/#arm64-64-bit)
