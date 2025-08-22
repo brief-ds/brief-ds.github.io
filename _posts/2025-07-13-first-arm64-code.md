@@ -7,6 +7,16 @@ This article accompanies the Lesson 1 "Exit syscall" of LaurieWired in the [ARM 
 
 We will write an ARM64 assembly program that simply calls Linux `exit()` to terminate the execution.
 
+## ARMv8 Profiles
+ARM architecture defines three profiles:
+
+* A-profile (Application): Used in rich OS environments (e.g., Linux, Android).
+* R-profile (Real-time): Used in real-time applications (e.g., automotive, robotics).
+* M-profile (Microcontroller): Used in deeply embedded systems (e.g., Cortex-M).
+
+## Aarch64 (ARM64)
+Aarch64 is the 64-bit architecture only in the A profile.
+
 ## Set up the toolchain
 A toolchain is the collection of assembler, compiler, and linker that translate any assembly, C programs in text to executable binary ones.
 
