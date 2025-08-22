@@ -5,7 +5,7 @@ layout: post
 
 This article accompanies Lesson 3 "LDR, STR" of LaurieWired in the [ARM assembly tutorial](https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg). Refer to the [The first ARM64 assembly program](/2025/07/13/first-arm64-code.html) for how to call Linux (for ARM64) `exit()` to end execution.
 
-ARM64 has x0-x31 64-bit integer registers. Each register is a memory cell to store some value. Their respective lower 32-bit parts are named w0-w31.
+ARM64 has x0-x30 64-bit general purpose registers that usually store integers. Each register is a memory cell to store some value. Their respective lower 32-bit parts are named w0-w30.
 
 
 ## Documentation for ARM32 and ARM64 assembly
