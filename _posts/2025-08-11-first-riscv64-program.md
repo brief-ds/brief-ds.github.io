@@ -10,14 +10,21 @@ A toolchain is the collection of assembler, compiler, and linker that translate 
 # Bare metal development toolchain
 Bare metal, means executable files produced by the toolchain will be linked with a minimal set of code that enables the executable file to run alone, with no support of the underlying operating system or any simulator (of RISC-V64 on x86_64) at run time.
 
-Clone the repo at [https://github.com/riscv-collab/riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain), follow the instructions and make the default target as under the "Installation (Newlib)" section. There will be more explanation on the parameters `--with-arch` and `--with-abi`, but below should make the toolchain for a RISC-V64 with enough features as a general computer platform (integer, floating point, etc).
+Clone the repo at [https://github.com/riscv-collab/riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain),
 
 ```sh
+git clone https://github.com/riscv-collab/riscv-gnu-toolchain
+```
+
+ follow the instructions and make the default target as under the "Installation (Newlib)" section. There will be more explanation on the parameters `--with-arch` and `--with-abi`, but below should make the toolchain for a RISC-V64 with enough features as a general computer platform (integer, floating point, etc).
+
+```sh
+mkdir /opt
 configure --prefix=/opt/rv64gcv --with-arch=rv64gcv --with-abi=lp64d
 make -j 2
 ```
 
-After the make, 18G disk space is taken on a Ubuntu x86_64 system.
+After the make, 18G disk space is taken on a Ubuntu x86_64 system. After making of the toolchain, in cloud you can switch the virtual machine to less powerful type, with at least 2G memory.
 
 If you follow the instruction as under the "Installation (Linux)" section, it will take considerably longer and more disk space to make the Linux/GNU toolchain. Executable files produced by this toolchain will depend on support of the underlying operating system and simulators to run, harder to get right.
 
