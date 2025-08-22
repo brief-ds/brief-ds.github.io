@@ -8,6 +8,8 @@ This article accompanies the Lesson 1 "Exit syscall" of LaurieWired in the [ARM 
 We will write an ARM64 assembly program that simply calls Linux `exit()` to terminate the execution.
 
 ## Set up the toolchain
+A toolchain is the collection of assembler, compiler, and linker that translate any assembly, C programs in text to executable binary ones.
+
 Launch a virtual machine with [Graviton](https://en.wikipedia.org/wiki/AWS_Graviton) ARM64 core on Amazon Web Services (AWS). Install a 64-bit Linux on it and the gcc toolchain. On Ubuntu, run in shell
 
 ```sh
