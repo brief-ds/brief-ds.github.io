@@ -38,13 +38,12 @@ LDR reads a word (32-bit) at specified address. We will look at two versions of 
 .text
 _start:
     // load content of var2, the decimal 6
-    ldr x0, var2
-    mov x8, #0x5d
+    ldr x0, var2     // x0 stores return value for exit()
+    mov x8, #0x5d    // x8 stores function number for exit()
     svc #0
 
 .data
 // a word is 32-bit
-// or 8-digit in heximal mode
 var1: .word 5     // decimal 5
 var2: .word 6     // decimal 6
 ```
@@ -74,7 +73,7 @@ Disassembly of section .text:
   4000b8:	d4000001 	svc	#0x0
 ```
 
-We suppose at the address 0x4100c0 is the number decimal 6. How to prove it?
+We suppose at the address 0x4100c0 is stored the number 6. Can we prove it?
 
 ```
 $ readelf -x .data ldr
@@ -83,22 +82,22 @@ Hex dump of section '.data':
   0x004100bc 05000000 06000000                   ........
 ```
 
-We see at address 0x004100bc is some content `0x05000000`, at the next address which would be 0x004100bc + 0x00000004 = 0x004100c0 is some content `0x06000000`.
+We see at the address 0x004100bc is stored `0x05000000`. The next address would be 0x004100bc + 0x00000004 = 0x004100c0, and `0x06000000` is stored.
 
-But `0x05000000` is many times larger than the decimal 5, or heximal 0x5? We have to talk about the order in which the processor records a number, "endianness". If we search for "aarch64 little endian", we may find:
+But `0x06000000` is quite larger than the 6 we obtained? We have to talk about how ARM64 stores numbers, or particularly the order in which it stores the bytes of a number. If we search for "aarch64 little endian", we may find:
 
 > AArch64, which is the 64-bit architecture for ARM, typically uses little-endian format by default. This means that the least significant byte is stored at the smallest memory address.
 
-What it says is that from address 0x004100bc to 0x004100bf, to record the number 0x00000005, going from the most significant to the least significant byte (left to right), the four bytes 0x00, 0x00, 0x00, 0x05 would go into addresses 
+By this rule, to record the number 0x00000006, the four bytes 0x00, 0x00, 0x00, 0x06 in the number would go into addresses
 
 | The Address  | Recorded Byte |
 | ------- | ------- |
-| 0x004100bc | 0x05 |
-| 0x004100bd | 0x00 |
-| 0x004100be | 0x00 |
-| 0x004100bf | 0x00 |
+| 0x004100c0 | 0x06 |
+| 0x004100c1 | 0x00 |
+| 0x004100c2 | 0x00 |
+| 0x004100c3 | 0x00 |
 
-which explains starting from the address 0x004100bc, why the content looks to be 0x05000000.
+with the least significant byte 0x06 going into the lowest address 0x004100c0.
 
 ### version 2
 We look at an variety of `ldr.s`:
@@ -109,8 +108,8 @@ We look at an variety of `ldr.s`:
 .text
 _start:
     ldr x1, =var2
-    ldr x0, [x1]
-    mov x8, #0x5d
+    ldr x0, [x1]       // x0 stores return value for exit()
+    mov x8, #0x5d      // x8 stores function number for exit()
     svc #0
 
 .data
@@ -118,7 +117,7 @@ var1: .word 5
 var2: .word 6
 ```
 
-It would still return decimal number 6:
+It would still return the number 6:
 
 ```sh
 $ as -o ldr.o ldr.s
@@ -146,9 +145,9 @@ Disassembly of section .text:
   4000c4:	00000000 	.word	0x00000000
 ```
 
-The line `ldr x1, 4000c0` would load the (32-bit) word at address 0x4000c0 into register `x1`. Several lines down, `4000c0: 004100cc`: at 0x4000c0 is the word 0x004100cc, which will be read into `x1`.
+The line `ldr x1, 4000c0` would load the 32-bit word at address 0x4000c0 into register `x1`. Several lines down, `4000c0: 004100cc` indicates that at 0x4000c0 is stored the word 0x004100cc, therefore 0x004100cc is read into `x1`.
 
-The next line `ldr x0, [x1]` would read the word found at address 0x004100cc into `x0`. Let's check if `0x004100cc` is an address in the section `.data`.
+The next line `ldr x0, [x1]` would interpret what's stored in x1 as an address, and read the word stored at that address. Let's check if `0x004100cc` is an address in the section `.data`.
 
 ```sh
 $ readelf -x .data ldr
@@ -158,7 +157,7 @@ Hex dump of section '.data':
 
 ```
 
-So at address 0x004100c8 is some content 0x05000000, at the next address which would be 0x004100c8 + 0x00000004 = 0x004100cc is some content 0x06000000. For what we explained about endianness, that would be heximal number 0x6, or decimal number 6.
+So at the address 0x004100c8 is stored some content 0x05000000. The next address would be 0x004100c8 + 0x00000004 = 0x004100cc, and 0x06000000 is stored there. For what we have explained about endianness, that would be hexadecimal number 0x6, equivalent to decimal number 6.
 
 ## STR (store register)
 STR stores the content in a register to a specified address. The ARM64 code is not much different from the ARM32 one in Laurie's lesson.
