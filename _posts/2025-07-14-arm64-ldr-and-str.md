@@ -82,9 +82,13 @@ Hex dump of section '.data':
   0x004100bc 05000000 06000000                   ........
 ```
 
-We see at the address 0x004100bc is stored `0x05000000`. The next address would be 0x004100bc + 0x00000004 = 0x004100c0, and `0x06000000` is stored.
+We see at the address 0x004100bc is stored `0x05000000`. An 8-digit hexademical number would occupy 4 bytes (one byte occupying 8 binary bits):
 
-But `0x06000000` is quite larger than the 6 we obtained? We have to talk about how ARM64 stores numbers, or particularly the order in which it stores the bytes of a number. If we search for "aarch64 little endian", we may find:
+each single hexadecimal digit can represent 16 different numbers. In binary, a single hexadecimal digit has to be represented with 4 binary bits so when flipping each bit between 0 and 1, that would produce 2 ** 4 = 16 different choices. 8 of hexadecimal digits would therefore be represented by 4 x 8 = 32 binary bits, or 4 bytes. One byte occupies 8 binary bits.
+
+Addresses are measured in bytes. As the address 0x004100bc has stored four bytes of content, the following address would be 0x004100bc incremented by 4, 0x004100bc + 0x00000004 = 0x004100c0, and `0x06000000` is stored there.
+
+But `0x06000000` looks many times larger than the 6 we obtained? We have to talk about how ARM64 stores numbers, or particularly the order in which it stores the bytes of a number. If we search for "aarch64 little endian", we may find:
 
 > AArch64, which is the 64-bit architecture for ARM, typically uses little-endian format by default. This means that the least significant byte is stored at the smallest memory address.
 
