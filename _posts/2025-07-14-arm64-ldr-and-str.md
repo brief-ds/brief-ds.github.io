@@ -48,7 +48,7 @@ add w0, w0, #0x100
 
 this line would set the upper 32-bit of x0 to zero. Effectively we obtain
 
-x0 = w0 = #0x121.
+x0 = w0 = 0x121.
 
 There is no register named W31 or X31. Depending on the instruction, register 31 is either the stack pointer or the zero register. When used as the stack pointer, you refer to it as SP. When used as the zero register, you refer to it as WZR in a 32-bit context or XZR in a 64-bit context.
 
