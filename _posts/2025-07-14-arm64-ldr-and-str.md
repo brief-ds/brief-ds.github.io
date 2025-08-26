@@ -1,5 +1,5 @@
 ---
-title: ARM64 LDR (load register) and STR (store register) instructions
+title: ARM64 load/store register instructions
 layout: post
 ---
 
@@ -14,6 +14,19 @@ On [https://developer.arm.com](https://developer.arm.com), search for "armasm us
 Arm Compiler armasm User Guide. Version: 6.6.5. Recommended
 
 Version 6.6.5 is the latest version as of writing. Click on it. The LDR and STR instructions are documented under the section "A64 Data Transfer Instructions".
+
+## ARM64 general purpose registers
+According to ARM's documentation [Aarch64 registers](https://developer.arm.com/documentation/102374/0102/Registers-in-AArch64---general-purpose-registers), Aarch64 has 31 general purpose registers. A register is a memory cell into which one can write values, usually integer. Each register can be used as a 64-bit X register (X0..X30), or its lower 32-bit part as a 32-bit W register (W0..W30).
+
+![Aarch64 general purpose registers](/assets/arm64/a64_registers.png)
+
+When X register is used, 64-bit calculation is performed. When W register is used, 32-bit calculation is performed. For example,
+
+```asm
+add x0, x1, x2
+```
+
+adds the 64-bit content, usually integer, in x1 and x2, and store the 64-bit result into x0.
 
 ## LDR (load register)
 LDR reads a word (32-bit) at specified address. We will look at two versions of `ldr.s` that does the same thing.
@@ -63,34 +76,8 @@ Disassembly of section .text:
 
 We suppose at the address 0x4100c0 is the number decimal 6. How to prove it?
 
-We first print the symbol table in the executable `ldr`:
-
-```sh
-$ readelf -s ldr
-
-Symbol table '.symtab' contains 15 entries:
-   Num:    Value          Size Type    Bind   Vis      Ndx Name
-     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
-     1: 00000000004000b0     0 SECTION LOCAL  DEFAULT    1 .text
-     2: 00000000004100bc     0 SECTION LOCAL  DEFAULT    2 .data
-     3: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS ldr.o
-     4: 00000000004000b0     0 NOTYPE  LOCAL  DEFAULT    1 $x
-     5: 00000000004100c0     0 NOTYPE  LOCAL  DEFAULT    2 var2
-     6: 00000000004100bc     0 NOTYPE  LOCAL  DEFAULT    2 var1
-     7: 00000000004100c4     0 NOTYPE  GLOBAL DEFAULT    2 _bss_end__
-     8: 00000000004100c4     0 NOTYPE  GLOBAL DEFAULT    2 __bss_start__
-     9: 00000000004100c4     0 NOTYPE  GLOBAL DEFAULT    2 __bss_end__
-    10: 00000000004000b0     0 NOTYPE  GLOBAL DEFAULT    1 _start
-    11: 00000000004100c4     0 NOTYPE  GLOBAL DEFAULT    2 __bss_start
-    12: 00000000004100c8     0 NOTYPE  GLOBAL DEFAULT    2 __end__
-    13: 00000000004100c4     0 NOTYPE  GLOBAL DEFAULT    2 _edata
-    14: 00000000004100c8     0 NOTYPE  GLOBAL DEFAULT    2 _end
 ```
-
-It reads `var2` is at address 0x4100c0, in section 2 (under column Ndx); `var1` is at address 0x4100bc, in the same section 2. We now print out the section 2, or the section `.data` of `ldr`:
-
-```
-$ readelf -x2 ldr         # or readelf -x .data ldr
+$ readelf -x .data ldr
 
 Hex dump of section '.data':
   0x004100bc 05000000 06000000                   ........
@@ -173,11 +160,6 @@ Hex dump of section '.data':
 
 So at address 0x004100c8 is some content 0x05000000, at the next address which would be 0x004100c8 + 0x00000004 = 0x004100cc is some content 0x06000000. For what we explained about endianness, that would be heximal number 0x6, or decimal number 6.
 
-### conclusion
-We see from the above code,
-- plain `var2` refers to an address (or a "**pointer**" in C programming language's jargon), at which the number 6 is stored;
-- `=var2` is a **pointer** to the address at which number 6 is stored ("**pointer to a pointer**").
-
 ## STR (store register)
 STR stores the content in a register to a specified address. The ARM64 code is not much different from the ARM32 one in Laurie's lesson.
 
@@ -214,3 +196,5 @@ ARM assembly tutorial, @LaurieWired, [https://www.youtube.com/playlist?list=PLn_
 First ARM64 assembly program, [/2025/07/13/first-arm64-code.html](/2025/07/13/first-arm64-code.html)
 
 Arm Compiler armasm User Guide. On [https://developer.arm.com](https://developer.arm.com), search for "armasm user guide". In the result list, find the latest version of "Arm Compiler armasm User Guide".
+
+Aarch64 registers, [https://developer.arm.com/documentation/102374/0102/Registers-in-AArch64---general-purpose-registers](https://developer.arm.com/documentation/102374/0102/Registers-in-AArch64---general-purpose-registers)
