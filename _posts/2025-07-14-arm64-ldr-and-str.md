@@ -28,6 +28,30 @@ add x0, x1, x2
 
 adds the 64-bit content, usually integer, in x1 and x2, and store the 64-bit result into x0.
 
+When you use the 32-bit form of an instruction, the upper 32 bits of the source registers are ignored and the upper 32 bits of the destination register are set to zero. For example, we make a 64-bit integer in x0,
+
+```asm
+mov x0, #0x52
+lsl x0, x0, #32      // shift left by 32 bits
+add x0, x0, #0x21
+```
+
+we would obtain
+
+x0 = 0x5200000021
+
+by now. If we append
+
+```asm
+add w0, w0, #0x100
+```
+
+this line would set the upper 32-bit of x0 to zero. Effectively we obtain
+
+x0 = w0 = #0x121.
+
+There is no register named W31 or X31. Depending on the instruction, register 31 is either the stack pointer or the zero register. When used as the stack pointer, you refer to it as SP. When used as the zero register, you refer to it as WZR in a 32-bit context or XZR in a 64-bit context.
+
 ## LDR (load register)
 LDR reads a word (32-bit) at specified address. We will look at two versions of `ldr.s` that does the same thing.
 
@@ -201,3 +225,5 @@ First ARM64 assembly program, [/2025/07/13/first-arm64-code.html](/2025/07/13/fi
 Arm Compiler armasm User Guide. On [https://developer.arm.com](https://developer.arm.com), search for "armasm user guide". In the result list, find the latest version of "Arm Compiler armasm User Guide".
 
 Aarch64 registers, [https://developer.arm.com/documentation/102374/0102/Registers-in-AArch64---general-purpose-registers](https://developer.arm.com/documentation/102374/0102/Registers-in-AArch64---general-purpose-registers)
+
+Registers in Aarch64 state, [https://developer.arm.com/documentation/dui0801/l/Overview-of-AArch64-state/Registers-in-AArch64-state](https://developer.arm.com/documentation/dui0801/l/Overview-of-AArch64-state/Registers-in-AArch64-state)
