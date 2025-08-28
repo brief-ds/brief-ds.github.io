@@ -112,3 +112,5 @@ RISC-V Linux syscall table, Juraj Borza, [https://jborza.com/post/2021-05-11-ris
 RISC-V Assembly Hello World (part 1), LaurieWired, [https://www.youtube.com/watch?v=0IeOaiKszLk](https://www.youtube.com/watch?v=0IeOaiKszLk)
 
 RISC-V Assembly Programmer's Handbook, [https://github.com/riscv-non-isa/riscv-asm-manual](https://github.com/riscv-non-isa/riscv-asm-manual)
+
+RISC-V Assembly Cheat Sheet, [https://projectf.io/posts/riscv-cheat-sheet/](https://projectf.io/posts/riscv-cheat-sheet/)
