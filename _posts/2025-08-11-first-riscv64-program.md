@@ -3,7 +3,7 @@ title: First RISC-V64 program
 layout: post
 ---
 
-RISC-V64, as ARM64, is another simple [reduced instruction set computer](https://en.wikipedia.org/wiki/Reduced_instruction_set_computer) architecture. RISC-V is not owned by a corporate but a [consortium](https://riscv.org/). It is standardised into base sets or extensions, e.g, "I" for integer instruction base set, "V" for vector extension. Any set or extension may undergo revisions, but it tends to be stable. Manufacturers can combine a base set with any extensions, for example "E" only for microcontrollers, but "IFD" for integer, single-width floating point and double-width floating point arithmetic.
+RISC-V64, as ARM64, is another simple [reduced instruction set computer](https://en.wikipedia.org/wiki/Reduced_instruction_set_computer) architecture. RISC-V is not owned by a corporate but a [consortium](https://riscv.org/). It is standardised into base sets and extensions, e.g, "I" for the base integer instruction set, "V" for the extension for vector operations. Any base set or extension may undergo revisions, but it tends to be overall stable. Manufacturers can combine a base set with any extensions for a chip, for example "E" only for microcontrollers, but "IFD" for integer, single-width floating point and double-width floating point arithmetic.
 
 The instruction set manual is at [https://github.com/riscv/riscv-isa-manual](https://github.com/riscv/riscv-isa-manual), whose README links to the HTML snapshots of [user-level (unprivileged) instruction sets](https://riscv.github.io/riscv-isa-manual/snapshot/unprivileged/) and [privileged instruction sets](https://riscv.github.io/riscv-isa-manual/snapshot/privileged/).
 
