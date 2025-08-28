@@ -3,12 +3,14 @@ title: First RISC-V64 program
 layout: post
 ---
 
-RISC-V64, as ARM64, is another simple [reduced instruction set computer](https://en.wikipedia.org/wiki/Reduced_instruction_set_computer) architecture. As CPUs implementing it are not widely available, we will install the development toolchain  on a x86_64 host and write the first RISC-V64 assembly program on this foreign host x86_64.
+RISC-V64, as ARM64, is another simple [reduced instruction set computer](https://en.wikipedia.org/wiki/Reduced_instruction_set_computer) architecture. RISC-V is not owned by a corporate but a [consortium](https://riscv.org/). It is standardised into instruction sets or extensions, e.g, "I" for integer instruction set, "V" for vector extension. Although one RISC-V instruction set may undergo revisions, it tends to be stable. Manufacturers can combine any features for a RISC-V chip, for example "E" for microcontrollers, but "IFD" for integer, single-width floating point and double-width floating point arithmetic.
 
-A toolchain is the collection of assembler, compiler, and linker that translate any assembly, C programs in text to executable binary ones.
+The various instruction sets and extensions of RISC-V are detailed at [https://github.com/riscv/riscv-isa-manual](https://github.com/riscv/riscv-isa-manual), whose README links to the snapshots of [user-level (unprivileged) instruction sets](https://riscv.github.io/riscv-isa-manual/snapshot/unprivileged/) and [privileged instruction sets](https://riscv.github.io/riscv-isa-manual/snapshot/privileged/).
+
+We will install the RISC-V development toolchain on a x86_64 host and write the first RISC-V64 assembly program on this non-RISC-V-native host. A toolchain is the collection of assembler, compiler, and linker that translate assembly, C programs to executable binary ones.
 
 # Bare metal development toolchain
-Bare metal, means executable files produced by the toolchain will be linked with a minimal set of code that enables the executable file to run alone, with no support of the underlying operating system or any simulator (of RISC-V64 on x86_64) at run time.
+Bare metal, means executable files produced by the toolchain will be able to run with no support of the underlying operating system (for example to translate memory addresses) or any simulator of RISC-V64.
 
 Clone the repo at [https://github.com/riscv-collab/riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain),
 
@@ -16,7 +18,7 @@ Clone the repo at [https://github.com/riscv-collab/riscv-gnu-toolchain](https://
 git clone https://github.com/riscv-collab/riscv-gnu-toolchain
 ```
 
- follow the instructions and make the default target as under the "Installation (Newlib)" section. There will be more explanation on the parameters `--with-arch` and `--with-abi`, but below should make the toolchain for a RISC-V64 with enough features as a general computer platform (integer, floating point, etc).
+and follow the instructions and make the default target as under the "Installation (Newlib)" section.
 
 ```sh
 mkdir /opt
@@ -24,26 +26,31 @@ configure --prefix=/opt/rv64gcv --with-arch=rv64gcv --with-abi=lp64d
 make -j 2
 ```
 
-After the make, 18G disk space is taken on a Ubuntu x86_64 system. After making of the toolchain, in cloud you can switch the virtual machine to less powerful type, with at least 2G memory.
+After the make, 18G disk space is taken on a Ubuntu x86_64 system. After making of the toolchain, in the cloud you can switch the virtual machine to less powerful instance type, with at least 2G memory.
 
-If you follow the instruction as under the "Installation (Linux)" section, it will take considerably longer and more disk space to make the Linux/GNU toolchain. Executable files produced by this toolchain will depend on support of the underlying operating system and simulators to run, harder to get right.
+If you follow the instruction as under the "Installation (Linux)" section, it will take longer and more disk space to make the Linux/GNU toolchain. Executable files produced by this toolchain will be trickier to run, depending on the support of the underlying operating system and a RISC-V simulator.
 
-## `arch` and `abi` for RISC-V64
-The [RISC-V user-level instruction sets](https://riscv.github.io/riscv-isa-manual/snapshot/unprivileged/) are standardised at the [RISC-V International](https://riscv.org). They give each set an acrynom, for example, "I" Extension for the integer instructions, "V" Extension for the vector calculations.
-
-In the previous section, the `--with-arch=rv64gcv` parameter for the `configure` script specifies the toolchain to support the "G", "C", "V" Extensions. The "G" Extension is a shorthand for "I", "M", "A", "F", "D", and two more features. [The RISC-V Instruction Set Manual Volume I: Unprivileged Architecture](https://riscv.github.io/riscv-isa-manual/snapshot/unprivileged/)
+## `arch` (architecture) and `abi` (application binary interface) for RISC-V64
+The `--with-arch=rv64gcv` parameter configures the architecture: the "G" represents the "I" base set with the "M", "A", "F", "D", "Zicsr" and "Zifencei" extensions, enough features to make a general purpose computer. [The RISC-V Instruction Set Manual Volume I: Unprivileged Architecture](https://riscv.github.io/riscv-isa-manual/snapshot/unprivileged/) 36.3 Instruction-Set Extension Names
 
 | acrynom | instruction set |
 | --------- | ------------------- |
 |  I      | integer    |
 |  M      | integer multiplication/division |
 |  A      | atomic instructions |
-|  F      | single-precision floating point |
-|  D      | double-precision floating point |
+| Zicsr   | extension for control and status register instructions |
+|  F      | single-precision floating point, depends on "Zicsr" |
+|  D      | double-precision floating point, depends on "F" |
+| Zifencei | extension for instruction-fetch fence |
 |  C      | compressed 16-bit instructions (instead of 32-bit) |
 |  V      | vector      |
 
-For the meaning of `abi`, refer to [The -march, -mabi, and -mtune arguments to RISC-V Compilers](https://www.sifive.com/blog/all-aboard-part-1-compiler-args). The whole series is well worth a read.
+`abi`, or application binary interface, specifies how parameters are passed between function calls. For more detail, refer to [The -march, -mabi, and -mtune arguments to RISC-V Compilers](https://www.sifive.com/blog/all-aboard-part-1-compiler-args), part of a blog series.
+
+This whole SiFive blog series is worth a read:
+
+* As each RISC-V instruction is encoded with 32-bit, it takes two instructions to load a 32-bit address;
+* it also influences the choice of "memory model": the range of memory a program has access to.
 
 ## The first RISC-V64 assembly program
 We copy the `hello.s` in [RISC-V Assembly Hello World (part 1)](https://www.youtube.com/watch?v=0IeOaiKszLk) by LaurieWired, which simply calls the Linux `exit()`.
@@ -81,6 +88,8 @@ $ /opt/rv64gcv/bin/riscv64-unknown-elf-run hello; echo $?
 
 ## References
 RISC-V Instruction Set Manual, [https://github.com/riscv/riscv-isa-manual](https://github.com/riscv/riscv-isa-manual)
+
+The RISC-V Instruction Set Manual Volume I: Unprivileged Architecture, [https://riscv.github.io/riscv-isa-manual/snapshot/unprivileged/](https://riscv.github.io/riscv-isa-manual/snapshot/unprivileged/)
 
 RISC-V GNU toolchain, [https://github.com/riscv-collab/riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain)
 
