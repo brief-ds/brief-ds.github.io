@@ -31,7 +31,7 @@ After the make, 18G disk space is taken on a Ubuntu x86_64 system. After making 
 If you follow the instruction as under the "Installation (Linux)" section, it will take longer and more disk space to make the Linux/GNU toolchain. Executable files produced by this toolchain will be trickier to run, depending on the support of the underlying operating system and a RISC-V simulator.
 
 ## `arch` (architecture) and `abi` (application binary interface) for RISC-V64
-The `--with-arch=rv64gcv` parameter configures the architecture: the "G" represents the "I" base set with the "M", "A", "F", "D", "Zicsr" and "Zifencei" extensions, enough features to make a general purpose computer. [The RISC-V Instruction Set Manual Volume I: Unprivileged Architecture](https://riscv.github.io/riscv-isa-manual/snapshot/unprivileged/) 36.3 Instruction-Set Extension Names
+The `--with-arch=rv64gcv` parameter configures the architecture: the "G" represents the "I" base set with the "M", "A", "F", "D", "Zicsr" and "Zifencei" extensions, enough for a general purpose computer. [The RISC-V Instruction Set Manual Volume I: Unprivileged Architecture](https://riscv.github.io/riscv-isa-manual/snapshot/unprivileged/) 36.3 Instruction-Set Extension Names
 
 | acrynom | instruction set |
 | --------- | ------------------- |
@@ -45,7 +45,7 @@ The `--with-arch=rv64gcv` parameter configures the architecture: the "G" represe
 |  C      | compressed 16-bit instructions (instead of 32-bit) |
 |  V      | vector      |
 
-`abi`, or application binary interface, specifies how parameters are passed between function calls. For more detail, refer to [The -march, -mabi, and -mtune arguments to RISC-V Compilers](https://www.sifive.com/blog/all-aboard-part-1-compiler-args), part of a blog series.
+`abi`, or application binary interface, specifies how parameters are passed between function calls, for example, whether it takes one 64-bit register or two 32-bit registers to send one 64-bit number. For more detail, refer to [The -march, -mabi, and -mtune arguments to RISC-V Compilers](https://www.sifive.com/blog/all-aboard-part-1-compiler-args), part of a blog series.
 
 This whole SiFive blog series is worth a read:
 
