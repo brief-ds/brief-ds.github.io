@@ -3,9 +3,9 @@ title: First RISC-V64 program
 layout: post
 ---
 
-RISC-V64, as ARM64, is another simple [reduced instruction set computer](https://en.wikipedia.org/wiki/Reduced_instruction_set_computer) architecture. RISC-V is not owned by a corporate but a [consortium](https://riscv.org/). It is standardised into instruction sets or extensions, e.g, "I" for integer instruction set, "V" for vector extension. Although one RISC-V instruction set may undergo revisions, it tends to be stable. Manufacturers can combine any features for a RISC-V chip, for example "E" for microcontrollers, but "IFD" for integer, single-width floating point and double-width floating point arithmetic.
+RISC-V64, as ARM64, is another simple [reduced instruction set computer](https://en.wikipedia.org/wiki/Reduced_instruction_set_computer) architecture. RISC-V is not owned by a corporate but a [consortium](https://riscv.org/). It is standardised into base sets or extensions, e.g, "I" for integer instruction base set, "V" for vector extension. Any set or extension may undergo revisions, but it tends to be stable. Manufacturers can combine a base set with any extensions, for example "E" only for microcontrollers, but "IFD" for integer, single-width floating point and double-width floating point arithmetic.
 
-The various instruction sets and extensions of RISC-V are detailed at [https://github.com/riscv/riscv-isa-manual](https://github.com/riscv/riscv-isa-manual), whose README links to the snapshots of [user-level (unprivileged) instruction sets](https://riscv.github.io/riscv-isa-manual/snapshot/unprivileged/) and [privileged instruction sets](https://riscv.github.io/riscv-isa-manual/snapshot/privileged/).
+The instruction set manual is at [https://github.com/riscv/riscv-isa-manual](https://github.com/riscv/riscv-isa-manual), whose README links to the HTML snapshots of [user-level (unprivileged) instruction sets](https://riscv.github.io/riscv-isa-manual/snapshot/unprivileged/) and [privileged instruction sets](https://riscv.github.io/riscv-isa-manual/snapshot/privileged/).
 
 We will install the RISC-V development toolchain on a x86_64 host and write the first RISC-V64 assembly program on this non-RISC-V-native host. A toolchain is the collection of assembler, compiler, and linker that translate assembly, C programs to executable binary ones.
 
