@@ -9,7 +9,7 @@ The main reference is the **instruction set manual** at [https://github.com/risc
 
 We will install the RISC-V development toolchain on a x86_64 host and write the first RISC-V64 assembly program on this non-RISC-V-native host. A toolchain is the collection of assembler, compiler, and linker that translate assembly, C programs to executable binary ones.
 
-# Bare metal development toolchain
+## Bare metal development toolchain
 Bare metal, means executable files produced by the toolchain will be able to run with no support of the underlying operating system (for example to translate memory addresses) or any simulator of RISC-V64.
 
 Clone the repo at [https://github.com/riscv-collab/riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain),
@@ -53,7 +53,7 @@ This whole SiFive blog series is worth a read:
 * it also influences the choice of "memory model": the range of memory a program has access to.
 
 ## RISC-V64 registers
-A register is a location that stores a number on a computer architecture. For either the 32-bit base integer instruction set RV32I or the 64-bit counterpart RV64I, XLEN characters the width in bits of an integer value stored in a register:
+A register is a location that stores a number on a computer architecture. For either the 32-bit base integer instruction set RV32I or the 64-bit counterpart RV64I, XLEN characterises the width in bits of an integer value stored in a register:
 
 for RV32I, XLEN = 32; for RV64I, XLEN = 64.
 
