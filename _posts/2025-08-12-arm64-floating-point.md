@@ -49,7 +49,7 @@ int main() {
 
 what remains is to write an `add.s`, assemble and link it with `main.c` to produce the executable file.
 
-## The adding function in assembly
+## The `add` function in assembly
 Recall that all constants are preceded by `#`. `#0x10` is the hexadecimal 10, equivalent to decimal 16. `#12` is just the decimal 12.
 
 The C `float` type is typically 32-bit. In C, the interface of `add()` was declared as
