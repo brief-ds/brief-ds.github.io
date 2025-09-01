@@ -25,9 +25,9 @@ The first eight registers, v0-v7, are used to pass argument values into a subrou
 Registers v8-v15 must be preserved by a callee across subroutine calls; the remaining registers (v0-v7, v16-v31) do not need to be preserved (or should be preserved by the caller). Additionally, only the bottom 64 bits of each value stored in v8-v15 need to be preserved; it is the responsibility of the caller to preserve larger values. [Procedure Call Standard for Aarch64 6.1.2 SIMD and Floating-Point registers](https://github.com/ARM-software/abi-aa/blob/main/aapcs64/aapcs64.rst#simd-and-floating-point-registers)
 
 ## Project Overview
-In previous posts, normally at last of execution we ask the Linux `exit()` to return an integer result. But in this post we'll do pointing point arithmetic, so we have to change the game plan -- we'll use the C function `printf()` to print out the floating number.
+In previous posts, the result in an interger is returned by the Linux `exit()` call. But in this post the result is a pointing point value, so we change the game plan -- we'll use the C function `printf()` to print it out.
 
-We write out `add.h` and `main.c`:
+We first write `add.h` and `main.c`:
 
 `add.h`:
 
@@ -47,10 +47,20 @@ int main() {
 }
 ```
 
-what remains is to write an `add.s`, and eventually link it with `main.c` to produce the executable file.
+what remains is to write an `add.s`, assemble and link it with `main.c` to produce the executable file.
 
 ## The adding function in assembly
-Recall that all constants are preceded by `#`. `0x` denotes hexadecimal, otherwise decimal. So `#0x10` is the hexadecimal 10, equivalent to decimal 16. `#12` is just the decimal 12.
+Recall that all constants are preceded by `#`. `#0x10` is the hexadecimal 10, equivalent to decimal 16. `#12` is just the decimal 12.
+
+The C `float` type is typically 32-bit. In C, the interface of `add()` was declared as
+
+```c
+float add(float a, float b);
+```
+
+At the entry of the `add` routine in the assembly, the input parameters a and b are in the registers s0, s1 of 32-bit width. The result will be in s0. They don't have to be preserved by the callee.
+
+Refer to the [ARM64 function call](/2025/08/04/arm64-func.html) post for the use of the stack.
 
 `add.s`:
 
@@ -60,9 +70,6 @@ Recall that all constants are preceded by `#`. `0x` denotes hexadecimal, otherwi
 .text
 add:
     sub sp, sp, #0x10       // set sp to sp - 16 bytes
-    str s0, [sp, #12]       // store s0 first param at sp + 12 bytes
-    str s1, [sp, #8]        // store s1 second param at sp + 8 bytes
-    sub sp, sp, #0x10       // set sp to sp - 16 bytes once more
     str lr, [sp, #8]        // store link register lr at sp + 8 bytes
     str fp, [sp]            // store frame pointer fp at sp
     mov fp, sp              // set frame pointer fp to sp
@@ -73,43 +80,10 @@ add:
     ldr fp, [sp]            // restore frame pointer fp from sp
     ldr lr, [sp, #8]        // restore link register lr from sp + 8 bytes
     add sp, sp, #0x10       // set sp to sp + 16 bytes
-                            // now, the params s0, s1 at function entry
-                            // should be stored at sp + 8 bytes, sp + 16 bytes
-                            // but we don't restore them
-    add sp, sp, #0x10       // set sp to sp + 16 bytes once more
-                            // fully unwind stack used by this function
     ret
 ```
 
-### Floating point registers
-64-bit floating point registers are named `d0`, `d1`, ... Their lower 32-bit parts are named `s0`, `s1`, ...
-
-The C `float` type is typically 32-bit, or occupying 4 bytes. That's why in the code above, the sp + 8 bytes to sp + 15 bytes on the stack are used to store the two parameters at entry `s0` and `s1`, while leaving sp to sp + 7 bytes empty:
-
-```asm
-
-    sub sp, sp, #0x10       // set sp to sp - 16 bytes
-    str s0, [sp, #12]       // store s0 first param at sp + 12 bytes
-    str s1, [sp, #8]        // store s1 second param at sp + 8 bytes
-
-```
-
-### Stack use
-The stack grows downward: its pointer's address decreases as more data is pushed onto it. Before the `fadd` floating point operation, the stack would have been prepared and look like
-
-```
-s0      4 bytes
-s1      4 bytes
-[empty 8 bytes]
-lr      8 bytes
-old fp  8 bytes    <-- sp
-```
-
-In the link register lr is stored the return address for the `add()` function: somewhere inside the `main()` function.
-
-The frame pointer fp momentarily points to the current stack pointer sp during the life of the `fadd` operation, before being restored to the old frame pointer, in preparation for returning to the `main()` function.
-
-## Make the code run
+## Run the project
 We assemble the `add.s` into a binary file `add.o`:
 
 ```sh
