@@ -17,6 +17,12 @@ Below is a graphical illustration,
 
 ![a64 floating point registers](/assets/arm64/a64_fp_registers.png)
 
+## Floating point registers preserved by the callee function
+Certain registers need to stay the same at the exit as at the entry of a function/subroutine being called (callee).
+
+The first eight registers, v0-v7, are used to pass argument values into a subroutine and to return result values from a function. They may also be used to hold intermediate values within a routine (but, in general, only between subroutine calls).
+
+Registers v8-v15 must be preserved by a callee across subroutine calls; the remaining registers (v0-v7, v16-v31) do not need to be preserved (or should be preserved by the caller). Additionally, only the bottom 64 bits of each value stored in v8-v15 need to be preserved; it is the responsibility of the caller to preserve larger values. [Procedure Call Standard for Aarch64 6.1.2 SIMD and Floating-Point registers](https://github.com/ARM-software/abi-aa/blob/main/aapcs64/aapcs64.rst#simd-and-floating-point-registers)
 
 ## Project Overview
 In previous posts, normally at last of execution we ask the Linux `exit()` to return an integer result. But in this post we'll do pointing point arithmetic, so we have to change the game plan -- we'll use the C function `printf()` to print out the floating number.
@@ -127,6 +133,8 @@ $ ./main
 Arm Compiler armasm User Guide. On [https://developer.arm.com](https://developer.arm.com), search for "armasm user guide". In the result list, find the latest version of "Arm Compiler armasm User Guide".
 
 Aarch64 registers, [https://developer.arm.com/documentation/102374/0102/Registers-in-AArch64---general-purpose-registers](https://developer.arm.com/documentation/102374/0102/Registers-in-AArch64---general-purpose-registers)
+
+Procedure Call Standard for Aarch64, [https://github.com/ARM-software/abi-aa/blob/main/aapcs64/aapcs64.rst](https://github.com/ARM-software/abi-aa/blob/main/aapcs64/aapcs64.rst)
 
 ARM64 load/save register instructions, [/2025/07/14/arm64-ldr-and-str.html](/2025/07/14/arm64-ldr-and-str.html)
 
