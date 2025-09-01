@@ -3,6 +3,21 @@ title: ARM64 floating point arithmetic
 layout: post
 ---
 
+## ARM64 floating point registers
+Aarch64 has 32 floating point registers. Each is 128-bit under name Q0-Q31. If one needs less precision for example 32-bit, one can access the lowest 32-bit part of each register under a different name. For example,
+
+| --------- | --------- |
+|     Q0    |  128-bit  |
+|    D0     |  the lowest 64-bit part of Q0 |
+|    S0     |  the lowest 32-bit part of Q0 |
+|    H0     |  the lowest 16-bit part of Q0 |
+|    B0     |  the lowest 8-bit part of Q0  |
+
+Below is a graphical illustration,
+
+![a64 floating point registers](/assets/arm64/a64_fp_registers.png)
+
+
 ## Project Overview
 In previous posts, normally at last of execution we ask the Linux `exit()` to return an integer result. But in this post we'll do pointing point arithmetic, so we have to change the game plan -- we'll use the C function `printf()` to print out the floating number.
 
@@ -110,6 +125,10 @@ $ ./main
 
 ## References
 Arm Compiler armasm User Guide. On [https://developer.arm.com](https://developer.arm.com), search for "armasm user guide". In the result list, find the latest version of "Arm Compiler armasm User Guide".
+
+Aarch64 registers, [https://developer.arm.com/documentation/102374/0102/Registers-in-AArch64---general-purpose-registers](https://developer.arm.com/documentation/102374/0102/Registers-in-AArch64---general-purpose-registers)
+
+ARM64 load/save register instructions, [/2025/07/14/arm64-ldr-and-str.html](/2025/07/14/arm64-ldr-and-str.html)
 
 ARM64 function calls, [/2025/08/04/arm64-func.html](/2025/08/04/arm64-func.html).
 
