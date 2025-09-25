@@ -79,7 +79,7 @@ Each mathematical operation is defined in 10-20 lines, for example the sum opera
 The `_forward()` function evaluates the sum. The `_backward()` function differentiates the sum with respect to the elements, over which the sum was calculated.
 
 ### micrograd can be inspected with Python's native profiler
-To time any code is called "profiling". For keeping functionality under heavy wraps, the other machine learning libraries also require additionally written code to inspect itself. Because micrograd is pure Python, one may time it with the cProfile module built in Python.
+To time any code is called "profiling". Complex other machine learning libraries would require additionally written code to inspect itself. Because micrograd is pure Python, one may time it with the cProfile module built in Python.
 
 ```sh
 python3 -m cProfile -s tottime <program_using_micrograd> <param> ...
@@ -108,6 +108,7 @@ micrograd turns out not to lose out in performance. We benchmarked the model beh
 
 The model performs quantile regression on 600 megabytes of data in memory. The data type was float32.
 
+### micrograd is most widely deployable
 The more complex the machine learning library is, the more likely its deployability is restricted. For example, on a machine with Alpine Linux, micrograd still runs, as it _only_ depends on Python and NumPy, while the other libraries are not available.
 
 ## References
