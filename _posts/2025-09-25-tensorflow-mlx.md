@@ -100,7 +100,7 @@ cProfile's output clearly ranks each forward or backward function of the mathema
 ### micrograd is comparable in performance
 micrograd turns out not to lose out in performance. We benchmarked the model behind [https://tsterm.com](https://tsterm.com) written with different libraries. The shorter the run time is the better.
 
-|  Hardware | OS          |   TensorFlow  |  micrograd  |
+|  Hardware | Operating System |   TensorFlow  |  micrograd  |
 | --------- | ----------- | ------------- | ----------- |
 |  x86_64 (AMD EPYC) | Amazon Linux 2 | **10s** |  12s  |
 |  Aarch64 (Graviton3) | Ubuntu 24.04 LTS | 13s | **12s** |
