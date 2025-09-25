@@ -75,21 +75,32 @@ Each mathematical operation is defined in 10-20 lines, for example the sum opera
 ```
 
 ### micrograd can be inspected with Python's native profiler
-To time any code is called "profiling". For heavy encapsulation of functionality, the other machine learning libraries would require additionally written code to inspect itself. Because micrograd is pure Python, one may time it with the cProfile module out of box.
+To time any code is called "profiling". For keeping functionality under heavy wraps, the other machine learning libraries also require additionally written code to inspect itself. Because micrograd is pure Python, one may time it with the cProfile module built in Python.
 
 ```sh
 python3 -m cProfile -s tottime <program_using_micrograd> <param> ...
 ```
 
-We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micrograd. From the cProfile's output on one running, it is straightforward to see that what costs most time was the tensordot operation (tensor multiplication), followed by differentiation of the element-wise multiplication operation.
+We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micrograd. From the cProfile's output on one run, it is straightforward to see that what costs most time was the tensordot operation (tensor multiplication), followed by differentiation of the element-wise multiplication operation.
 
 ```
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
      3258    2.749    0.001    2.814    0.001 numeric.py:1002(tensordot)
      ...
      1440    1.009    0.001    1.266    0.001 engine.py:91(_backward)
+     ...
 ```
 
+### micrograd is comparable in performance
+micrograd turns out not to lose out in performance. We benchmarked the model behind [https://tsterm.com](https://tsterm.com) written with different libraries. The shorter the run time is the better.
+
+|  Hardware | OS          |   TensorFlow  |  micrograd  |
+| --------- | ----------- | ------------- | ----------- |
+|  x86_64 (AMD EPYC) | Amazon Linux 2 | **10s** |  12s  |
+|  Aarch64 (Graviton3) | Ubuntu 24.04 LTS | 13s | **12s** |
+|  Aarch64 (Graviton4) | Ubuntu 24.04 LTS | **11s** | **11s** |
+
+The bigger the machine learning library is, the more likely its deployability is restricted. For example, on a machine with Alpine Linux, micrograd still runs, as it _only_ depends on Python and NumPy, while the other libraries cannot be made.
 
 ## References
 Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/derivatives-introduction.html](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
