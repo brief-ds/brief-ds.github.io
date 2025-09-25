@@ -34,14 +34,14 @@ and move <math><mi>b</mi></math> against the direction of <math><mfrac><mrow><mo
 The capability to automatically perform mathematical differentiation (autodiff) of a complex function with respect to its parameters is essential to machine learning libraries: for example Google's TensorFlow, Meta's PyTorch, [JAX](https://jax.dev), the emergent Apple's [MLX](https://mlx-framework.org), and [micrograd](https://github.com/brief-ds/micrograd) developed by us Brief Solutions Ltd.
 
 ## micrograd autodiff library
-micrograd was started by Andrej Karpathy. Initially [it](https://github.com/karpathy/micrograd) worked only on scalar values (any parameter or the function value is a single number). We extended it to work with vectors, including matrices (2-dimensional) and arbitrary-order tensors. The repository is at
+micrograd was started by Andrej Karpathy. Initially [it](https://github.com/karpathy/micrograd) worked only on scalar values. We extended it to work with vectors, including matrices (2-dimensional) and arbitrary-dimensional tensors. The repository is at [https://github.com/brief-ds/micrograd](https://github.com/brief-ds/micrograd). Its README would serve as the self-sufficient documentation.
 
-[https://github.com/brief-ds/micrograd](https://github.com/brief-ds/micrograd)
-
-### The philosophy
-The **philosophy** of micrograd is:
+### The philosophy of micrograd
+micrograd separates the symbolic differentiation and numerical calculation:
 1. micrograd does the structural manipulation (mathematical differentiation);
 2. actual numerical calculation is delegated to a numerical library as NumPy.
+
+When a machine learning library implements the mathematical functions again, it is possible the result is differnt from NumPy, for example the `arctanh(x)` in TensorFlow, when `x` is close to 1.
 
 ### micrograd can be taught to high schoolers
 The core file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py) is less than 500 lines, 10,000+ times smaller than full-featured libraries.
@@ -79,7 +79,7 @@ To time any code is called "profiling". For heavy encapsulation of functionality
 python3 -m cProfile -s tottime <program_using_micrograd> <param> ...
 ```
 
-We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micrograd. From the cProfile's output on one running, one could see that what costs most time was the tensordot operation (tensor multiplication), followed by differentiation of the element-wise multiplication operation.
+We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micrograd. From the cProfile's output on one running, it is straightforward to see that what costs most time was the tensordot operation (tensor multiplication), followed by differentiation of the element-wise multiplication operation.
 
 ```
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
