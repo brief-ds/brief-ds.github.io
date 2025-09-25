@@ -26,12 +26,6 @@ We would compute the mathematical derivates (gradients)
 </mfrac>
 </math>
 
-and modify <math><mi>b</mi></math> against the direction of
-<math>
-<mfrac>
-<mrow><mo>&part;</mo><mi>f</mi></mrow>
-<mrow><mo>&part;</mo><mi>b</mi></mrow>
-</mfrac>
-</math>.
+and move <math><mi>b</mi></math> against the direction of <math><mfrac><mrow><mo>&part;</mo><mi>f</mi></mrow><mrow><mo>&part;</mo><mi>b</mi></mrow></mfrac></math>.
 
 
