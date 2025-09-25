@@ -10,7 +10,9 @@ An artificial neural network (ANN) is usually a function of input <math><mi>X</m
 <mi>f</mi><mo>(</mo><mi>X</mi><mo>,</mo><mi>b</mi><mo>)</mo><mtext>.</mtext>
 </math>
 
-Given <math><mi>X</mi></math> we observe <math><mi>Y</mi></math> as output of the function or mechanism <math><mi>f</mi></math>. The training of the ANN would involve adjusting <math><mi>b</mi></math> such that <math><mi>f</mi><mo>(</mo><mi>X</mi><mo>,</mo><mi>b</mi><mo>)</mo></math> is as close to <math><mi>Y</mi></math> as possible by some measure, called "loss". For example, below is a loss,
+Given <math><mi>X</mi></math> we observe <math><mi>Y</mi></math> as output of the function or mechanism <math><mi>f</mi></math>.
+
+The training of the ANN would involve adjusting <math><mi>b</mi></math> such that <math><mi>f</mi><mo>(</mo><mi>X</mi><mo>,</mo><mi>b</mi><mo>)</mo></math> is as close to <math><mi>Y</mi></math> as possible by some measure, called "loss". For example, below is a loss,
 
 <math display="block">
 <mi>l</mi><mo>(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>b</mi><mo>)</mo><mo>=</mo><mrow><mo>|</mo><mi>f</mi><mo>(</mo><mi>X</mi><mo>,</mo><mi>b</mi><mo>)</mo><mo>-</mo><mi>Y</mi><mo>|</mo></mrow><mtext>,</mtext>
@@ -36,7 +38,7 @@ micrograd was started by Andrej Karpathy. Initially [it](https://github.com/karp
 
 [https://github.com/brief-ds/micrograd](https://github.com/brief-ds/micrograd)
 
-### Philosophy
+### The philosophy
 The **philosophy** of micrograd is:
 1. micrograd does the structural manipulation (mathematical differentiation);
 2. actual numerical calculation is delegated to a numerical library as NumPy.
@@ -70,14 +72,14 @@ Each mathematical operation is defined in 10-20 lines, for example the sum opera
 
 ```
 
-### Each function inside micrograd can be timed with Python's native profiler
-To time any code is called "profiling". The other libraries generally would require additional profiling code written. Because micrograd is pure Python, one may time the code with the cProfile module out of box.
+### micrograd can be inspected with Python's native profiler
+To time any code is called "profiling". For heavy encapsulation of functionality, the other machine learning libraries would require additionally written code to inspect itself. Because micrograd is pure Python, one may time it with the cProfile module out of box.
 
 ```sh
 python3 -m cProfile -s tottime <program_using_micrograd> <param> ...
 ```
 
-We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micrograd. From the cProfile's output, one could readily see what costs most time was the tensordot operation (tensor multiplication), followed by differentiation of the element-wise multiplication operation.
+We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micrograd. From the cProfile's output on one running, one could see that what costs most time was the tensordot operation (tensor multiplication), followed by differentiation of the element-wise multiplication operation.
 
 ```
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
@@ -90,4 +92,4 @@ We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micro
 ## References
 Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/derivatives-introduction.html](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
 
-Differentiation, BBC Bitsize, [https://www.bbc.co.uk/bitesize/guides/zyj77ty/revision/](https://www.bbc.co.uk/bitesize/guides/zyj77ty/revision/)
+Differentiation, BBC Bitsize, [https://www.bbc.co.uk/bitesize/guides/zyj77ty/](https://www.bbc.co.uk/bitesize/guides/zyj77ty/)
