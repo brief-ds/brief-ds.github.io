@@ -40,10 +40,12 @@ micrograd was started by Andrej Karpathy. [The initial version](https://github.c
 
 ### The philosophy of micrograd
 micrograd separates the symbolic differentiation and numerical calculation:
-1. micrograd does the structural manipulation (mathematical differentiation);
+1. micrograd does the differentiation, a manipulation of symbols;
 2. actual numerical calculation is delegated to a numerical library as NumPy.
 
-When a machine learning library implements the mathematical functions again, it is possible the result is differnt from NumPy, for example the `arctanh(x)` in TensorFlow, when `x` is close to 1 or -1.
+When a machine learning library implements the mathematical functions again, it is possible the result is different across libraries, for example the `arctanh(x)` in TensorFlow vs NumPy, when `x` is close to 1 or -1.
+
+Today the NumPy's install size is about 100 megabytes. If in the future there is a numerical library more compact and more performant, we will switch to that one. The clean division of job in the design enables that.
 
 ### micrograd can be taught to high schoolers
 The core file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py) is less than 500 lines, 10,000+ times smaller than full-featured libraries.
