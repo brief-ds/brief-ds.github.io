@@ -10,21 +10,15 @@ An artificial neural network (ANN) is usually a function of input <math><mi>X</m
 <mi>f</mi><mo>(</mo><mi>X</mi><mo>,</mo><mi>b</mi><mo>)</mo><mtext>.</mtext>
 </math>
 
-Given <math><mi>X</mi></math> we also observe <math><mi>Y</mi></math> as output of the function or mechanism <math><mi>f</mi></math>. The training of the ANN would involve adjusting <math><mi>b</mi></math> such that
+Given <math><mi>X</mi></math> we observe <math><mi>Y</mi></math> as output of the function or mechanism <math><mi>f</mi></math>. The training of the ANN would involve adjusting <math><mi>b</mi></math> such that <math><mi>f</mi><mo>(</mo><mi>X</mi><mo>,</mo><mi>b</mi><mo>)</mo></math> is as close to <math><mi>Y</mi></math> as possible by some measure, called "loss". For example, below is a loss,
 
 <math display="block">
-<mi>f</mi><mo>(</mo><mi>X</mi><mo>,</mo><mi>b</mi><mo>)</mo><mo>=</mo><mi>Y</mi>
+<mi>l</mi><mo>(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>b</mi><mo>)</mo><mo>=</mo><mrow><mo>|</mo><mi>f</mi><mo>(</mo><mi>X</mi><mo>,</mo><mi>b</mi><mo>)</mo><mo>-</mo><mi>Y</mi><mo>|</mo></mrow><mtext>,</mtext>
 </math>
 
-for any <math><mi>X</mi></math>, <math><mi>Y</mi></math> pair, or as close as possible by some measure, called "loss". For example, below is a loss,
+where <math><mi>X</mi></math>, <math><mi>Y</mi></math> are given. <math><mi>b</mi></math> can be adjusted to make <math><mi>l</mi></math> smaller.
 
-<math display="block">
-<mi>l</mi><mo>(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>b</mi><mo>)</mo><mo>=</mo><mrow><mo>|</mo><mi>f</mi><mo>(</mo><mi>X</mi><mo>,</mo><mi>b</mi><mo>)</mo><mo>-</mo><mi>Y</mi><mo>|</mo></mrow><mtext>.</mtext>
-</math>
-
-<math><mi>X</mi></math>, <math><mi>Y</mi></math> are given. <math><mi>b</mi></math> can be adjusted to make <math><mi>l</mi></math> smaller.
-
-We would compute the mathematical derivates
+We would compute the [mathematical derivatives](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
 
 <math display="block">
 <mfrac>
@@ -33,7 +27,7 @@ We would compute the mathematical derivates
 </mfrac>
 </math>
 
-and move <math><mi>b</mi></math> against the direction of <math><mfrac><mrow><mo>&part;</mo><mi>l</mi></mrow><mrow><mo>&part;</mo><mi>b</mi></mrow></mfrac></math>.
+and move <math><mi>b</mi></math> against the direction of <math><mfrac><mrow><mo>&part;</mo><mi>l</mi></mrow><mrow><mo>&part;</mo><mi>b</mi></mrow></mfrac></math> to make <math><mi>l</mi></math> smaller.
 
 The capability to automatically perform mathematical differentiation (autodiff) of a complex function with respect to its parameters is essential to machine learning libraries: for example Google's TensorFlow, Meta's PyTorch, [JAX](https://jax.dev), the emergent Apple's [MLX](https://mlx-framework.org), and [micrograd](https://github.com/brief-ds/micrograd) developed by us Brief Solutions Ltd.
 
@@ -91,3 +85,9 @@ We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micro
      ...
      1440    1.009    0.001    1.266    0.001 engine.py:91(_backward)
 ```
+
+
+## References
+Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/derivatives-introduction.html](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
+
+Differentiation, BBC Bitsize, [https://www.bbc.co.uk/bitesize/guides/zyj77ty/revision/](https://www.bbc.co.uk/bitesize/guides/zyj77ty/revision/)
