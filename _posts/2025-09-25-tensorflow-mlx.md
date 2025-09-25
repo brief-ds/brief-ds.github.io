@@ -34,7 +34,9 @@ and move <math><mi>b</mi></math> against the direction of <math><mfrac><mrow><mo
 The capability to automatically perform mathematical differentiation (autodiff) of a complex function with respect to its parameters is essential to machine learning libraries: for example Google's TensorFlow, Meta's PyTorch, [JAX](https://jax.dev), the emergent Apple's [MLX](https://mlx-framework.org), and [micrograd](https://github.com/brief-ds/micrograd) developed by us Brief Solutions Ltd.
 
 ## micrograd autodiff library
-micrograd was started by Andrej Karpathy. Initially [it](https://github.com/karpathy/micrograd) worked only on scalar values. We extended it to work with vectors, including matrices (2-dimensional) and arbitrary-dimensional tensors. The repository is at [https://github.com/brief-ds/micrograd](https://github.com/brief-ds/micrograd). Its README would serve as the self-sufficient documentation.
+Our repository is at [https://github.com/brief-ds/micrograd](https://github.com/brief-ds/micrograd). The README serves as the self-sufficient documentation.
+
+micrograd was started by Andrej Karpathy. [The initial version](https://github.com/brief-ds/micrograd/tree/scalar), now the code under tag `scalar`, works only on scalar values. We extended it to work with vectors, including matrices (2-dimensional) and arbitrary-dimensional tensors. 
 
 ### The philosophy of micrograd
 micrograd separates the symbolic differentiation and numerical calculation:
