@@ -76,7 +76,7 @@ Each mathematical operation is defined in 10-20 lines, for example the sum opera
 
 ```
 
-The `_forward()` function evaluates the sum. The `_backward()` function differentiates the sum with respect to the elements, over which the sum was.
+The `_forward()` function evaluates the sum. The `_backward()` function differentiates the sum with respect to the elements, over which the sum was calculated.
 
 ### micrograd can be inspected with Python's native profiler
 To time any code is called "profiling". For keeping functionality under heavy wraps, the other machine learning libraries also require additionally written code to inspect itself. Because micrograd is pure Python, one may time it with the cProfile module built in Python.
