@@ -95,7 +95,7 @@ We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micro
      ...
 ```
 
-On one run, cProfile's output clearly ranks each forward or backward function of the mathematical operators by the total time, under the `tottime` column. The most costly was the tensordot operation (tensor multiplication), followed by differentiation of the element-wise multiplication.
+cProfile's output clearly ranks each forward or backward function of the mathematical operators by the total time, under the `tottime` column. On one run, the most costly was the tensordot operation (tensor multiplication), followed by differentiation of the element-wise multiplication.
 
 ### micrograd is comparable in performance
 micrograd turns out not to lose out in performance. We benchmarked the model behind [https://tsterm.com](https://tsterm.com) written with different libraries. The shorter the run time is the better.
