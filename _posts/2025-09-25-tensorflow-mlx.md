@@ -76,6 +76,8 @@ Each mathematical operation is defined in 10-20 lines, for example the sum opera
 
 ```
 
+The `_forward()` function evaluates the sum. The `_backward()` function differentiates the sum with respect to the elements, over which the sum was.
+
 ### micrograd can be inspected with Python's native profiler
 To time any code is called "profiling". For keeping functionality under heavy wraps, the other machine learning libraries also require additionally written code to inspect itself. Because micrograd is pure Python, one may time it with the cProfile module built in Python.
 
@@ -83,7 +85,7 @@ To time any code is called "profiling". For keeping functionality under heavy wr
 python3 -m cProfile -s tottime <program_using_micrograd> <param> ...
 ```
 
-We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micrograd. From the cProfile's output on one run, it is straightforward to see that what costs most time was the tensordot operation (tensor multiplication), followed by differentiation of the element-wise multiplication operation.
+We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micrograd and profiled it.
 
 ```
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
@@ -92,6 +94,8 @@ We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micro
      1440    1.009    0.001    1.266    0.001 engine.py:91(_backward)
      ...
 ```
+
+On one run, cProfile's output cleanly ranks each forward or backward function of the mathematical operators by the total time, under the `tottime` column. The most costly was the tensordot operation (tensor multiplication), followed by differentiation of the element-wise multiplication.
 
 ### micrograd is comparable in performance
 micrograd turns out not to lose out in performance. We benchmarked the model behind [https://tsterm.com](https://tsterm.com) written with different libraries. The shorter the run time is the better.
