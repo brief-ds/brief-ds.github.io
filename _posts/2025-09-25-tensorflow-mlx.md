@@ -111,6 +111,29 @@ The model performs quantile regression on 600 megabytes of data in memory. The d
 ### micrograd is most widely deployable
 The more complex the machine learning library is, the more likely its deployability is restricted. For example, on a machine with Alpine Linux, micrograd still runs, as it _only_ depends on Python and NumPy, while the other libraries are not available.
 
+### micrograd is easiest to maintain and extend
+As we saw above, tensordot was the most costly operation. If you have an idea to accelerate a particular kind of tensordot, go into `micrograd/engine.py`, and add a few lines:
+
+```python
+
+    def my_tensordot(self):
+
+        out = ...
+
+        def _forward():
+            pass
+        out._forward = _forward
+
+        def _backward():
+            pass
+        out._backward = _backward
+
+        return out
+
+```
+
+likewise to define any new operator. That's a snap!
+
 ## References
 Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/derivatives-introduction.html](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
 
