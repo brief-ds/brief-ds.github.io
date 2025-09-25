@@ -102,6 +102,8 @@ micrograd turns out not to lose out in performance. We benchmarked the model beh
 |  Aarch64 (Graviton3) | Ubuntu 24.04 LTS | 13s | **12s** |
 |  Aarch64 (Graviton4) | Ubuntu 24.04 LTS | **11s** | **11s** |
 
+The model performs quantile regression on 600 megabytes of data in memory. The data type was float32.
+
 The bigger the machine learning library is, the more likely its deployability is restricted. For example, on a machine with Alpine Linux, micrograd still runs, as it _only_ depends on Python and NumPy, while the other libraries are not available.
 
 ## References
