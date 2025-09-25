@@ -55,7 +55,7 @@ Each mathematical operation is defined in 10-20 lines, for example the sum opera
 ```python
 
     def sum(self, axis=None):
-        ...         # 8 lines of processing of input parameter axis
+        ...         # 8 lines of pre-processing
 
         out = Value(_sum(self.data, axis=axis), (self,), 'sum')
 
@@ -82,7 +82,7 @@ The `_forward()` function evaluates the sum. The `_backward()` function differen
 To time any code is called "profiling". Complex other machine learning libraries would require additionally written code to inspect itself. Because micrograd is pure Python, one may time it with the cProfile module built in Python.
 
 ```sh
-python3 -m cProfile -s tottime <program_using_micrograd> <param> ...
+python3 -m cProfile -s tottime <program_using_micrograd>
 ```
 
 We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micrograd and profiled it.
