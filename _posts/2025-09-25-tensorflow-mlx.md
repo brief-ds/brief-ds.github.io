@@ -104,7 +104,7 @@ micrograd turns out not to lose out in performance. We benchmarked the model beh
 
 The model performs quantile regression on 600 megabytes of data in memory. The data type was float32.
 
-The bigger the machine learning library is, the more likely its deployability is restricted. For example, on a machine with Alpine Linux, micrograd still runs, as it _only_ depends on Python and NumPy, while the other libraries are not available.
+The more complex the machine learning library is, the more likely its deployability is restricted. For example, on a machine with Alpine Linux, micrograd still runs, as it _only_ depends on Python and NumPy, while the other libraries are not available.
 
 ## References
 Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/derivatives-introduction.html](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
