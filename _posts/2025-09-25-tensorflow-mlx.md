@@ -43,7 +43,7 @@ micrograd separates the symbolic differentiation and numerical calculation:
 1. micrograd does the structural manipulation (mathematical differentiation);
 2. actual numerical calculation is delegated to a numerical library as NumPy.
 
-When a machine learning library implements the mathematical functions again, it is possible the result is differnt from NumPy, for example the `arctanh(x)` in TensorFlow, when `x` is close to 1.
+When a machine learning library implements the mathematical functions again, it is possible the result is differnt from NumPy, for example the `arctanh(x)` in TensorFlow, when `x` is close to 1 or -1.
 
 ### micrograd can be taught to high schoolers
 The core file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py) is less than 500 lines, 10,000+ times smaller than full-featured libraries.
@@ -95,3 +95,7 @@ We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micro
 Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/derivatives-introduction.html](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
 
 Differentiation, BBC Bitsize, [https://www.bbc.co.uk/bitesize/guides/zyj77ty/](https://www.bbc.co.uk/bitesize/guides/zyj77ty/)
+
+Dive into MLX, Pranay Saha, [https://medium.com/@pranaysaha/dive-into-mlx-performance-flexibility-for-apple-silicon-651d79080c4c](https://medium.com/@pranaysaha/dive-into-mlx-performance-flexibility-for-apple-silicon-651d79080c4c)
+
+How Fast is MLX?, Tristan Bilot, [https://towardsdatascience.com/how-fast-is-mlx-a-comprehensive-benchmark-on-8-apple-silicon-chips-and-4-cuda-gpus-378a0ae356a0/](https://towardsdatascience.com/how-fast-is-mlx-a-comprehensive-benchmark-on-8-apple-silicon-chips-and-4-cuda-gpus-378a0ae356a0/)
