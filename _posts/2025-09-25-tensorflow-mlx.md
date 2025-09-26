@@ -38,6 +38,17 @@ Our repository is at [https://github.com/brief-ds/micrograd](https://github.com/
 
 micrograd was started by Andrej Karpathy. [The initial version](https://github.com/brief-ds/micrograd/tree/scalar), now the code under tag `scalar`, works only on scalar values. We extended it to work with vectors, including matrices (2-dimensional) and arbitrary-dimensional tensors. 
 
+micrograd's core is just one 500-line Python file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py). The project does not need particular compilation, making, set up. Many code bases are open, but would take long to understand let alone to modify, if possible at all. micrograd can be easily maintained by _one_ person.
+
+|  Library     |  Install size  |
+| ------------ |  ------------- |
+| micrograd*   |   20 kilobytes |
+| MLX          |   23 megabytes |
+| PyTorch      |  700 megabytes |
+| TensorFlow   | 1,700 megabytes |
+
+NOTE: micrograd solely depends on a numerical library for linear algebra calculation. Today it is NumPy, taking 38 megabytes.
+
 ### The philosophy of micrograd
 micrograd separates the symbolic differentiation and numerical calculation:
 1. micrograd does the differentiation, a manipulation of symbols;
@@ -45,7 +56,7 @@ micrograd separates the symbolic differentiation and numerical calculation:
 
 When a machine learning library implements the mathematical functions again, it is possible the result is different across libraries, for example the `arctanh(x)` in TensorFlow vs NumPy, when `x` is close to 1 or -1.
 
-Today the NumPy's install size is about 100 megabytes. If in the future there is a numerical library more compact and more performant, we will switch to that one. The clean division of job in the design enables that.
+If in the future there is a numerical library more compact and performant, we will switch to that one. The clean division of job in the design enables that.
 
 ### micrograd can be taught to high schoolers
 The core file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py) is less than 500 lines, 10,000+ times smaller than full-featured libraries.
@@ -80,7 +91,7 @@ where
 * the `_forward()` function evaluates the sum, and
 * the `_backward()` function differentiates the sum with respect to the elements, over which the sum was calculated.
 
-### micrograd can be inspected with Python's built-in profiler
+### micrograd can be uniquely inspected with Python's built-in profiler
 To time any code is called "profiling". Complex machine learning libraries would require additionally written code to inspect itself. Because micrograd is pure Python, one may time it with the cProfile module built in Python.
 
 ```sh
@@ -102,18 +113,24 @@ cProfile's output clearly ranks each forward or backward function of the mathema
 ### micrograd is comparable in performance
 micrograd turns out not to lose out in performance. We benchmarked the model behind [https://tsterm.com](https://tsterm.com) written with different libraries. The shorter the run time is the better.
 
-|  Hardware | Operating System |   TensorFlow  |  micrograd  |
-| --------- | ----------- | ------------- | ----------- |
-|  x86_64 (AMD EPYC) | Amazon Linux 2 | **10s** |  12s  |
-|  Aarch64 (Graviton3) | Ubuntu 24.04 LTS | 13s | **12s** |
-|  Aarch64 (Graviton4) | Ubuntu 24.04 LTS | **11s** | **11s** |
+|  Hardware | Operating System |   TensorFlow  | MLX |  micrograd  |
+| --------- | ----------- | ------------- | ------ | ----- |
+|  x86_64 (AMD EPYC) | Amazon Linux 2 | 10s |   | 12s  |
+|  AArch64 (Graviton3) | Ubuntu 24.04 LTS | 13s | 10s | 12s |
+|  AArch64 (Graviton4) | Ubuntu 24.04 LTS | 11s | 9s  | 11s |
 
 The model performs quantile regression on 600 megabytes of data in memory. The data type was float32.
 
-### micrograd is most widely deployable
-The more complex the machine learning library is, the more likely its deployability is restricted. For example, on a machine with Alpine Linux, micrograd still runs, as it _only_ depends on Python and NumPy, while the other libraries are not available.
+MLX is only for [AArch64](https://en.wikipedia.org/wiki/AArch64), ARM's 64-bit architecture, unable to run on other hardware.
 
-### micrograd is easiest to maintain and extend
+We can see on x86, TensorFlow wins; on AArch64, MLX leads, followed by micrograd.
+
+### micrograd is most widely deployable
+MLX is only available on AArch64, not available on x86, RISC-V. TensorFlow is available on x86 as well, but only selectively made for a few mainstream Linux distributions.
+
+The deployability for complex machine learning library is usually restricted. micrograd, as it only depends on Python and NumPy, is as portable as both, therefore available on x86, AArch64, RISC-V, etc architectures as well as a great number of operating systems.
+
+### micrograd is easiest to extend
 As we saw above, tensordot was the most costly operation. If you have an idea to accelerate a particular kind of tensordot, go into `micrograd/engine.py`, and add a few lines:
 
 ```python
@@ -136,10 +153,15 @@ As we saw above, tensordot was the most costly operation. If you have an idea to
 
 likewise to define any new operator. That's a snap!
 
+## Next up
+In the profiler's output, we have seen the tensordot (tensor multiplication) is most costly. We will see in the next post if we can win back some runtime!
+
 ## References
 Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/derivatives-introduction.html](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
 
 Differentiation, BBC Bitsize, [https://www.bbc.co.uk/bitesize/guides/zyj77ty/](https://www.bbc.co.uk/bitesize/guides/zyj77ty/)
+
+Install Apple's MLX machine learning library, [/2025/09/26/install-mlx.html](/2025/09/26/install-mlx.html)
 
 Dive into MLX, Pranay Saha, [https://medium.com/@pranaysaha/dive-into-mlx-performance-flexibility-for-apple-silicon-651d79080c4c](https://medium.com/@pranaysaha/dive-into-mlx-performance-flexibility-for-apple-silicon-651d79080c4c)
 
