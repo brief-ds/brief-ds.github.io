@@ -47,7 +47,7 @@ micrograd's core is just one 500-line Python file [micrograd/engine.py](https://
 | PyTorch      |  700 megabytes |
 | TensorFlow   | 1,700 megabytes |
 
-NOTE: micrograd solely depends on a numerical library for linear algebra calculation. Today it is NumPy, taking 38 megabytes.
+NOTE: micrograd depends on a numerical library for linear algebra calculation. Today it is NumPy, taking 38 megabytes.
 
 ### The philosophy of micrograd
 micrograd separates the symbolic differentiation and numerical calculation:
@@ -131,7 +131,7 @@ MLX is only available on AArch64, not available on x86, RISC-V. TensorFlow is av
 The deployability for complex machine learning library is usually restricted. micrograd, as it only depends on Python and NumPy, is as portable as both, therefore available on x86, AArch64, RISC-V, etc architectures as well as a great number of operating systems.
 
 ### micrograd is easiest to extend
-As we saw above, tensordot was the most costly operation. If you have an idea to accelerate a particular kind of tensordot, go into `micrograd/engine.py`, and add a few lines:
+As the core is just one Python file, micrograd can be easily maintained. To extend it, go into `micrograd/engine.py`, and add a few lines, for example:
 
 ```python
 
@@ -151,10 +151,10 @@ As we saw above, tensordot was the most costly operation. If you have an idea to
 
 ```
 
-likewise to define any new operator. That's a snap!
+That's a snap!
 
 ## Next up
-In the profiler's output, we have seen the tensordot (tensor multiplication) is most costly. We will see in the next post if we can win back some runtime!
+In the profiler's output, we have seen the tensordot (tensor multiplication) was most costly. We will see in the next post if we can win back some runtime!
 
 ## References
 Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/derivatives-introduction.html](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
