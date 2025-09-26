@@ -54,14 +54,12 @@ micrograd separates the symbolic differentiation and numerical calculation:
 1. micrograd does the differentiation, a manipulation of symbols;
 2. actual numerical calculation is delegated to a numerical library as NumPy.
 
-When a machine learning library implements the mathematical functions again, it is possible the result is different across libraries, for example the `arctanh(x)` in TensorFlow vs NumPy, when `x` is close to 1 or -1.
+When a machine learning library implements the mathematical functions again, it is possible the result is different across libraries, for example the `arctanh(x)` in TensorFlow vs NumPy, when `x` is close to 1 or -1. By always delegating calculation to NumPy, we avoid producing divergent result.
 
 If in the future there is a numerical library more compact and performant, we will switch to that one. The clean division of job in the design enables that.
 
 ### micrograd can be taught to high schoolers
-The core file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py) is less than 500 lines, 10,000+ times smaller than full-featured libraries.
-
-Each mathematical operation is defined in 10-20 lines, for example the sum operation in [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py):
+The core file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py) is no more than 500 lines. Each mathematical operation is defined in 10-20 lines, for example the sum operation in [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py):
 
 ```python
 
@@ -121,13 +119,11 @@ micrograd turns out not to lose out in performance. We benchmarked the model beh
 
 The model performs quantile regression on 600 megabytes of data in memory. The data type was float32.
 
-MLX is only for [AArch64](https://en.wikipedia.org/wiki/AArch64), ARM's 64-bit architecture, unable to run on other hardware.
+MLX is only for [AArch64](https://en.wikipedia.org/wiki/AArch64), unable to run on other hardware.
 
 We can see on x86, TensorFlow wins; on AArch64, MLX leads, followed by micrograd.
 
 ### micrograd is most widely deployable
-MLX is only available on AArch64, not available on x86, RISC-V. TensorFlow is available on x86 as well, but only selectively made for a few mainstream Linux distributions.
-
 The deployability for complex machine learning library is usually restricted. micrograd, as it only depends on Python and NumPy, is as portable as both, therefore available on x86, AArch64, RISC-V, etc architectures as well as a great number of operating systems.
 
 ### micrograd is easiest to extend
