@@ -38,7 +38,7 @@ Our repository is at [https://github.com/brief-ds/micrograd](https://github.com/
 
 micrograd was started by Andrej Karpathy. [The initial version](https://github.com/brief-ds/micrograd/tree/scalar), now the code under tag `scalar`, works only on scalar values. We extended it to work with vectors, including matrices (2-dimensional) and arbitrary-dimensional tensors. 
 
-micrograd's core is just one 500-line Python file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py). The project does not need particular compilation, making, set up. Many code bases are open, but would take long to understand let alone to modify, if possible at all. micrograd can be easily maintained by _one_ person.
+micrograd's core is just one 500-line Python file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py). The project does not need particular compilation, making, set up. Many code bases are open, but would take a special team of programmers to maintain. micrograd can be easily maintained by one amateur.
 
 |  Library     |  Install size  |
 | ------------ |  ------------- |
