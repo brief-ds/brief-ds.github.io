@@ -150,7 +150,7 @@ As the core is just one Python file, micrograd can be easily maintained. To exte
 That's a snap!
 
 ## Next up
-In the profiler's output, we have seen the tensordot (tensor multiplication) was most costly. We will see in the next post if we can win back some runtime!
+In the profiler's output, we have seen the tensordot (tensor multiplication) was most costly. We will do much study on tensordot in NumPy/C and assembly, and see if we can win back some runtime.
 
 ## References
 Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/derivatives-introduction.html](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
