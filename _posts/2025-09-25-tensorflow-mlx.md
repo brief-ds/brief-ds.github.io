@@ -34,32 +34,21 @@ and move <math><mi>b</mi></math> against the direction of <math><mfrac><mrow><mo
 The capability to automatically perform mathematical differentiation (autodiff) of a complex function with respect to its parameters is essential to machine learning libraries: for example Google's TensorFlow, Meta's PyTorch, [JAX](https://jax.dev), the emergent Apple's [MLX](https://mlx-framework.org), and [micrograd](https://github.com/brief-ds/micrograd) developed by us Brief Solutions Ltd.
 
 ## micrograd autodiff library
-Our repository is at [https://github.com/brief-ds/micrograd](https://github.com/brief-ds/micrograd). The README serves as the self-sufficient documentation.
+Our repository is at [https://github.com/brief-ds/micrograd](https://github.com/brief-ds/micrograd). micrograd was started by Andrej Karpathy. [The initial version](https://github.com/brief-ds/micrograd/tree/scalar) works only on scalar values. We extended it to work with vectors, including matrices (2-dimensional) and arbitrary-dimensional tensors.
 
-micrograd was started by Andrej Karpathy. [The initial version](https://github.com/brief-ds/micrograd/tree/scalar), now the code under tag `scalar`, works only on scalar values. We extended it to work with vectors, including matrices (2-dimensional) and arbitrary-dimensional tensors. 
-
-micrograd's core is just one 500-line Python file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py). The project does not need particular compilation, making, set up.
+The project is pure Python with no C code. Its core is just one 500-line Python file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py), ludicrously simple, and of toy size.
 
 |  Library     |  Install size  |
 | ------------ |  ------------- |
-| micrograd*   |   20 kilobytes |
+| micrograd    |   20 kilobytes |
 | MLX          |   23 megabytes |
 | PyTorch      |  700 megabytes |
 | TensorFlow   | 1,700 megabytes |
 
-NOTE: micrograd depends on a numerical library for linear algebra calculation. Today it is NumPy, taking 38 megabytes.
+micrograd depends on a numerical library for linear algebra calculation, NumPy today, without re-inventing any wheel. As long as this numerical library is performant, we will see micrograd is in the same ballpark regarding the performance.
 
-### The philosophy of micrograd
-micrograd separates the symbolic differentiation and numerical calculation:
-1. micrograd does the differentiation, a manipulation of symbols;
-2. actual numerical calculation is delegated to a numerical library as NumPy.
-
-When a machine learning library implements the mathematical functions again, it is possible the result is different across libraries, for example the `arctanh(x)` in TensorFlow vs NumPy, when `x` is close to 1 or -1. By always delegating calculation to NumPy, we avoid producing divergent result.
-
-If in the future there is a numerical library more compact and performant, we will switch to that one. The clean division of job in the design enables that.
-
-### micrograd can be played with by high schoolers and cutting-edge researchers alike
-The core file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py) is no more than 500 lines. Each mathematical operation is defined in 10-20 lines, for example the sum operation in [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py):
+### micrograd is both kid-friendly and researcher-friendly
+The core file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py) is no more than 500 lines. Each mathematical operator is defined in 10-20 lines, for example the sum operation in [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py):
 
 ```python
 
@@ -109,7 +98,7 @@ We rewrote the model behind [https://tsterm.com](https://tsterm.com) using micro
 cProfile's output clearly ranks each forward or backward function of the mathematical operators by the total time, under the `tottime` column. On one run, the most costly was the tensordot operation (tensor multiplication), followed by the differentiation of the element-wise multiplication.
 
 ### micrograd is comparable in performance
-micrograd turns out not to lose out in performance. We benchmarked the model behind [https://tsterm.com](https://tsterm.com) written with different libraries. The shorter the run time is the better.
+micrograd turns out not to be at a disadvantage. We benchmarked the model behind [https://tsterm.com](https://tsterm.com) written with different libraries. The shorter the run time is the better.
 
 |  Hardware | Operating System |   TensorFlow  | MLX |  micrograd  |
 | --------- | ----------- | ------------- | ------ | ----- |
@@ -123,8 +112,31 @@ MLX is only for [AArch64](https://en.wikipedia.org/wiki/AArch64), unable to run 
 
 We can see on x86, TensorFlow wins; on AArch64, MLX leads, followed by micrograd.
 
-## Next up
-In the profiler's output, we have seen the tensordot (tensor multiplication) was most costly. We will do much study on tensordot in NumPy/C and assembly, and see if we can win back some runtime.
+### micrograd can be easily extended
+To add a new mathematical operator, just go into [`micrograd/engine.py`](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py), and add a few lines, for example:
+
+```python
+
+    def non_linear_op(self):
+
+        out = ...
+
+        def _forward():
+            pass
+        out._forward = _forward
+
+        def _backward():
+            pass
+        out._backward = _backward
+
+        return out
+
+```
+
+## Conclusion
+micrograd is a simple, pure Python autodiff library. micrograd is plainly written, does not resort to "advanced" programming techniques to squeeze out performance. With Python's built-in tools, we can understand each function's performance separately. Kids can play with it. Researchers can extend it with novel mathematical operators. The learning curve is zero.
+
+In the profiler's output, we have seen the tensordot (tensor multiplication) was most costly. We will do some study and see if we can win back some runtime in the next post.
 
 ## References
 Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/derivatives-introduction.html](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
