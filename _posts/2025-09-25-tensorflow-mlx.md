@@ -134,7 +134,7 @@ To add a new mathematical operator, just go into [`micrograd/engine.py`](https:/
 ```
 
 ## Conclusion
-micrograd is a simple, pure Python autodiff library. micrograd is plainly written, but is competitive in performance. With just Python's built-in tool, we can understand the performance of each component in the ANN. Kids can play with micrograd. Researchers can extend it. The learning curve of the entire library is close to zero.
+micrograd is a simple, pure Python autodiff library. micrograd is plainly written, but is competitive in performance. With just Python's built-in tool, we can understand the performance of each component in the ANN. Kids can play with micrograd. Researchers can extend it. The learning curve of the _entire_ library is close to zero.
 
 In the profiler's output, we have seen the tensordot (tensor multiplication) was most costly. We will do some study and see if we can win back some runtime in the next post.
 
