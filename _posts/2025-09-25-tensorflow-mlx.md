@@ -31,10 +31,10 @@ We would compute the [mathematical derivatives](https://www.mathsisfun.com/calcu
 
 and move <math><mi>b</mi></math> against the direction of <math><mfrac><mrow><mo>&part;</mo><mi>l</mi></mrow><mrow><mo>&part;</mo><mi>b</mi></mrow></mfrac></math> to make <math><mi>l</mi></math> smaller.
 
-The capability to automatically perform mathematical differentiation (autodiff) of a complex function with respect to its parameters is essential to machine learning libraries: for example Google's TensorFlow, Meta's PyTorch, [JAX](https://jax.dev), the emergent Apple's [MLX](https://mlx-framework.org), and [micrograd](https://github.com/brief-ds/micrograd) developed by us Brief Solutions Ltd.
+The capability to automatically perform mathematical differentiation (autodiff) of a complex function with respect to its parameters is essential to machine learning libraries: for example Google's TensorFlow, Meta's PyTorch, [JAX](https://jax.dev), the emergent Apple's [MLX](https://mlx-framework.org), and [micrograd](https://github.com/brief-ds/micrograd) developed by us.
 
 ## micrograd autodiff library
-Our repository is at [https://github.com/brief-ds/micrograd](https://github.com/brief-ds/micrograd). micrograd was started by Andrej Karpathy. [The initial version](https://github.com/brief-ds/micrograd/tree/scalar) works only on scalar values. We extended it to work with vectors, including matrices (2-dimensional) and arbitrary-dimensional tensors.
+The repository is at [https://github.com/brief-ds/micrograd](https://github.com/brief-ds/micrograd). micrograd was started by Andrej Karpathy. [The initial version](https://github.com/brief-ds/micrograd/tree/scalar) works only on scalar values. We extended it to work with vectors, including matrices (2-dimensional) and arbitrary-dimensional tensors.
 
 The project is pure Python with no C code. Its core is just one 500-line Python file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py), ludicrously simple, and of toy size.
 
@@ -47,7 +47,7 @@ The project is pure Python with no C code. Its core is just one 500-line Python 
 
 micrograd depends on a numerical library for linear algebra calculation, NumPy today, without re-inventing any wheel. As long as this numerical library is performant, we will see micrograd is in the same ballpark regarding the performance.
 
-### micrograd is both kid-friendly and researcher-friendly
+### micrograd is both kid- and researcher-friendly
 The core file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py) is no more than 500 lines. Each mathematical operator is defined in 10-20 lines, for example the sum operation in [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py):
 
 ```python
