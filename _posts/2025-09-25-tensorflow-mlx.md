@@ -38,7 +38,7 @@ Our repository is at [https://github.com/brief-ds/micrograd](https://github.com/
 
 micrograd was started by Andrej Karpathy. [The initial version](https://github.com/brief-ds/micrograd/tree/scalar), now the code under tag `scalar`, works only on scalar values. We extended it to work with vectors, including matrices (2-dimensional) and arbitrary-dimensional tensors. 
 
-micrograd's core is just one 500-line Python file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py). The project does not need particular compilation, making, set up. Many code bases are open, but would take a special team of programmers to maintain. micrograd can be easily maintained by one amateur.
+micrograd's core is just one 500-line Python file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py). The project does not need particular compilation, making, set up.
 
 |  Library     |  Install size  |
 | ------------ |  ------------- |
@@ -58,7 +58,7 @@ When a machine learning library implements the mathematical functions again, it 
 
 If in the future there is a numerical library more compact and performant, we will switch to that one. The clean division of job in the design enables that.
 
-### micrograd can be taught to high schoolers
+### micrograd can be played with by high schoolers and cutting-edge researchers alike
 The core file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py) is no more than 500 lines. Each mathematical operation is defined in 10-20 lines, for example the sum operation in [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py):
 
 ```python
@@ -122,32 +122,6 @@ The model performs quantile regression on 600 megabytes of data in memory. The d
 MLX is only for [AArch64](https://en.wikipedia.org/wiki/AArch64), unable to run on other hardware.
 
 We can see on x86, TensorFlow wins; on AArch64, MLX leads, followed by micrograd.
-
-### micrograd is most widely deployable
-The deployability for complex machine learning library is usually restricted. micrograd, as it only depends on Python and NumPy, is as portable as both, therefore available on x86, AArch64, RISC-V, etc architectures as well as a great number of operating systems.
-
-### micrograd is easiest to extend
-As the core is just one Python file, micrograd can be easily maintained. To extend it, go into `micrograd/engine.py`, and add a few lines, for example:
-
-```python
-
-    def my_tensordot(self):
-
-        out = ...
-
-        def _forward():
-            pass
-        out._forward = _forward
-
-        def _backward():
-            pass
-        out._backward = _backward
-
-        return out
-
-```
-
-That's a snap!
 
 ## Next up
 In the profiler's output, we have seen the tensordot (tensor multiplication) was most costly. We will do much study on tensordot in NumPy/C and assembly, and see if we can win back some runtime.
