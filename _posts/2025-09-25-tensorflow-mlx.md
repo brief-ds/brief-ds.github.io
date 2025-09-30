@@ -45,7 +45,7 @@ The project is pure Python with no C code. Its core is just one 500-line Python 
 | PyTorch      |  700 megabytes |
 | TensorFlow   | 1,700 megabytes |
 
-micrograd depends on a numerical library for linear algebra calculation, NumPy today, without re-inventing any wheel. As long as this numerical library is performant, we will see micrograd is in the same ballpark regarding the performance.
+For numerical evaluation, micrograd would depend on an external library without re-inventing any wheels, which is NumPy today. As long as the numerical library it depends on is performant, we will see micrograd is competitive regarding the performance.
 
 ### micrograd is both kid- and researcher-friendly
 The core file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py) is no more than 500 lines. Each mathematical operator is defined in 10-20 lines, for example the sum operation in [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py):
