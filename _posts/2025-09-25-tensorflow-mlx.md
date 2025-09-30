@@ -110,7 +110,7 @@ The model performs quantile regression on 600 megabytes of data in memory. The d
 
 MLX is only for [AArch64](https://en.wikipedia.org/wiki/AArch64), unable to run on other hardware. Note in MLX [numerical evaluation is lazy](https://ml-explore.github.io/mlx/build/html/usage/lazy_evaluation.html). In each training step issue `mlx.core.eval()` to trigger actual computation.
 
-We can see on x86, TensorFlow wins; on AArch64, MLX and micrograd are about in par.
+We can see on x86, TensorFlow wins; on AArch64, MLX and micrograd are about in par. MLX may always lead micrograd by 0.1-0.2s.
 
 ### micrograd can be easily extended
 To add a new mathematical operator, just go into [`micrograd/engine.py`](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py), and add a few lines, for example:
