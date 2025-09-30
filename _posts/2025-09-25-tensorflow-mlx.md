@@ -103,14 +103,14 @@ micrograd turns out not to be at a disadvantage. We benchmarked the model behind
 |  Hardware | Operating System |   TensorFlow  | MLX |  micrograd  |
 | --------- | ----------- | ------------- | ------ | ----- |
 |  x86_64 (AMD EPYC) | Amazon Linux 2 | 10s |   | 12s  |
-|  AArch64 (Graviton3) | Ubuntu 24.04 LTS | 13s | 10s | 12s |
-|  AArch64 (Graviton4) | Ubuntu 24.04 LTS | 11s | 9s  | 11s |
+|  AArch64 (Graviton3) | Ubuntu 24.04 LTS | 13s | 12s | 12s |
+|  AArch64 (Graviton4) | Ubuntu 24.04 LTS | 11s | 11s  | 11s |
 
 The model performs quantile regression on 600 megabytes of data in memory. The data type was float32.
 
-MLX is only for [AArch64](https://en.wikipedia.org/wiki/AArch64), unable to run on other hardware.
+MLX is only for [AArch64](https://en.wikipedia.org/wiki/AArch64), unable to run on other hardware. Note in MLX [numerical evaluation is lazy](https://ml-explore.github.io/mlx/build/html/usage/lazy_evaluation.html). In each training step issue `mlx.core.eval()` to trigger actual computation.
 
-We can see on x86, TensorFlow wins; on AArch64, MLX leads, followed by micrograd.
+We can see on x86, TensorFlow wins; on AArch64, MLX and micrograd are about in par.
 
 ### micrograd can be easily extended
 To add a new mathematical operator, just go into [`micrograd/engine.py`](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py), and add a few lines, for example:
@@ -135,8 +135,6 @@ To add a new mathematical operator, just go into [`micrograd/engine.py`](https:/
 
 ## Conclusion
 micrograd is a simple, pure Python autodiff library. micrograd is plainly written, but is competitive in performance. With just Python's built-in tool, we can understand the performance of each component in the ANN. Kids can play with micrograd. Researchers can extend it. The learning curve of the _entire_ library is close to zero.
-
-In the profiler's output, we have seen the tensordot (tensor multiplication) was most costly. We will do some study and see if we can win back some runtime in the next post.
 
 ## References
 Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/derivatives-introduction.html](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
