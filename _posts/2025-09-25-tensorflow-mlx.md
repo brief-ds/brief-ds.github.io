@@ -45,7 +45,7 @@ The project is pure Python with no C code. Its core is just one 500-line Python 
 | PyTorch      |  700 megabytes |
 | TensorFlow   | 1,700 megabytes |
 
-For numerical evaluation, micrograd would depend on an external library without re-inventing any wheels, which is NumPy today. As long as the numerical library it depends on is performant, we will see micrograd is competitive regarding the performance.
+For numerical evaluation, micrograd would depend on an external library without re-inventing any wheels, which is NumPy today. If we accout for the install size of Numpy, the total install size of micrograd would be in the same ballpark as that of MLX. If in the future there's a more compact numerical library, micrograd can switch to that, for clear division of work: the numerical library only concerned with mathematical calculation, micrograd automatic differentiation.
 
 ### micrograd is both kid- and researcher-friendly
 The core file [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py) is no more than 500 lines. Each mathematical operator is defined in 10-20 lines, for example the sum operation in [micrograd/engine.py](https://github.com/brief-ds/micrograd/blob/master/micrograd/engine.py):
