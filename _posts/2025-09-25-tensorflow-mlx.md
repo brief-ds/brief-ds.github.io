@@ -108,7 +108,7 @@ micrograd turns out not to be at a disadvantage. We benchmarked the model behind
 
 The model performs quantile regression on 600 megabytes of data in memory. The data type was float32.
 
-MLX is only for [AArch64](https://en.wikipedia.org/wiki/AArch64), unable to run on other hardware. Note in MLX [numerical evaluation is lazy](https://ml-explore.github.io/mlx/build/html/usage/lazy_evaluation.html). In each training step issue `mlx.core.eval()` to trigger actual computation.
+MLX is only for [AArch64](https://en.wikipedia.org/wiki/AArch64), unable to run on other hardware. Note in MLX [numerical evaluation is lazy](https://ml-explore.github.io/mlx/build/html/usage/lazy_evaluation.html): issue `mlx.core.eval()` once to initialise the ANN parameters after defining them, then once in each training step to actually update them. 
 
 We can see on x86, TensorFlow wins; on AArch64, MLX and micrograd are about in par. MLX may always lead micrograd by 0.1-0.2s.
 
@@ -142,6 +142,8 @@ Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/d
 Differentiation, BBC Bitsize, [https://www.bbc.co.uk/bitesize/guides/zyj77ty/](https://www.bbc.co.uk/bitesize/guides/zyj77ty/)
 
 Install Apple's MLX machine learning library, [/2025/09/26/install-mlx.html](/2025/09/26/install-mlx.html)
+
+Lazy Evaluation, MLX, [https://ml-explore.github.io/mlx/build/html/usage/lazy_evaluation.html](https://ml-explore.github.io/mlx/build/html/usage/lazy_evaluation.html)
 
 Dive into MLX, Pranay Saha, [https://medium.com/@pranaysaha/dive-into-mlx-performance-flexibility-for-apple-silicon-651d79080c4c](https://medium.com/@pranaysaha/dive-into-mlx-performance-flexibility-for-apple-silicon-651d79080c4c)
 
