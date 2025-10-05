@@ -133,8 +133,10 @@ To add a new mathematical operator, just go into [`micrograd/engine.py`](https:/
 
 ```
 
-## Conclusion
-micrograd is a simple, pure Python autodiff library. micrograd is plainly written, but is competitive in performance. With just Python's built-in tool, we can understand the performance of each component in the ANN. Kids can play with micrograd. Researchers can extend it. The learning curve of the _entire_ library is close to zero.
+## micrograd opens up more opportunities
+micrograd is plainly written, but is competitive in performance. With just Python's built-in tool, we can understand the performance of each component in the ANN. The learning curve is close to zero.
+
+micrograd would open up more opportunities by allowing finer control in the `_forward()` and `_backward()` functions, such as selectively updating rows of the weight matrix, as with "attention".
 
 ## References
 Introduction to Derivatives, Math is Fun, [https://www.mathsisfun.com/calculus/derivatives-introduction.html](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
