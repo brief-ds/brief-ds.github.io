@@ -97,7 +97,7 @@ By convention, x1 is used to store the return address that the current function 
 |  x31       |   t6           | temporary register 6 |   no   |
 |  pc        |  (none)        | program counter      |   n/a  |
 
-The current function (callee) has to make sure that at the exit of the callee function s0-s11 and sp preserve the same values as at the entry of it.
+The current function (callee) has to make sure that at the exit of the callee function s0-s11 and sp preserve the same values as at the entry of it. In the case of function calls, ra is normally preserved in any parent function.
 
 RV32E and RV64E are for microcontroller use. The only difference between RV32I and RV32E, or between RV64I and RV64E is that RV32E or RV64E has only 16 registers. By the convention above, x0-x15 are used for the most important purposes: return address, stack pointer, etc. x16-x31 only increased the number of function arguments, saved registers and temporary registers.
 
