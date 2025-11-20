@@ -21,7 +21,7 @@
 title: Brief Solutions Ltd
 email: info@brief-ds.com
 description: >- # this means to ignore newlines until "baseurl:"
-  We invent time series forecasting, lean hardware and software.
+  We enable intelligent computing at one watt.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.brief-ds.com" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb

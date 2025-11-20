@@ -4,26 +4,29 @@ title: About
 permalink: /about/
 ---
 
-We develop lean software and hardware for intelligent computing. Our mission statement:
+We develop lean software and hardware to enable intelligent computing at one watt.
 
-## How to forecast
-We consider that any two objects _may_ boast of predictive power for each other. The problem is to compute the conditional distribution of <math><mi>B</mi></math> in the future given information about <math><mi>A</mi></math> up to now. We build [Time Series Terminal](https://tsterm.com).
+## Our interests
+### generic causal prediction
+We developed a [generic approach](https://patents.google.com/patent/US11893069B2/en) to identify causal predictors first for a prediction target, then make probabilistic prediction based on the extracted set of them. One embodiment is Time Series Terminal [https://tsterm.com](https://tsterm.com). The engine behind can be configured with data from any domain: agriculture, climate, etc.
+
+### lean software
+[micrograd](https://github.com/brief-ds/micrograd) is a 20 kilobytes automatic differentiation library, found at the core of any machine learning framework. It is [transparent and easy](/2025/09/25/tensorflow-mlx.html) for kids to learn, for researchers to experiment with, and yet competitive in performance. It paves the way for simplifying attention-based models.
+
+### lean hardware
+RISC-V is a family of [open instruction sets](/2025/08/11/first-riscv64-program.html) for microprocessors. The [V extension](/2025/10/31/rv64-v.html) groups instructions of vector operations, backbone of AI calculations. There are [open designs of hardware](https://github.com/pulp-platform) for RISC-V that run at about one watt.
+
+## References
+Pearl, Judea.
 
 Koenker, R. (2005). Quantile Regression (Econometric Society Monographs). Cambridge: Cambridge University Press. [doi:10.1017/CBO9780511754098](https://www.cambridge.org/core/books/quantile-regression/C18AE7BCF3EC43C16937390D44A328B1)
 
-## MaxSave
-We are raising for [maxsave.net](https://maxsave.net), a long-term saving platform for young people in the UK. The front page will look like an instagram of content for the Gen Z's interest, with computational technology packed behind.
+Platform, method, and system for a search engine of time series data, [United States patent US11893069B2](https://patents.google.com/patent/US11893069B2/en).
 
-## How to compute: a unified look
-The neurons excite and inhibit. Where it does not inhibit, it attends. The three architectures are fundamentally very similar:
+Time Series Terminal, [https://tsterm.com](https://tsterm.com)
 
-* [Turing machine](https://en.wikipedia.org/wiki/Turing_machine)
-* attention-based mechanism
-* [Long-short term memory](https://en.wikipedia.org/wiki/Long_short-term_memory)
+TensorFlow, Apple's MLX and our micrograd, [/2025/09/25/tensorflow-mlx.html](/2025/09/25/tensorflow-mlx.html)
 
-## Lean hardware and software
-We favour simple hardware and software, something high schoolers can play with.
+Introduction to RISC-V, [/2025/08/11/first-riscv64-program.html](/2025/08/11/first-riscv64-program.html)
 
-* [micrograd](https://github.com/brief-ds/micrograd): kid-friendly autodiff library, competitive in performance
-* [RISC-V](https://riscv.org): an open instruction set for microprocessor
-* [Plan 9](https://en.wikipedia.org/wiki/Plan_9_from_Bell_Labs): once intended successor to Unix
+The V extension for vector operations, [/2025/10/31/rv64-v.html](/2025/10/31/rv64-v.html)
