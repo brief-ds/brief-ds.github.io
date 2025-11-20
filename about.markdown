@@ -17,9 +17,11 @@ We developed a [generic approach](https://patents.google.com/patent/US11893069B2
 RISC-V is a family of [open instruction sets](/2025/08/11/first-riscv64-program.html) for microprocessors. The [V extension](/2025/10/31/rv64-v.html) groups instructions of vector operations, backbone of AI calculations. There are [open designs of hardware](https://github.com/pulp-platform) for RISC-V that run at about one watt.
 
 ## References
-Pearl, Judea.
+Hannart, A., J. Pearl, F. E. L. Otto, P. Naveau, and M. Ghil, Causal counterfactual theory for the attribution of weather and climate-related events, Bulletin of the American Meteorological Society, 97(1):99-110, 2016.
 
 Koenker, R. (2005). Quantile Regression (Econometric Society Monographs). Cambridge: Cambridge University Press. [doi:10.1017/CBO9780511754098](https://www.cambridge.org/core/books/quantile-regression/C18AE7BCF3EC43C16937390D44A328B1)
+
+Komunjer, Ivana, Quasi-maximum likelihood estimation for conditional quantiles, Journal of Econometrics, Volume 128, Issue 1, September 2005, Pages 137-164.
 
 Platform, method, and system for a search engine of time series data, [United States patent US11893069B2](https://patents.google.com/patent/US11893069B2/en).
 
