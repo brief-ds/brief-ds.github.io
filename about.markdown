@@ -23,6 +23,8 @@ Koenker, R. (2005). Quantile Regression (Econometric Society Monographs). Cambri
 
 Komunjer, Ivana, Quasi-maximum likelihood estimation for conditional quantiles, Journal of Econometrics, Volume 128, Issue 1, September 2005, Pages 137-164.
 
+Diebold, F.X., Gunther, T. and Tay, A., Evaluating Density Forecasts, 1998.
+
 Platform, method, and system for a search engine of time series data, [United States patent US11893069B2](https://patents.google.com/patent/US11893069B2/en).
 
 Time Series Terminal, [https://tsterm.com](https://tsterm.com)
