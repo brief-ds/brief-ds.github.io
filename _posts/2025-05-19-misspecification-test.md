@@ -179,6 +179,8 @@ second, the total number of synapses, our <math><mi>r</mi></math>, decreases as 
 For a 3-year old child, we can only hope any single task has involved far fewer than <math><msup><mn>10</mn><mn>15</mn></msup></math> synapses to be able to statistically verify a computational model of it with the current machinery.
 
 ## REFERENCES
+White, Halbert, Maximum Likelihood Estimation of Misspecified Models, Econometrica, Vol. 50, No. 1, pp. 1-25, 1982.
+
 <a name="ref-white92">White, Halbert et al, 1992, Artificial Neural Networks: Approximation and Learning Theory.</a>
 
 <a name="ref-llama">LLaMA: Open and Efficient Foundation Language Models. https://arxiv.org/abs/2302.13971</a>
