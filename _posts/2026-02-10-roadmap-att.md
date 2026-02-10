@@ -20,7 +20,7 @@ We ask the question whether a model with a less costly attention mechanism, can 
 The [Turing machine](https://en.wikipedia.org/wiki/Turing_machine) has a "head" that during its execution, at any point of time, is positioned over a cell on the memory tape. This "head" can be assimilated to attention. A recurrent neural net can [simulate any Turing machine](https://www.sciencedirect.com/science/article/pii/S0022000085710136).
 
 ## Methods
-In a recurrent neural net, the state vector is assimilated to the memory tape of a Turing machine. The state vector undergoes change while proceeding in time. Denote the state vector at any time by `X`, a row vector of size <math><mn>m</mn></math>. Rather than multiplying the entire `X` by a matrix for the next state vector, we will attend over and transform only certain elements in `X` for the next state vector:
+In a recurrent neural net, the state vector is assimilated to the memory tape of a Turing machine. The state vector undergoes change while proceeding in time. Denote the state vector at any time by `X`, a row vector of size <math><mn>m</mn></math>. Rather than multiplying the entire `X` by a matrix, we will attend over and transform only certain elements in `X` for the next state vector:
 
 ```
 X + X[args] M
@@ -29,10 +29,10 @@ X + X[args] M
 The transformation matrix `M` will be with fewer number of rows. If the number of `args` is capped, the above operation costs <math><mn>O</mn><mo>(</mo><mn>m</mn><mn>)</mn></math>. Over <math><mn>n</mn></math> tokens, it is
 
 <math display="block">
-<mn>O</mn><mo>(</mo><mn>n</mn><mn>m</mn><mo>)</mo>
+<mn>O</mn><mo>(</mo><mn>n</mn><mn>m</mn><mo>)</mo><mtext>,</mtext>
 </math>
 
-to transform these tokens into values after attention, linear in terms of <math><mn>n</mn></math>.
+linear in terms of <math><mn>n</mn></math>.
 
 In most machine learning libraries in Python, `X[args]` copies into a new array the selected elements. Backpropogation (calculating of mathematical derivatives) will be with respect to this new array but not the original `X`.
 
