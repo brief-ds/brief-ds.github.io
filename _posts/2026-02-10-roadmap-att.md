@@ -36,7 +36,7 @@ linear in terms of <math><mn>n</mn></math>.
 
 In most machine learning libraries in Python, `X[args]` copies into a new array the selected elements. Backpropogation (calculating of mathematical derivatives) will be with respect to this new array but not the original `X`.
 
-We have rewritten the autodifferentiation part of any machine learning library into a 500-line Python lib [micrograd](https://www.brief-ds.com/2025/09/25/tensorflow-mlx.html) which opens up the interface for the forward and backward propogation for implementation for any op(erator). For example, attending over selected elements is
+We have rewritten the autodifferentiation part of any machine learning library into a 500-line Python lib [micrograd](https://www.brief-ds.com/2025/09/25/tensorflow-mlx.html) which opens up the interface of any op(erator) for the forward and backward propogation for implementation. For example, attending over selected elements is
 
 [https://github.com/brief-ds/micrograd/commit/61db262bbb2409974dd2615113dc443ec072e1f4](https://github.com/brief-ds/micrograd/commit/61db262bbb2409974dd2615113dc443ec072e1f4):
 
