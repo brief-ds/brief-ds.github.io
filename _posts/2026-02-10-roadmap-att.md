@@ -26,7 +26,7 @@ In a recurrent neural net, the state vector is assimilated to the memory tape of
 X + X[args] M
 ```
 
-The transformation matrix `M` will be with fewer number of rows. If the number of `args` is capped, the above operation costs <math><mi>O</mi><mo>(</mo><mi>m</mi><mi><mo>)</mo></math>. Over <math><mi>n</mi></math> tokens, it is
+The transformation matrix `M` will be with fewer number of rows. If the number of `args` is capped, the above operation costs <math><mi>O</mi><mo>(</mo><mi>m</mi><mo>)</mo></math>. Over <math><mi>n</mi></math> tokens, it is
 
 <math display="block">
 <mi>O</mi><mo>(</mo><mi>n</mi><mi>m</mi><mo>)</mo><mtext>,</mtext>
