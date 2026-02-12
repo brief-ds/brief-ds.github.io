@@ -38,6 +38,8 @@ linear in terms of <math><mi>n</mi></math>.
 
 If each row of `M` is sparse, the product `X[args] * M` will be a sparse vector. `X` will only have to be sparsely incremented for the next state vector. The total compute will be further less. Note in [human brain](https://en.wikipedia.org/wiki/Neuron#Connectivity), each neuron is connected with very few others: less than <math><msup><mn>10</mn><mn>-5</mn></msup></math> of all.
 
+For complete model, the `args` will follow an equation of evolution and be trainable.
+
 In most machine learning libraries in Python, `X[args]` copies into a new array the selected elements. Backpropogation (calculating of mathematical derivatives) will be with respect to this new array but not the original `X`.
 
 We have rewritten the autodifferentiation part of any machine learning library into a 500-line Python lib [micrograd](https://www.brief-ds.com/2025/09/25/tensorflow-mlx.html) which opens up the interface of any op(erator) for the forward and backward propogation for implementation. For example, attending over selected elements is
