@@ -10,7 +10,7 @@ The attention mechanism in neural network models underlies the phenomenal succes
 <mi>O</mi><mo>(</mo><mi>n</mi><mi>n</mi><mi>d</mi><mo>)</mo>
 </math>
 
-to transform these tokens' values taking account of attention, quadratic in terms of <math><mi>n</mi></math>.
+to transform these tokens' values with "attention", quadratic in terms of <math><mi>n</mi></math>.
 
 ChatGPT: "why the current transformer deep learning model is computationally costly? could you give mathematical notions and equations to illustrate?"
 
@@ -23,7 +23,7 @@ The [Turing machine](https://en.wikipedia.org/wiki/Turing_machine) has a "head" 
 In a recurrent neural net, the state vector is assimilated to the memory tape of a Turing machine. The state vector undergoes change while proceeding in time. Denote the state vector at any time by `X`, a row vector of size <math><mi>m</mi></math>. Rather than multiplying the entire `X` by a matrix, we will attend over and transform only certain elements in `X`,
 
 ```
-X + X[args] M
+X + X[args] * M
 ```
 
 then apply a non-linear function on the above result for the next state vector.
@@ -35,6 +35,8 @@ The transformation matrix `M` will be with fewer number of rows. If the number o
 </math>
 
 linear in terms of <math><mi>n</mi></math>.
+
+If each row of `M` is sparse, the product `X[args] * M` will be a sparse vector, `X` will only have to be sparsely incremented for the next state vector. The total compute will be further less. Note in [human brain](https://en.wikipedia.org/wiki/Neuron#Connectivity), each neuron is connected with very few others: less than <math><msub><mn>10</mn><mn>-5</mn></msub></math> of all.
 
 In most machine learning libraries in Python, `X[args]` copies into a new array the selected elements. Backpropogation (calculating of mathematical derivatives) will be with respect to this new array but not the original `X`.
 
