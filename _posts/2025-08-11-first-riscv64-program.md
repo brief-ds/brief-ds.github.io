@@ -165,3 +165,5 @@ RISC-V Assembly Hello World (part 1), LaurieWired, [https://www.youtube.com/watc
 RISC-V Assembly Programmer's Handbook, [https://github.com/riscv-non-isa/riscv-asm-manual](https://github.com/riscv-non-isa/riscv-asm-manual)
 
 RISC-V Assembly Cheat Sheet, [https://projectf.io/posts/riscv-cheat-sheet/](https://projectf.io/posts/riscv-cheat-sheet/)
+
+Porting software to RISC-V, [https://training.linuxfoundation.org/training/porting-software-to-risc-v-lfd114/](https://training.linuxfoundation.org/training/porting-software-to-risc-v-lfd114/)
