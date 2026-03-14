@@ -1,5 +1,5 @@
 ---
-title: "Misspecification test, or why there is need for a high degree of sparsity for a large neural network to be statistically verified"
+title: "Misspecification test, or the need for sparsity in a large model"
 layout: post
 ---
 
