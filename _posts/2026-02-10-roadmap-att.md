@@ -26,7 +26,7 @@ In a recurrent neural net, the state vector is assimilated to the memory tape of
 X + X[args] @ M[args]
 ```
 
-before a non-linear transform for the next state vector, where `@` is the multiplication in linear algebra.
+before a non-linear transform on the result for the next state vector, where `@` is the multiplication in linear algebra.
 
 If the number of `args` is capped, the above operation costs <math><mi>O</mi><mo>(</mo><mi>m</mi><mo>)</mo></math>. Over <math><mi>n</mi></math> tokens, it is
 
@@ -36,7 +36,7 @@ If the number of `args` is capped, the above operation costs <math><mi>O</mi><mo
 
 linear in terms of <math><mi>n</mi></math>.
 
-If each row of `M` is sparse, the product `X[args] @ M[args]` will be a sparse vector. `X` will only have to be sparsely incremented for the next state vector. The total compute will be further less. Note in [human brain](https://en.wikipedia.org/wiki/Neuron#Connectivity), averagely each neuron is connected with very few others: less than <math><msup><mn>10</mn><mn>-5</mn></msup></math> of all.
+If each row of `M` is sparse, `X[args] @ M[args]` will be a sparse vector. `X` will only have to be sparsely incremented for the next state vector. The total compute will be further less. Note in [human brain](https://en.wikipedia.org/wiki/Neuron#Connectivity), averagely each neuron is connected with very few others: less than <math><msup><mn>10</mn><mn>-5</mn></msup></math> of all.
 
 We will then do extensive training following training detail provided in
 
@@ -48,10 +48,10 @@ for various AI tasks and report results.
 ### the library that does autodifferentiation
 PyTorch allows indexing into a vector `X[args]` and handles the autodifferentiation well, but its install size is about 1 gigabyte today, on top of which it mandates installing several gigabytes of CUDA libraries.
 
-We will use a tensor-capable [micrograd](https://github.com/brief-ds/micrograd), about 500 lines in Python. Its only dependency is NumPy.
+We will use a tensor-capable [micrograd](https://github.com/brief-ds/micrograd) for autodifferentiation, about 500 lines in Python. Its only dependency is NumPy.
 
 ### batched training
-If one input instance is in one row at one time, the attention on it (the `args`) can be different than that on a separate input instance. How to handle multiple training instances?
+If one input instance at one time is in one row, the attention on it, the `args` can be different than that on a separate input instance. How to handle multiple training instances?
 
 One way may be: note for one instance `X` and its attention indices `args`,
 
@@ -59,12 +59,12 @@ One way may be: note for one instance `X` and its attention indices `args`,
 X[args] @ M[args]
 ```
 
-is either a zero-row (if the `args` is empty) or one-row matrix, so we can still go training instance by instance, compute above for the current instance, and vertically stack the results into a matrix. The new matrix will be of fewer or the same number of rows than the original matrix of training instances.
+is either a zero-row (if the `args` is empty) or one-row matrix, so we can still go training instance by instance, compute above for the current instance, and vertically stack the results into a matrix. The new matrix will be of fewer or the same number of rows than the precedent matrix of training instances.
 
 While a human is conscious, typically there is only one object being attended over at one time. When asleep, the human may recall and process many instances in parallel. But if something during the day left some strong impression, it is possible after one step of attention, all the other unimportant instances received nil attention, and the matrix of training instances becomes a single row.
 
 ### how is the attention determined?
-If it is simply the indices of the top k values, no model is needed, otherwise one model has to be specified. For example, there can be a vector for inhibition levels `B`, one for stimulus levels `X`,
+If it is simply the indices of the top k values, no model is needed, otherwise a model has to be specified. For example, there can be a vector for inhibition levels `B`, one for stimulus levels `X`,
 
 ```python
 args = (X - B).topk(k)
@@ -72,7 +72,7 @@ B = f(X[args], B[args])
 X = g(X[args], B[args])
 ```
 
-The functions `f` and `g` are the model to determine the `B` and `X` at the next step, and need be trained.
+The functions `f` and `g` are the model to determine the `B` and `X` at the next step, and need be trained. The output at the current time will be in relation to both `X[args]` and `B[args]`. The compute of each operation here is in the order of the state size, if the size of `args` is capped.
 
 ## Expectation of outcome
 We will collect enough data to see if a simpler model can behave as intelligently as today's popular chatbots.
