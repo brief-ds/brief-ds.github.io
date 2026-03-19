@@ -23,12 +23,12 @@ The [Turing machine](https://en.wikipedia.org/wiki/Turing_machine) has a "head" 
 In a recurrent neural net, the state vector is assimilated to the memory tape of a Turing machine. The state vector undergoes change while proceeding in time. Denote the state vector at any time by `X`, a row vector of size <math><mi>m</mi></math>. Rather than multiplying the entire `X` by a matrix, we will attend over and transform only certain elements in `X`,
 
 ```
-X + X[args] * M
+X + X[args] * M[args]
 ```
 
 then apply a non-linear function on the above result for the next state vector.
 
-The transformation matrix `M` will be with fewer number of rows. If the number of `args` is capped, the above operation costs <math><mi>O</mi><mo>(</mo><mi>m</mi><mo>)</mo></math>. Over <math><mi>n</mi></math> tokens, it is
+If the number of `args` is capped, the above operation costs <math><mi>O</mi><mo>(</mo><mi>m</mi><mo>)</mo></math>. Over <math><mi>n</mi></math> tokens, it is
 
 <math display="block">
 <mi>O</mi><mo>(</mo><mi>n</mi><mi>m</mi><mo>)</mo><mtext>,</mtext>
@@ -36,7 +36,7 @@ The transformation matrix `M` will be with fewer number of rows. If the number o
 
 linear in terms of <math><mi>n</mi></math>.
 
-If each row of `M` is sparse, the product `X[args] * M` will be a sparse vector. `X` will only have to be sparsely incremented for the next state vector. The total compute will be further less. Note in [human brain](https://en.wikipedia.org/wiki/Neuron#Connectivity), averagely each neuron is connected with very few others: less than <math><msup><mn>10</mn><mn>-5</mn></msup></math> of all.
+If each row of `M` is sparse, the product `X[args] * M[args]` will be a sparse vector. `X` will only have to be sparsely incremented for the next state vector. The total compute will be further less. Note in [human brain](https://en.wikipedia.org/wiki/Neuron#Connectivity), averagely each neuron is connected with very few others: less than <math><msup><mn>10</mn><mn>-5</mn></msup></math> of all.
 
 We will then do extensive training following training detail provided in
 
