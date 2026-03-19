@@ -61,7 +61,7 @@ X[args] @ M[args]
 
 is either a zero-row (if the `args` is empty) or one-row matrix, so we can still go training instance by instance, compute above for the current instance, and vertically stack the results into a matrix. The new matrix will be of fewer or the same number of rows than the original matrix of training instances.
 
-While a human is conscious, typically there is only one object being attended over at one time. When asleep, the human may recall and process many instances in parallel. But if something during the day left some strong impression, it is possible after one step of attention, all the other unimportant instances received nil attention, and the matrix becomes a single row.
+While a human is conscious, typically there is only one object being attended over at one time. When asleep, the human may recall and process many instances in parallel. But if something during the day left some strong impression, it is possible after one step of attention, all the other unimportant instances received nil attention, and the matrix of training instances becomes a single row.
 
 ### how is the attention determined?
 If it is simply the indices of the top k values, no model is needed, otherwise one model has to be specified. For example, there can be a vector for inhibition levels `B`, one for stimulus levels `X`,
