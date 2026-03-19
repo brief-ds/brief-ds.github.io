@@ -64,7 +64,7 @@ is either a zero-row (if the `args` is empty) or one-row matrix, so we can still
 While a human is conscious, typically there is only one object being attended over at one time. When asleep, the human may recall and process many instances in parallel. But if something during the day left some strong impression, it is possible after one step of attention, all the other unimportant instances received nil attention, and the matrix of training instances becomes a single row.
 
 ### how is the attention determined?
-If it is simply the indices of the top k values, no model is needed, otherwise a model has to be specified. For example, there can be a vector for inhibition levels `B`, one for stimulus levels `X`,
+If it is simply the indices of the top k values, no model is needed, otherwise a model has to be specified. For example, we extend the model by allowing a vector for inhibition levels `B`, one for stimulus levels `X`,
 
 ```python
 args = (X - B).topk(k)
@@ -72,7 +72,9 @@ B = f(X[args], B[args])
 X = g(X[args], B[args])
 ```
 
-The functions `f` and `g` are the model to determine the `B` and `X` at the next step, and need be trained. The output at the current time will be in relation to both `X[args]` and `B[args]`. The compute of each operation here is in the order of the state size, if the size of `args` is capped.
+The functions `f` and `g` will determine the `B` and `X` at the next step, and need be trained. This completes the speficication for the evolution of the state.
+
+The model can make an explicit output at the current step in relation to both `X[args]` and `B[args]`. The compute of each operation here is in the order of the state size, if the size of `args` is capped.
 
 ## Expectation of outcome
 We will collect enough data to see if a simpler model can behave as intelligently as today's popular chatbots.
