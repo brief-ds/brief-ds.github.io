@@ -15,7 +15,11 @@ to transform these tokens' values with "attention", quadratic in terms of <math>
 ChatGPT: "why the current transformer deep learning model is computationally costly? could you give mathematical notions and equations to illustrate?"
 
 ## Aim of this project
-We ask the question whether a model with a less costly attention mechanism, can behave as intelligently. Particularly, we will take a vanilla recurrent neural network, and impose an attention vector on each state vector.
+We ask the question
+
+Can selective sparse recurrent computation provide competitive predictive performance with significantly improved efficiency for long-context or streaming tasks, especially on low-power hardware targets?
+
+Particularly, we will take a vanilla recurrent neural network, and impose an attention vector on each state vector.
 
 The [Turing machine](https://en.wikipedia.org/wiki/Turing_machine) has a "head" that during its execution, at any point of time, is positioned over a cell on the memory tape. This "head" can be assimilated to attention. A recurrent neural net can [simulate any Turing machine](https://www.sciencedirect.com/science/article/pii/S0022000085710136).
 
@@ -90,7 +94,7 @@ We did a [few variations](/2026/03/16/gpt2.html) on the Andrej Karpathy's GPT-2 
 | rnn_att   |  as the `rnn` version but at each step, fire neurons sparsely rather than all |  120     |  1.3s       |   2.30     |
 
 ## Expectation of outcome
-We will collect enough data to see if a simpler model can behave as intelligently as today's popular chatbots.
+We will collect enough data to see if selective sparse recurrent computation can competitive predictive performance with significantly improved efficiency for long-context or streaming tasks, especially on low-power hardware targets.
 
 ## References
 * Turing, A. M. (1936). On Computable Numbers, with an Application to the Entscheidungsproblem. Proceedings of the London Mathematical Society. 2. 42 (published 1937): 230–265. doi:10.1112/plms/s2-42.1.230.
