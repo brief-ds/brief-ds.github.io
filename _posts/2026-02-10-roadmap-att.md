@@ -52,7 +52,7 @@ Note that once the `args` are determined no matter how, usually the mathematical
 
 PyTorch allows indexing into a vector `X[args]` and handles the autodifferentiation well, but its install size is about 1 gigabyte, on top of which it mandates installing several gigabytes of CUDA libraries today.
 
-We will use a tensor-capable [micrograd](https://github.com/brief-ds/micrograd) for autodifferentiation, about 500 lines in Python. Its only dependency is NumPy. To index into `X` is `X.attend(args)`.
+We will use a tensor-capable [micrograd](https://github.com/brief-ds/micrograd) for autodifferentiation, about 500 lines in Python. Its only dependency is NumPy. The `att` branch implements the proposed mechanism: to index into `X` is `X.attend(args)`.
 
 ### batched training
 If one input instance at one time is in one row, the attention on it, the `args` can be different than that on a separate input instance. How to handle multiple training instances?
@@ -113,6 +113,7 @@ where <math><mo>⊙</mo></math> is element-wise multiplication, and <math><msub>
 ## References
 * Turing, A. M. (1936). On Computable Numbers, with an Application to the Entscheidungsproblem. Proceedings of the London Mathematical Society. 2. 42 (published 1937): 230–265. doi:10.1112/plms/s2-42.1.230.
 * Siegelmann H.T. Sontag E.D. (1995). On the Computational Power of Neural Nets. Volume 50, Issue 1, Pages 132-150. https://doi.org/10.1006/jcss.1995.1013
+* Brief Solutions Ltd (2026). micrograd, `att` branch. A tiny autograd engine. https://github.com/brief-ds/micrograd/tree/att
 * Lee, J (2026). Four experiments on GPT-2. https://www.brief-ds.com/2026/03/16/gpt2.html
 * Gu, A, Dao, T (2024). Mamba: Linear-Time Sequence Modeling with Selective State Spaces. https://arxiv.org/abs/2312.00752
 * Yang, S, et al (2025). Parallelizing Linear Transformers with the Delta Rule over Sequence Length. https://arxiv.org/abs/2406.06484
