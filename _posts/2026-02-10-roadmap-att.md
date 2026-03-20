@@ -76,6 +76,19 @@ The functions `f` and `g` will determine the `B` and `X` at the next step, and n
 
 The model can make an explicit output at the current step in relation to both `X[args]` and `B[args]`. The compute of each operation here is in the order of the state size, if the size of `args` is capped.
 
+### what is in the stimulus vector?
+Some coordinates in the stimulus `X` can be for external information from senses: vision, hearing, etc. Some can be for information recalled from long-term memory. It seeems that when only one instance of `X` is being attended over, logical reasoning or dreaming can proceed on. The remaining coordinates are for the internally processed information.
+
+### a toy example
+We did a [few variations](/2026/03/16/gpt2.html) on the Andrej Karpathy's GPT-2 model `microgpt.py`. The last variation was a recurrent net that sparsely fires neurons. It would run about 5 times faster than the vectorised Transformer model, yet the optimised loss was in the same ball park.
+
+|  version  |  description  | number of lines (the fewer the simpler) | run time (the lower the better) | optimised loss (the lower the better) |
+| --------- | -------------- | ----------- | ---------- | ---------- |
+| scalar    |  the original version, updating model coefficient one by one   |      |  160s       |   2.66     |
+| vector    |  uses vector extension on the hardware architecture, updating a whole array of model coefficients at once | 164      |   7s        |   2.63     |
+| rnn       |  changes the model to vanilla recurrent net, and uses vector extension |   118    |  1.2s    |   2.35     |
+| rnn_att   |  as the `rnn` version but at each step, fire neurons sparsely rather than all |  120     |  1.3s       |   2.30     |
+
 ## Expectation of outcome
 We will collect enough data to see if a simpler model can behave as intelligently as today's popular chatbots.
 
