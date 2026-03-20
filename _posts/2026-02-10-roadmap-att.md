@@ -111,3 +111,5 @@ We will collect enough data to see if selective sparse recurrent computation can
 * Turing, A. M. (1936). On Computable Numbers, with an Application to the Entscheidungsproblem. Proceedings of the London Mathematical Society. 2. 42 (published 1937): 230–265. doi:10.1112/plms/s2-42.1.230.
 * Siegelmann H.T. Sontag E.D. (1995). On the Computational Power of Neural Nets. Volume 50, Issue 1, Pages 132-150. https://doi.org/10.1006/jcss.1995.1013
 * Lee, J (2026). Four experiments on GPT-2. https://www.brief-ds.com/2026/03/16/gpt2.html
+* Gu, A, Dao, T (2024). Mamba: Linear-Time Sequence Modeling with Selective State Spaces. https://arxiv.org/abs/2312.00752
+* Yang, S, et al (2025). Parallelizing Linear Transformers with the Delta Rule over Sequence Length. https://arxiv.org/abs/2406.06484
