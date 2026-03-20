@@ -15,9 +15,7 @@ to transform these tokens' values with "attention", quadratic in terms of <math>
 ChatGPT: "why the current transformer deep learning model is computationally costly? could you give mathematical notions and equations to illustrate?"
 
 ## Aim of this project
-We ask the question:
-
-"Can selective sparse recurrent computation provide competitive predictive performance with significantly improved efficiency for long-context or streaming tasks, especially on low-power hardware targets?"
+We ask the question: Can selective sparse recurrent computation provide competitive predictive performance with significantly improved efficiency for long-context or streaming tasks, especially on low-power hardware targets?
 
 Particularly, we will take a vanilla recurrent neural network, and impose an attention vector on each state vector.
 
