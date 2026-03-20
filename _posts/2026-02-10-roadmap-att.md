@@ -21,6 +21,8 @@ Particularly, we will take a vanilla recurrent neural network, and impose an att
 
 The [Turing machine](https://en.wikipedia.org/wiki/Turing_machine) has a "head" that during its execution, at any point of time, is positioned over a cell on the memory tape. This "head" can be assimilated to attention. A recurrent neural net can [simulate any Turing machine](https://www.sciencedirect.com/science/article/pii/S0022000085710136).
 
+As one reads on, one will see the model is a net of the [McCulloch-Pitts Neurons](https://jli05.github.io/2024/04/05/Walter-Pitts-bibliography.html).
+
 ## Method
 In a recurrent neural net, the state vector is assimilated to the memory tape of a Turing machine. The state vector undergoes change while proceeding in time. Denote the state vector at any time by `X`, a row vector of size <math><mi>m</mi></math>. Rather than multiplying the entire `X` by a matrix, we will attend over and transform only certain elements in `X`,
 
@@ -111,8 +113,10 @@ State Space Models models the evoluation of the state with linear models. At eac
 where <math><mo>⊙</mo></math> is element-wise multiplication, and <math><msub><mi>h</mi><mi>t</mi></msub></math> is the state at step <math><mi>t</mi></math>.
 
 ## References
-* Turing, A. M. (1936). On Computable Numbers, with an Application to the Entscheidungsproblem. Proceedings of the London Mathematical Society. 2. 42 (published 1937): 230–265. doi:10.1112/plms/s2-42.1.230.
-* Siegelmann H.T. Sontag E.D. (1995). On the Computational Power of Neural Nets. Volume 50, Issue 1, Pages 132-150. https://doi.org/10.1006/jcss.1995.1013
+* Turing, A. M. (1936). "On Computable Numbers, with an Application to the Entscheidungsproblem." Proceedings of the London Mathematical Society. 2. 42 (published 1937): 230–265. doi:10.1112/plms/s2-42.1.230.
+* Siegelmann H.T. Sontag E.D. (1995). "On the Computational Power of Neural Nets". Journal of Computer and System Sciences. 50 (1): 132-150. https://doi.org/10.1006/jcss.1995.1013
+* McCulloch, W S.; Pitts, W (1943-12-01). "A logical calculus of the ideas immanent in nervous activity". The Bulletin of Mathematical Biophysics. 5 (4): 115–133. doi:10.1007/BF02478259. ISSN 1522-9602.
+* Walter Pitts' bibliography. https://home.csulb.edu/~cwallis/artificialn/walter_pitts.html https://jli05.github.io/2024/04/05/Walter-Pitts-bibliography.html
 * Brief Solutions Ltd (2026). micrograd, `att` branch. A tiny autograd engine. https://github.com/brief-ds/micrograd/tree/att
 * Lee, J (2026). Four experiments on GPT-2. https://www.brief-ds.com/2026/03/16/gpt2.html
 * Gu, A, Dao, T (2024). Mamba: Linear-Time Sequence Modeling with Selective State Spaces. https://arxiv.org/abs/2312.00752
