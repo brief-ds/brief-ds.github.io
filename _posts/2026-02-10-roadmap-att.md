@@ -14,15 +14,6 @@ to transform these tokens' values with "attention", quadratic in terms of <math>
 
 ChatGPT: "why the current transformer deep learning model is computationally costly? could you give mathematical notions and equations to illustrate?"
 
-There is another camp State Space Models which models the evoluation with linear models. At one step, the scale of compute is fixed. Over all steps, the total compute is only linear in number of the tokens. Mamba and DeltaNet are examples among others, which all differ in how to scale the current state vector, and how to compute the new incremental information.
-
-| model    | state update equation  |
-| -------- | -------------- |
-| Mamba    | <math><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><msub><mi>a</mi><mi>t</mi></msub><mo>⊙</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>B</mi><mi>t</mi></msub><msub><mi>x</mi><mi>t</mi></msub></math>  |
-| DeltaNet | <math><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mi>t</mi></msub><mo>⊙</mo><mo>(</mo><mrow><msub><mi>v</mi><mi>t</mi></msub><mo>-</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow><mo>)</mo></math>  |
-
-where <math><mo>⊙</mo></math> is element-wise multiplication, and <math><msub><mi>h</mi><mi>t</mi></msub></math> is the state at step <math><mi>t</mi></math>.
-
 ## Aim of this project
 We ask the question: Can selective sparse recurrent computation provide competitive predictive performance with significantly improved efficiency for long-context or streaming tasks, especially on low-power hardware targets?
 
@@ -106,6 +97,16 @@ We did a [few variations](/2026/03/16/gpt2.html) on the Andrej Karpathy's GPT-2 
 
 ## Expectation of outcome
 We will collect enough data to see if selective sparse recurrent computation can provide competitive predictive performance with significantly improved efficiency for long-context or streaming tasks, especially on low-power hardware targets.
+
+## Related work
+State Space Models models the evoluation of the state with linear models. At each step, the scale of compute is fixed. Over all steps, the total compute is only linear in number of the tokens. Mamba and DeltaNet are examples among others, which all differ in how to scale the current state vector, and how to compute the new incremental information.
+
+| model    | state update equation  |
+| -------- | -------------- |
+| Mamba    | <math><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><msub><mi>a</mi><mi>t</mi></msub><mo>⊙</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>B</mi><mi>t</mi></msub><msub><mi>x</mi><mi>t</mi></msub></math>  |
+| DeltaNet | <math><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mi>t</mi></msub><mo>⊙</mo><mo>(</mo><mrow><msub><mi>v</mi><mi>t</mi></msub><mo>-</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow><mo>)</mo></math>  |
+
+where <math><mo>⊙</mo></math> is element-wise multiplication, and <math><msub><mi>h</mi><mi>t</mi></msub></math> is the state at step <math><mi>t</mi></math>.
 
 ## References
 * Turing, A. M. (1936). On Computable Numbers, with an Application to the Entscheidungsproblem. Proceedings of the London Mathematical Society. 2. 42 (published 1937): 230–265. doi:10.1112/plms/s2-42.1.230.
