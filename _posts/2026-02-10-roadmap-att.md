@@ -77,7 +77,7 @@ The functions `f` and `g` will determine the `B` and `X` at the next step, and n
 The model can make an explicit output at the current step in relation to both `X[args]` and `B[args]`. The compute of each operation here is in the order of the state size, if the size of `args` is capped.
 
 ### what is in the stimulus vector?
-Some coordinates in the stimulus `X` can be for external information from senses: vision, hearing, etc. Some can be for information recalled from long-term memory. It seeems that when only one instance of `X` is being attended over, logical reasoning or dreaming can proceed on. The remaining coordinates are for the internally processed information.
+Some coordinates in the stimulus `X` can be for external information from senses: vision, hearing, etc. Some can be for information recalled from long-term memory. It seeems that when only one instance of `X` is being attended over, logical reasoning or dreaming can proceed on. The remaining coordinates are for the results of internal processing.
 
 ### a toy example
 We did a [few variations](/2026/03/16/gpt2.html) on the Andrej Karpathy's GPT-2 model `microgpt.py`. The last variation was a recurrent net that sparsely fires neurons. It would run about 5 times faster than the vectorised Transformer model, yet the optimised loss was in the same ball park.
