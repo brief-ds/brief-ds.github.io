@@ -14,11 +14,12 @@ to transform these tokens' values with "attention", quadratic in terms of <math>
 
 ChatGPT: "why the current transformer deep learning model is computationally costly? could you give mathematical notions and equations to illustrate?"
 
-There is another school State Space Models which models the evoluation with linear models over steps. At one step, the scale of compute is fixed. Over all steps, the total compute is only linear in number of the tokens. Mamba, DeltaNet are examples, which differ in how to scale the current state vector, and how to compute the new incremental information.
+There is another camp State Space Models which models the evoluation with linear models. At one step, the scale of compute is fixed. Over all steps, the total compute is only linear in number of the tokens. Mamba, DeltaNet are examples, which differ in how to scale the current state vector, and how to compute the new incremental information.
 
 | model    | state update equation  |
 | -------- | -------------- |
 | Mamba    | <math><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><msub><mi>a</mi><mi>t</mi></msub><mo>⊙</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>B</mi><mi>t</mi></msub><msub><mi>x</mi><mi>t</mi></msub></math>  |
+| DeltaNet | <math><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mi>t</mi></msub><mo>⊙</mo><mo>(</mo><mrow><msub><mi>v</mi><mi>t</mi></msub><mo>-</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow><mo>)</mo></math>  |
 
 
 
