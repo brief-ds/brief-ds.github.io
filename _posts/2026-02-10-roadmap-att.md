@@ -82,11 +82,11 @@ The functions `f` and `g` will determine the `B` and `X` at the next step, and n
 
 The model can make an explicit output at the current step in relation to both `X[args]` and `B[args]`. The compute of each operation here is in the order of the state size, if the size of `args` is capped.
 
-### what is in the stimulus vector?
-In the stimulus `X` can be
+### information in the stimulus vector `X`
+It can fall into several cases,
 
-* some coordinates for external information from senses: vision, hearing, etc. These coordinates are fixed, as the fixed addressess for input/output ports on computer architecture
-* some for the results of internal processing, such as logical reasoning or dreaming
+* at some coordinates, external information from senses: vision, hearing, etc. These coordinates are fixed, as the fixed addressess for input/output ports on computer architecture
+* at some coordinates, the results of internal processing, such as logical reasoning or dreaming
 * the remaining can be called the long-term memory, with information infrequently updated
 
 ### a toy example
