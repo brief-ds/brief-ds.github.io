@@ -21,7 +21,7 @@ Particularly, we will take a vanilla recurrent neural network, and impose an att
 
 The [Turing machine](https://en.wikipedia.org/wiki/Turing_machine) has a "head" that during its execution, at any point of time, is positioned over a cell on the memory tape. This "head" can be assimilated to attention. A recurrent neural net can [simulate any Turing machine](https://www.sciencedirect.com/science/article/pii/S0022000085710136).
 
-As one reads on, one will see the model is a net of the [McCulloch-Pitts Neurons](https://jli05.github.io/2024/04/05/Walter-Pitts-bibliography.html).
+As one reads on, one will see a specification of the model is a net of the [McCulloch-Pitts Neurons](https://jli05.github.io/2024/04/05/Walter-Pitts-bibliography.html).
 
 ## Method
 In a recurrent neural net, the state vector is assimilated to the memory tape of a Turing machine. The state vector undergoes change while proceeding in time. Denote the state vector at any time by `X`, a row vector of size <math><mi>m</mi></math>. Rather than multiplying the entire `X` by a matrix, we will attend over and transform only certain elements in `X`,
