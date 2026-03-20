@@ -57,7 +57,7 @@ PyTorch allows indexing into a vector `X[args]` and handles the autodifferentiat
 We will use a tensor-capable [micrograd](https://github.com/brief-ds/micrograd) for autodifferentiation, about 500 lines in Python. Its only dependency is NumPy. The `att` branch implements the proposed mechanism: to attend over `X` is `X.attend(args)`.
 
 ### batched training
-If one input instance at one time is in one row, the attention on it, the `args` can be different than that on a separate input instance. How to handle multiple training instances?
+If one input instance at one time is in one row, the attention on it can be different than that on a separate input instance. How to handle multiple training instances?
 
 One way may be: note for one instance `X` and its attention indices `args`,
 
