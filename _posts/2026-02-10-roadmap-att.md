@@ -93,4 +93,5 @@ We did a [few variations](/2026/03/16/gpt2.html) on the Andrej Karpathy's GPT-2 
 We will collect enough data to see if a simpler model can behave as intelligently as today's popular chatbots.
 
 ## References
-TODO
+* Turing, A. M. (1936). On Computable Numbers, with an Application to the Entscheidungsproblem. Proceedings of the London Mathematical Society. 2. 42 (published 1937): 230–265. doi:10.1112/plms/s2-42.1.230.
+* Siegelmann H.T. Sontag E.D. (1995). On the Computational Power of Neural Nets. Volume 50, Issue 1, Pages 132-150. https://doi.org/10.1006/jcss.1995.1013
