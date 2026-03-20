@@ -14,6 +14,15 @@ to transform these tokens' values with "attention", quadratic in terms of <math>
 
 ChatGPT: "why the current transformer deep learning model is computationally costly? could you give mathematical notions and equations to illustrate?"
 
+There is another school State Space Models which models the evoluation with linear models over steps. At one step, the scale of compute is fixed. Over all steps, the total compute is only linear in number of the tokens. Mamba, DeltaNet are examples, which differ in how to scale the current state vector, and how to compute the new incremental information.
+
+| model    | state update equation  |
+| -------- | -------------- |
+| Mamba    | <math><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><msub><mi>a</mi><mi>t</mi></msub><mo>⊙</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>B</mi><mi>t</mi></msub><msub><mi>x</mi><mi>t</mi></msub></math>  |
+
+
+
+
 ## Aim of this project
 We ask the question: Can selective sparse recurrent computation provide competitive predictive performance with significantly improved efficiency for long-context or streaming tasks, especially on low-power hardware targets?
 
@@ -48,7 +57,7 @@ We will then do extensive training following training detail provided in
 for various AI tasks and report results.
 
 ### the library that does autodifferentiation
-PyTorch allows indexing into a vector `X[args]` and handles the autodifferentiation well, but its install size is about 1 gigabyte today, on top of which it mandates installing several gigabytes of CUDA libraries.
+PyTorch allows indexing into a vector `X[args]` and handles the autodifferentiation well, but its install size is about 1 gigabyte, on top of which it mandates installing several gigabytes of CUDA libraries today.
 
 We will use a tensor-capable [micrograd](https://github.com/brief-ds/micrograd) for autodifferentiation, about 500 lines in Python. Its only dependency is NumPy.
 
@@ -79,7 +88,11 @@ The functions `f` and `g` will determine the `B` and `X` at the next step, and n
 The model can make an explicit output at the current step in relation to both `X[args]` and `B[args]`. The compute of each operation here is in the order of the state size, if the size of `args` is capped.
 
 ### what is in the stimulus vector?
-Some coordinates in the stimulus `X` can be for external information from senses: vision, hearing, etc. Some can be for information recalled from long-term memory. It seeems that when only one instance of `X` is being attended over, logical reasoning or dreaming can proceed on. The remaining coordinates are for the results of internal processing.
+In the stimulus `X` can be
+
+* some coordinates for external information from senses: vision, hearing, etc. These coordinates are fixed, as the fixed addressess for input/output ports on computer architecture
+* some for the results of internal processing, such as logical reasoning or dreaming
+* the remaining can be called the long-term memory, with information infrequently updated
 
 ### a toy example
 We did a [few variations](/2026/03/16/gpt2.html) on the Andrej Karpathy's GPT-2 model `microgpt.py`. The last variation was a recurrent net that sparsely fires neurons. It would run about 5 times faster than the vectorised Transformer model, yet the optimised loss was in the same ball park.
@@ -92,8 +105,9 @@ We did a [few variations](/2026/03/16/gpt2.html) on the Andrej Karpathy's GPT-2 
 | rnn_att   |  as the `rnn` version but at each step, fire neurons sparsely rather than all |  120     |  1.3s       |   2.30     |
 
 ## Expectation of outcome
-We will collect enough data to see if selective sparse recurrent computation can competitive predictive performance with significantly improved efficiency for long-context or streaming tasks, especially on low-power hardware targets.
+We will collect enough data to see if selective sparse recurrent computation can provide competitive predictive performance with significantly improved efficiency for long-context or streaming tasks, especially on low-power hardware targets.
 
 ## References
 * Turing, A. M. (1936). On Computable Numbers, with an Application to the Entscheidungsproblem. Proceedings of the London Mathematical Society. 2. 42 (published 1937): 230–265. doi:10.1112/plms/s2-42.1.230.
 * Siegelmann H.T. Sontag E.D. (1995). On the Computational Power of Neural Nets. Volume 50, Issue 1, Pages 132-150. https://doi.org/10.1006/jcss.1995.1013
+* Lee, J (2026). Four experiments on GPT-2. https://www.brief-ds.com/2026/03/16/gpt2.html
