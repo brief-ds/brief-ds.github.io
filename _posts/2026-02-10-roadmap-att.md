@@ -116,7 +116,8 @@ where <math><mo>⊙</mo></math> is element-wise multiplication, and <math><msub>
 * Turing, A. M. (1936). "On Computable Numbers, with an Application to the Entscheidungsproblem." Proceedings of the London Mathematical Society. 2. 42 (published 1937): 230–265. doi:10.1112/plms/s2-42.1.230.
 * Siegelmann H.T. Sontag E.D. (1995). "On the Computational Power of Neural Nets". Journal of Computer and System Sciences. 50 (1): 132-150. https://doi.org/10.1006/jcss.1995.1013
 * McCulloch, W S.; Pitts, W (1943-12-01). "A logical calculus of the ideas immanent in nervous activity". The Bulletin of Mathematical Biophysics. 5 (4): 115–133. doi:10.1007/BF02478259. ISSN 1522-9602.
-* Walter Pitts' bibliography. https://home.csulb.edu/~cwallis/artificialn/walter_pitts.html https://jli05.github.io/2024/04/05/Walter-Pitts-bibliography.html
+* Walter Pitts' bibliography (accessed 10 February 2026). https://home.csulb.edu/~cwallis/artificialn/walter_pitts.html https://jli05.github.io/2024/04/05/Walter-Pitts-bibliography.html
+* Wikipedia, The Free Encyclopedia, s.v. "Neuron," "Connectivity," (accessed 10 February 2026), https://en.wikipedia.org/wiki/Neuron#Connectivity
 * Brief Solutions Ltd (2026). micrograd, `att` branch. A tiny autograd engine. https://github.com/brief-ds/micrograd/tree/att
 * Lee, J (2026). Four experiments on GPT-2. https://www.brief-ds.com/2026/03/16/gpt2.html
 * Gu, A, Dao, T (2024). Mamba: Linear-Time Sequence Modeling with Selective State Spaces. https://arxiv.org/abs/2312.00752
