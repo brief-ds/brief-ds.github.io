@@ -78,9 +78,7 @@ B = f(X[args], B[args])
 X = g(X[args], B[args])
 ```
 
-The functions `f` and `g` will determine the `B` and `X` at the next step, and need be trained. This completes the speficication for the evolution of the state.
-
-The model can make an explicit output at the current step in relation to both `X[args]` and `B[args]`. Each operation here costs <math><mi>O</mi><mo>(</mo><mi>m</mi><mo>)</mo></math>, if the size of `args` is capped.
+The functions `f` and `g` will determine the `B` and `X` at the next step, and need be trained. This completes the speficication for the evolution of the state. Each operation here costs <math><mi>O</mi><mo>(</mo><mi>m</mi><mo>)</mo></math>, if the size of `args` is capped.
 
 ### information in the stimulus vector `X`
 It can fall into several cases,
@@ -90,7 +88,7 @@ It can fall into several cases,
 * the remaining can be called the long-term memory, with information infrequently updated
 
 ### a toy example
-We did a [few variations](/2026/03/16/gpt2.html) on the Andrej Karpathy's GPT-2 model `microgpt.py`. The last variation was a recurrent net that sparsely fires neurons. It would run about 5 times faster than the vectorised Transformer model, yet the optimised loss was in the same ball park.
+We did a [few variations](/2026/03/16/gpt2.html) on the Andrej Karpathy's GPT-2 model `microgpt.py`. The last variation was a recurrent net that sparsely fires neurons. It would run about 5 times faster than the vectorised Transformer model, yielding comparable optimised loss, and generating text of comparable quality.
 
 |  version  |  description  | number of lines (the fewer the simpler) | run time (the lower the better) | optimised loss (the lower the better) |
 | --------- | -------------- | ----------- | ---------- | ---------- |
