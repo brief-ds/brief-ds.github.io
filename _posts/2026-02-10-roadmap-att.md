@@ -52,8 +52,6 @@ for various AI tasks and report results.
 ### the library that does autodifferentiation
 Note that once the `args` are determined no matter how, usually the mathematical derivative of `args` with respect to any variable is zero. Backpropogation stops at `args`. This fact may allow us to be daring and chain (relate) coordinates over steps in flexible ways.
 
-PyTorch allows indexing into a vector `X[args]` and handles the autodifferentiation well, but its install size is about 1 gigabyte, on top of which it mandates installing several gigabytes of CUDA libraries today.
-
 We will use a tensor-capable [micrograd](https://github.com/brief-ds/micrograd) for autodifferentiation, about 500 lines in Python. Its only dependency is NumPy. Switch to the `att` branch, to attend over `X` is `X.attend(args)`. The `attend()` takes care of backpropogating into the original `X`, so mathematical derivatives will be computed with respect to `X` and the variables `X` relies on.
 
 ### batched training
