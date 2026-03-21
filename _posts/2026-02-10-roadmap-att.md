@@ -59,7 +59,7 @@ We will use a tensor-capable [micrograd](https://github.com/brief-ds/micrograd) 
 ### batched training
 If one input instance at one time is in one row, the attention on it can be different than that on a separate input instance. How to handle multiple training instances?
 
-One way may be: note for one instance `X` and its attention indices `args`,
+Note for one instance `X` and its attention indices `args`,
 
 ```python
 X[args] @ M[args]
@@ -80,7 +80,7 @@ X = g(X[args], B[args])
 
 The functions `f` and `g` will determine the `B` and `X` at the next step, and need be trained. This completes the speficication for the evolution of the state.
 
-The model can make an explicit output at the current step in relation to both `X[args]` and `B[args]`. The compute of each operation here is in the order of the state size, if the size of `args` is capped.
+The model can make an explicit output at the current step in relation to both `X[args]` and `B[args]`. Each operation here costs <math><mi>O</mi><mo>(</mo><mi>m</mi><mo>)</mo></math>, if the size of `args` is capped.
 
 ### information in the stimulus vector `X`
 It can fall into several cases,
