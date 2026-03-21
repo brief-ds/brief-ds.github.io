@@ -54,7 +54,7 @@ Note that once the `args` are determined no matter how, usually the mathematical
 
 PyTorch allows indexing into a vector `X[args]` and handles the autodifferentiation well, but its install size is about 1 gigabyte, on top of which it mandates installing several gigabytes of CUDA libraries today.
 
-We will use a tensor-capable [micrograd](https://github.com/brief-ds/micrograd) for autodifferentiation, about 500 lines in Python. Its only dependency is NumPy. The `att` branch implements the proposed mechanism: to attend over `X` is `X.attend(args)`.
+We will use a tensor-capable [micrograd](https://github.com/brief-ds/micrograd) for autodifferentiation, about 500 lines in Python. Its only dependency is NumPy. The `att` branch implements the proposed mechanism: to attend over `X` is `X.attend(args)` for `X[args]`. The `attend()` takes care of backpropogating into the original `X`, so mathematical derivatives will be computed with respect to `X` and the variables `X` relies on.
 
 ### batched training
 If one input instance at one time is in one row, the attention on it can be different than that on a separate input instance. How to handle multiple training instances?
