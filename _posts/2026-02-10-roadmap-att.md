@@ -50,11 +50,11 @@ We will then do extensive training following training detail provided in
 for various AI tasks and report results.
 
 ### the library that does autodifferentiation
-Note that once the `args` are determined no matter how, usually the mathematical derivative of `args` with respect to any variable is zero. Backpropogation stops at `args`. This fact may allow us to be daring and write flexible functions to chain (relate) coordinates over steps.
+Note that once the `args` are determined no matter how, usually the mathematical derivative of `args` with respect to any variable is zero. Backpropogation stops at `args`. This fact may allow us to be daring and chain (relate) coordinates over steps in flexible ways.
 
 PyTorch allows indexing into a vector `X[args]` and handles the autodifferentiation well, but its install size is about 1 gigabyte, on top of which it mandates installing several gigabytes of CUDA libraries today.
 
-We will use a tensor-capable [micrograd](https://github.com/brief-ds/micrograd) for autodifferentiation, about 500 lines in Python. Its only dependency is NumPy. The `att` branch implements the proposed mechanism: to attend over `X` is `X.attend(args)` for `X[args]`. The `attend()` takes care of backpropogating into the original `X`, so mathematical derivatives will be computed with respect to `X` and the variables `X` relies on.
+We will use a tensor-capable [micrograd](https://github.com/brief-ds/micrograd) for autodifferentiation, about 500 lines in Python. Its only dependency is NumPy. The `att` branch implements the proposed mechanism: to attend over `X` is `X.attend(args)`. The `attend()` takes care of backpropogating into the original `X`, so mathematical derivatives will be computed with respect to `X` and the variables `X` relies on.
 
 ### batched training
 If one input instance at one time is in one row, the attention on it can be different than that on a separate input instance. How to handle multiple training instances?
@@ -67,7 +67,7 @@ X[args] @ M[args]
 
 is either a zero-row (if the `args` is empty) or one-row matrix, so we can still go training instance by instance, compute above for the current instance, and vertically stack the results into a matrix. The new matrix will be of fewer or the same number of rows than the precedent matrix of training instances.
 
-While a human is conscious, typically there is only one object being attended over at one time. When asleep, the human may recall and process many instances in parallel. But if something during the day left some strong impression, it is possible after one step of attention, all the other unimportant instances received nil attention, and the matrix of training instances becomes a single row.
+While a human is conscious, typically there is only one object being attended over at one time. When asleep, the human may recall and process many instances in parallel. But if something during the day left some strong impression, it is possible after one step of attention, only one instance received (strong) attention, and the matrix of training instances becomes a single row.
 
 ### how is the attention determined?
 If it is simply the indices of the top k values, no model is needed, otherwise a model has to be specified. For example, we extend the model by allowing a vector for inhibition levels `B`, one for stimulus levels `X`,
