@@ -103,7 +103,7 @@ We did a [few variations](/2026/03/16/gpt2.html) on the Andrej Karpathy's GPT-2 
 We will collect enough data to see if selective sparse recurrent computation can provide competitive predictive performance with significantly improved efficiency for long-context or streaming tasks, especially on low-power hardware targets.
 
 ## Related work
-State Space Models model the evoluation of the state with linear models. At each step, the scale of compute is fixed. Over all steps, the total compute is only linear in number of the tokens. Mamba and DeltaNet are examples among others, which all differ in how to scale the current state vector, and how to compute the new incremental information.
+State Space Models model the evoluation of the state with linear models. Over all steps, the total compute is only linear in number of the tokens. Mamba and DeltaNet are examples among others, which all differ in how to scale the current state vector, and how to compute the new incremental information.
 
 | model    | state update equation  |
 | -------- | -------------- |
