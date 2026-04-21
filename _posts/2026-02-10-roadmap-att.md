@@ -72,8 +72,8 @@ If it is simply the indices of the top k values, no model is needed, otherwise a
 
 ```python
 args = (X - B).topk(k)
-B = f(X[args], B[args])
-X = g(X[args], B[args])
+B = B + f(X[args], B[args])
+X = X + g(X[args], B[args])
 ```
 
 The functions `f` and `g` will determine the `B` and `X` at the next step, and need be trained.
