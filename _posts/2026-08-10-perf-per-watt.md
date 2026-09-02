@@ -58,7 +58,7 @@ NVIDIA Grace CPU Superchip Architecture In Depth, [https://developer.nvidia.com/
 
 NVIDIA Grace Hopper Superchip Architecture In-Depth, [https://developer.nvidia.com/blog/nvidia-grace-hopper-superchip-architecture-in-depth/](https://developer.nvidia.com/blog/nvidia-grace-hopper-superchip-architecture-in-depth/)
 
-AMD ROCm Core SDK, [https://rocm.docs.amd.com/en/latest/index.html](https://rocm.docs.amd.com/en/latest/index.html)
+AMD ROCm Core SDK, [https://rocm.docs.amd.com](https://rocm.docs.amd.com)
 
 RiVEC benchmark suite on vector microarchitecture, [https://github.com/RALC88/riscv-vectorized-benchmark-suite](https://github.com/RALC88/riscv-vectorized-benchmark-suite)
 
