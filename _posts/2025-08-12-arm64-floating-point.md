@@ -104,6 +104,8 @@ $ ./main
 ```
 
 ## References
+Arm A-profile A64 Instruction Set Architecture, [https://support.arm.com/documentation/ddi0602/2026-06?lang=en](https://support.arm.com/documentation/ddi0602/2026-06?lang=en)
+
 Arm Compiler armasm User Guide. On [https://developer.arm.com](https://developer.arm.com), search for "armasm user guide". In the result list, find the latest version of "Arm Compiler armasm User Guide".
 
 Aarch64 registers, [https://developer.arm.com/documentation/102374/0102/Registers-in-AArch64---general-purpose-registers](https://developer.arm.com/documentation/102374/0102/Registers-in-AArch64---general-purpose-registers)
