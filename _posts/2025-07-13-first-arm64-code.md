@@ -91,6 +91,8 @@ For the same code on Apple Silicon, refer to [Intro to 64bit ARM Assembly](https
 ## References
 Aarch64, [https://en.wikipedia.org/wiki/AArch64](https://en.wikipedia.org/wiki/AArch64).
 
+Arm A-profile A64 Instruction Set Architecture, [https://support.arm.com/documentation/ddi0602/2026-06?lang=en](https://support.arm.com/documentation/ddi0602/2026-06?lang=en)
+
 ARM assembly tutorial, @LaurieWired, [https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg](https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg)
 
 Linux System Call Table, [https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/syscalls/#arm64-64-bit](https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/syscalls/#arm64-64-bit)
