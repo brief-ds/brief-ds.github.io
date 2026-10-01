@@ -77,7 +77,7 @@ $ ./branch2; echo $?
 ```
 
 ## References
-Arm A-profile A64 Instruction Set Architecture, [https://support.arm.com/documentation/ddi0602/2026-06?lang=en](https://support.arm.com/documentation/ddi0602/2026-06?lang=en)
+Arm A-profile A64 Instruction Set Architecture, [https://support.arm.com/documentation/ddi0602/](https://support.arm.com/documentation/ddi0602/)
 
 ARM64 assembly tutorial, LaurieWired, [https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg](https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg).
 
