@@ -27,7 +27,7 @@ HPCG (High Performance Conjugate Gradient) benchmark, [https://www.hpcg-benchmar
 
 HPCG benchmark source code, [https://github.com/hpcg-benchmark/hpcg](https://github.com/hpcg-benchmark/hpcg)
 
-Nvidia Tensor Cores explained in simple terms, [https://www.digitalocean.com/community/tutorials/understanding-tensor-cores](https://www.digitalocean.com/community/tutorials/understanding-tensor-cores)
+Programming Tensor Codes in CUDA 9, [https://developer.nvidia.com/blog/programming-tensor-cores-cuda-9/](https://developer.nvidia.com/blog/programming-tensor-cores-cuda-9/)
 
 Nvidia A100 Tensor Core GPU, [https://www.nvidia.com/en-eu/data-center/a100/](https://www.nvidia.com/en-eu/data-center/a100/)
 
