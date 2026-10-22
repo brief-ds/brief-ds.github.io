@@ -20,7 +20,7 @@ A GPU is traditionally designed with many cores, which can each be programmed se
 ## Compute-bound vs Memory-bound tasks
 If after loading <math><mi>n</mi></math> elements of a vector, the number of arithmetic operations will be the same, the program is [memory-bound](https://en.wikipedia.org/wiki/Memory-bound_function). But if the number of arithmetic operations will be higher by some orders, the program is [compute-bound](https://en.wikipedia.org/wiki/CPU-bound).
 
-Today, _the_ most well-known compute-bound task is matrix-matrix multiplication, as to multiply two squares of matrix of size NxN takes NxNxN order of compute.
+Today, _the_ most well-known compute-bound task is matrix-matrix multiplication, as to multiply two squares of matrix of size <math><msup><mi>N</mi><mn>2</mn></msup></math> takes <math><msup><mi>N</mi><mn>3</mn></msup></math> order of compute.
 
 A wide range of algorithms are memory-bound, for example, partial derivative equation solution, sequence alignment, etc.
 
