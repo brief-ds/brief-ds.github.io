@@ -4,14 +4,14 @@ layout: post
 ---
 
 ## Introduction
-Today's laptop may have 6 CPU cores and consume 20 watts, while a supercomputer may have tens of thousands of cores and consume many kilo watts. We will see that the performance per watt is a meaningful benchmark across the spectrum of computing systems.
+Today's laptop may have 6 CPU cores and consume 20 watts, while a supercomputer may have tens of thousands of cores and consume many kilo watts. Across the spectrum of computing systems, we will see that the performance per watt is a meaningful benchmark.
 
-It is usually quoted as GFLOP/s/watt, for giga floating-point operations per second per watt, or GOP/s/watt, for giga operations per second per watt. 1 second x 1 watt = 1 Joule, a unit of energy. So GFLOP/s/watt = GFLOP/Joule, which measures the amount of work per unit of energy.
+It is usually quoted as GFLOP/s/watt, for giga floating-point operations per second per watt. 1 second x 1 watt = 1 Joule, a unit of energy. So GFLOP/s/watt = GFLOP/Joule, which measures the amount of work per unit of energy.
 
-The performance per watt should be measured over the _entire_ computing system, including CPUs, memory, inter-networking, maybe even including the cooling system when involved.
+The performance per watt should be measured over the _entire_ computing system, including CPUs, memory, networking, maybe even including the cooling system when it was involved.
 
 ## CPU with vector extension and GPUs
-Traditionally-designed CPU carries out arithmetic or logical compute one per clock cycle. Afterwards techniques such as speculative [branch prediction](https://en.wikipedia.org/wiki/Branch_predictor) were invented, which would accelerate marginally, whilst introducing security risk such as [Spectre Attack](https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)).
+Traditionally-designed CPU carries out arithmetic or logical compute one per clock cycle. Afterwards techniques such as speculative [branch prediction](https://en.wikipedia.org/wiki/Branch_predictor) were invented, which would accelerate execution marginally, whilst introducing security risk such as [Spectre Attack](https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)).
 
 The CPU vector extensions or GPUs can carry out multiple arithmetic operations per clock cycle, increasing the compute throughput by orders. The CPU state would be more deterministic, increasing introspectability and security.
 
@@ -25,7 +25,7 @@ Today, _the_ most well-known compute-bound task is matrix-matrix multiplication,
 A wide range of algorithms are memory-bound, for example, partial derivative equation solution, sequence alignment, etc.
 
 ## Compute-bound performance per watt
-In this case, as data is loaded once yet used many times for calculation, the energy cost of memory is ignorable in the limit, the whole-system performance per watt can be approximated by that of the CPU or GPU alone.
+As data is loaded once yet used many times for calculation, the energy cost of memory operation is ignorable in the limit, the whole-system performance per watt is bounded by that of the CPU or GPU alone.
 
 The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchmark for the (compute-bound) performance per watt. The official source code does compute in 64-bit. However Nvidia systems would use Nvidia's closed source benchmarking program, which may or may not have reduced the precision of operands in flight.
 
