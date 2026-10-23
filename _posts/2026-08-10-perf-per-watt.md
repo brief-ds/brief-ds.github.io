@@ -76,6 +76,8 @@ AMD ROCm Core SDK, [https://rocm.docs.amd.com](https://rocm.docs.amd.com)
 
 AMD ROCm blog: Understanding Typically Attained FLOPs, [https://rocm.blogs.amd.com/artificial-intelligence/taf-blog/README.html](https://rocm.blogs.amd.com/artificial-intelligence/taf-blog/README.html)
 
+CPU vector extension and GPU benchmarking, [https://github.com/jli05/vbench](https://github.com/jli05/vbench)
+
 RiVEC benchmark suite on vector microarchitecture, [https://github.com/RALC88/riscv-vectorized-benchmark-suite](https://github.com/RALC88/riscv-vectorized-benchmark-suite)
 
 CS107 guide to x86-64, [https://web.stanford.edu/class/archive/cs/cs107/cs107.1202/guide/x86-64.html](https://web.stanford.edu/class/archive/cs/cs107/cs107.1202/guide/x86-64.html)
