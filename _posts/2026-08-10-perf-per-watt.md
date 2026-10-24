@@ -6,10 +6,16 @@ layout: post
 ## Introduction
 Today's laptop may have 6 CPU cores and consume 20 watts, while a supercomputer may have tens of thousands of cores and consume many kilo watts. Across the spectrum of computing systems, we will see that the performance per watt is a meaningful benchmark.
 
-It is usually quoted as GFLOP/s/watt, for giga (<math><msup><mn>10</mn><mn>9</mn></msup></math>) floating-point operations per second per watt. <math><mn>1</mn><mtext> second</mtext><mo>x</mo><mn>1</mn><mtext> watt</mtext><mo>=</mo><mn>1</mn><mtext> Joule</mtext></math>, a unit of energy. So
+It is usually quoted as GFLOP/s/watt, for giga (<math><msup><mn>10</mn><mn>9</mn></msup></math>) floating-point operations per second per watt.
 
 <math display="block">
-<mn>1</mn><mtext> GFLOP/s/watt</mtext><mo>=</mo><mn>1</mn><mtext> GFLOP/Joule</mtext>
+<mn>1</mn><mtext> second</mtext><mo>×</mo><mn>1</mn><mtext> watt</mtext><mo>=</mo><mn>1</mn><mtext> Joule,</mtext>
+</math>
+
+a unit of energy. So
+
+<math display="block">
+<mn>1</mn><mtext> GFLOP/s/watt</mtext><mo>=</mo><mn>1</mn><mtext> GFLOP/Joule,</mtext>
 </math>
 
 which measures the amount of work per unit of energy.
@@ -43,7 +49,7 @@ The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchm
 | Vitruvius+ 8-lane | CPU with vector extension  | 0.45 |  47 |
 | AraXL 16-lane | CPU with vector extension |  1.1 |  39 |
 
-LineShine is currently the No. 1 supercomputer. Note it is a CPU-only system with no GPU, which shows the potential of CPU vector extension. The last two were research products by the Barcelona Supercomputing Centre and ETH Zurich respectively.
+LineShine is currently the No. 1 supercomputer by total compute throughput. Note it is a CPU-only system with no GPU, which shows the potential of CPU with vector extension. The last two were research products by the Barcelona Supercomputing Centre and ETH Zurich respectively.
 
 If a 64-bit floating point unit consumes 10 pJ/op, then the theoretical upper limit of 64x64-bit GFLOP/s/watt is
 
