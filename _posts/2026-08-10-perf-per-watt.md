@@ -31,6 +31,25 @@ The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchm
 
 In order to compare apple-for-apple across supercomputers and low energy chips, we find out the performance of 64x64-bit multiplication from the datasheets of Nvidia products.
 
+|  Package or System  | Architecture |  Watt  |  64x64 GFLOP/S/Watt  |
+| --------- | ------------ | ------ | -------------------- |
+| LineShine | ARM  |  42,200,000 |   52   |
+| A100 SXM  | Nvidia |  400  |   24        |
+| H100 SXM  | Nvidia |  700  |   48        |
+| Grace CPU 144-core | ARM | 500   |   15        |
+| Vitruvius+ 8-lane | RISC-V  | 0.45 |  47 |
+| AraXL 16-lane | RISC-V  |  1.1 |  39 |
+
+LineShine is currently the No. 1 supercomputer. Note it is a CPU-only system with no GPU. The last two were research products by the Barcelona Supercomputing Centre and ETH Zurich respectively.
+
+If a 64-bit floating point unit consumes 10 pJ/op, then the theoretical upper limit of 64x64-bit GFLOP/s/watt is
+
+<math display="block">
+
+</math>
+
+supposing the remaining circuit consumes minimal power.
+
 ## Memory-bound performance per watt
 
 ```
@@ -58,26 +77,32 @@ HPCG benchmark source code, [https://github.com/hpcg-benchmark/hpcg](https://git
 
 Programming Tensor Codes in CUDA 9, [https://developer.nvidia.com/blog/programming-tensor-cores-cuda-9/](https://developer.nvidia.com/blog/programming-tensor-cores-cuda-9/)
 
-Nvidia A100 Tensor Core GPU, [https://www.nvidia.com/en-eu/data-center/a100/](https://www.nvidia.com/en-eu/data-center/a100/)
+LineShine supercomputer, [https://en.wikipedia.org/wiki/LineShine](https://en.wikipedia.org/wiki/LineShine)
 
-Nvidia H100 Tensor Core Datasheet, [https://resources.nvidia.com/en-us-hopper-architecture/nvidia-tensor-core-gpu-datasheet](https://resources.nvidia.com/en-us-hopper-architecture/nvidia-tensor-core-gpu-datasheet)
+LineShine system, [https://www.top500.org/system/180490/](https://www.top500.org/system/180490/)
 
-Nvidia Blackwell Ultra Datasheet, [https://resources.nvidia.com/en-us-blackwell-architecture/blackwell-ultra-datasheet](https://resources.nvidia.com/en-us-blackwell-architecture/blackwell-ultra-datasheet)
+Nvidia A100 GPU, [https://www.nvidia.com/en-eu/data-center/a100/](https://www.nvidia.com/en-eu/data-center/a100/)
+
+Nvidia H100 GPU, [https://www.nvidia.com/en-us/data-center/h100/](https://www.nvidia.com/en-us/data-center/h100/)
 
 Nvidia Grace CPU Superchip, [https://www.nvidia.com/en-us/data-center/grace-cpu-superchip/](https://www.nvidia.com/en-us/data-center/grace-cpu-superchip/)
-
-Nvidia Grace performance tuning guide, [https://docs.nvidia.com/dccpu/grace-perf-tuning-guide/index.html](https://docs.nvidia.com/dccpu/grace-perf-tuning-guide/index.html)
 
 NVIDIA Grace CPU Superchip Architecture In Depth, [https://developer.nvidia.com/blog/nvidia-grace-cpu-superchip-architecture-in-depth/](https://developer.nvidia.com/blog/nvidia-grace-cpu-superchip-architecture-in-depth/)
 
 NVIDIA Grace Hopper Superchip Architecture In-Depth, [https://developer.nvidia.com/blog/nvidia-grace-hopper-superchip-architecture-in-depth/](https://developer.nvidia.com/blog/nvidia-grace-hopper-superchip-architecture-in-depth/)
 
+Nvidia Grace performance tuning guide, [https://docs.nvidia.com/dccpu/grace-perf-tuning-guide/index.html](https://docs.nvidia.com/dccpu/grace-perf-tuning-guide/index.html)
+
 AMD ROCm Core SDK, [https://rocm.docs.amd.com](https://rocm.docs.amd.com)
 
 AMD ROCm blog: Understanding Typically Attained FLOPs, [https://rocm.blogs.amd.com/artificial-intelligence/taf-blog/README.html](https://rocm.blogs.amd.com/artificial-intelligence/taf-blog/README.html)
 
-CPU vector extension and GPU benchmarking, [https://github.com/jli05/vbench](https://github.com/jli05/vbench)
+Vitruvius+: an efficient RISC-V decoupled vector coprocessor, [https://dl.acm.org/doi/full/10.1145/3575861](https://dl.acm.org/doi/full/10.1145/3575861)
+
+AraXL: a physically scalable, ultra-wide RISC-V vector processor, [https://arxiv.org/abs/2501.10301](https://arxiv.org/abs/2501.10301)
 
 RiVEC benchmark suite on vector microarchitecture, [https://github.com/RALC88/riscv-vectorized-benchmark-suite](https://github.com/RALC88/riscv-vectorized-benchmark-suite)
+
+CPU vector extension and GPU benchmarking, [https://github.com/jli05/vbench](https://github.com/jli05/vbench)
 
 CS107 guide to x86-64, [https://web.stanford.edu/class/archive/cs/cs107/cs107.1202/guide/x86-64.html](https://web.stanford.edu/class/archive/cs/cs107/cs107.1202/guide/x86-64.html)
