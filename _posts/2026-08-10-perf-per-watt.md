@@ -6,7 +6,13 @@ layout: post
 ## Introduction
 Today's laptop may have 6 CPU cores and consume 20 watts, while a supercomputer may have tens of thousands of cores and consume many kilo watts. Across the spectrum of computing systems, we will see that the performance per watt is a meaningful benchmark.
 
-It is usually quoted as GFLOP/s/watt, for giga floating-point operations per second per watt. 1 second x 1 watt = 1 Joule, a unit of energy. So GFLOP/s/watt = GFLOP/Joule, which measures the amount of work per unit of energy.
+It is usually quoted as GFLOP/s/watt, for giga (<math><msup><mn>10</mn><mn>9</mn></msup></math>) floating-point operations per second per watt. <math><mn>1</mn><mtext> second</mtext><mo>x</mo><mn>1</mn><mtext> watt</mtext><mo>=</mo><mn>1</mn><mtext> Joule</mtext></math>, a unit of energy. So
+
+<math display="block">
+<mn>1</mn><mtext> GFLOP/s/watt</mtext><mo>=</mo><mn>1</mn><mtext> GFLOP/Joule</mtext>
+</math>
+
+which measures the amount of work per unit of energy.
 
 The performance per watt should be measured over the _entire_ computing system, including CPUs, memory, networking, maybe even including the cooling system when it was involved.
 
@@ -27,20 +33,17 @@ A wide range of algorithms are memory-bound, for example, partial derivative equ
 ## Compute-bound performance per watt
 As data is loaded once yet used many times for calculation, the energy cost of memory operation is ignorable in the limit, the whole-system performance per watt is bounded by that of the CPU or GPU alone.
 
-The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchmark for the (compute-bound) performance per watt. The official source code does compute in 64-bit. However Nvidia systems would use Nvidia's closed source benchmarking program, which may or may not have reduced the precision of operands in flight.
-
-In order to compare apple-for-apple across supercomputers and low energy chips, we find out the performance of 64x64-bit multiplication from the datasheets of Nvidia products.
+The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchmark for the (compute-bound) performance per watt. The official source code does compute in 64-bit. However Nvidia systems would run Nvidia's modified close source for the benchmark, which may or may not have reduced the precision of operands in flight. For Nvidia products, we deduce the performance per watt from the products' datasheets instead.
 
 |  Package or System  | Architecture |  Watt  |  64x64 GFLOP/S/Watt  |
 | --------- | ------------ | ------ | -------------------- |
-| LineShine | ARM  |  42,200,000 |   52   |
-| A100 SXM  | Nvidia |  400  |   24        |
-| H100 SXM  | Nvidia |  700  |   48        |
-| Grace CPU 144-core | ARM | 500   |   15        |
-| Vitruvius+ 8-lane | RISC-V  | 0.45 |  47 |
-| AraXL 16-lane | RISC-V  |  1.1 |  39 |
+| LineShine | CPU with vector extension  |  42,200,000 |   52   |
+| A100 SXM  | GPU |  400  |   24        |
+| H100 SXM  | GPU |  700  |   48        |
+| Vitruvius+ 8-lane | CPU with vector extension  | 0.45 |  47 |
+| AraXL 16-lane | CPU with vector extension |  1.1 |  39 |
 
-LineShine is currently the No. 1 supercomputer. Note it is a CPU-only system with no GPU. The last two were research products by the Barcelona Supercomputing Centre and ETH Zurich respectively.
+LineShine is currently the No. 1 supercomputer. Note it is a CPU-only system with no GPU, which shows the potential of CPU vector extension. The last two were research products by the Barcelona Supercomputing Centre and ETH Zurich respectively.
 
 If a 64-bit floating point unit consumes 10 pJ/op, then the theoretical upper limit of 64x64-bit GFLOP/s/watt is
 
