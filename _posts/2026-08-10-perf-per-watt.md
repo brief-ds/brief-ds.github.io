@@ -51,10 +51,14 @@ The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchm
 
 LineShine is currently the No. 1 supercomputer by total compute throughput. Note it is a CPU-only system with no GPU, which shows the potential of CPU with vector extension. The last two were research products by the Barcelona Supercomputing Centre and ETH Zurich respectively.
 
-If a 64-bit floating point unit consumes 10 pJ/op, then the theoretical upper limit of 64x64-bit GFLOP/s/watt is
+If a 64-bit floating point unit consumes 10 pJ/FLOP, then the theoretical upper limit of 64x64-bit GFLOP/s/watt is
 
 <math display="block">
-
+<mfrac><mn>1</mn><mrow><mn>10</mn><mo>×</mo><msup><mn>10</mn><mn>-12</mn></msup><mtext> Joule/FLOP</mtext></mrow></mfrac>
+<mo>=</mo>
+<msup><mn>10</mn><mn>11</mn></msup><mtext> FLOP/Joule</mtext>
+<mo>=</mo>
+<mn>100</mn><mtext> GFLOP/Joule</mtext>
 </math>
 
 supposing the remaining circuit consumes minimal power.
