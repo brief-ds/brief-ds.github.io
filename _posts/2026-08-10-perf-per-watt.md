@@ -23,9 +23,9 @@ which measures the amount of work per unit of energy.
 The performance per watt should be measured over the _entire_ computing system, including CPUs, memory, networking, maybe even including the cooling system when it was involved.
 
 ## CPU with vector extension and GPUs
-Traditionally-designed CPU carries out arithmetic or logical compute one per clock cycle. Afterwards techniques such as speculative [branch prediction](https://en.wikipedia.org/wiki/Branch_predictor) were invented, which would accelerate execution marginally, whilst introducing security risk such as [Spectre Attack](https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)).
+Traditionally-designed CPU carries out one arithmetic or logical operation per clock cycle. Techniques were invented to accelerate marginally such as speculative [branch prediction](https://en.wikipedia.org/wiki/Branch_predictor), while introducing security risk such as [Spectre Attack](https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)).
 
-The CPU vector extensions or GPUs can carry out multiple arithmetic operations per clock cycle, increasing the compute throughput by orders. The CPU state would be more deterministic, increasing introspectability and security.
+In contrast, CPUs with vector textension or GPUs can carry out multiple arithmetic operations per clock cycle, increasing the compute throughput by orders. The CPU state would be more deterministic, increasing introspectability and security.
 
 A GPU is traditionally designed with many cores, which can each be programmed separately. The recent Nvidia [Tensor Cores](https://www.nvidia.com/en-us/data-center/tensor-cores/) are specialised to accelerate [matrix-matrix multiplication](https://developer.nvidia.com/blog/programming-tensor-cores-cuda-9/). For example, for 32-bit multiplication, the Tensor Core can first cast each 32-bit operand to 16-bit, do 16x16 multiplication to still obtain a 32-bit result. The throughput would double compared to 32x32 multiplication.
 
@@ -41,7 +41,7 @@ As data is loaded once yet used many times for calculation, the energy cost of m
 
 The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchmark for the (compute-bound) performance per watt. The official source code does compute in 64-bit. However Nvidia systems would run Nvidia's modified close source for the benchmark, which may or may not have reduced the precision of operands in flight. For Nvidia products, we deduce the performance per watt from the products' datasheets instead.
 
-|  Package or System  | Architecture |  Watt  |  64x64 GFLOP/S/Watt  |
+|  Package or System  | Architecture |  Watt  |  64x64-bit GFLOP/S/Watt  |
 | --------- | ------------ | ------ | -------------------- |
 | LineShine | CPU with vector extension  |  42,200,000 |   52   |
 | A100 SXM  | GPU |  400  |   24        |
@@ -58,7 +58,7 @@ If a 64-bit floating point unit consumes 10 pJ/FLOP, then the theoretical upper 
 <mo>=</mo>
 <msup><mn>10</mn><mn>11</mn></msup><mtext> FLOP/Joule</mtext>
 <mo>=</mo>
-<mn>100</mn><mtext> GFLOP/Joule</mtext>
+<mn>100</mn><mtext> GFLOP/Joule,</mtext>
 </math>
 
 supposing the remaining circuit consumes minimal power.
