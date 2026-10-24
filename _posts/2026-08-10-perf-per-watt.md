@@ -6,13 +6,15 @@ layout: post
 ## Introduction
 Today's laptop may have 6 CPU cores and consume 20 watts, while a supercomputer may have tens of thousands of cores and consume many kilo watts. Across the spectrum of computing systems, we will see that the performance per watt is a meaningful benchmark.
 
-It is usually quoted as GFLOP/s/watt, for giga (<math><msup><mn>10</mn><mn>9</mn></msup></math>) floating-point operations per second per watt.
+It is usually quoted as GFLOP/s/watt, for giga (<math><msup><mn>10</mn><mn>9</mn></msup></math>) floating-point operations per second per watt. In this article it is **64-bit** floating-point operation when we quote GFLOP/s/watt.
+
+As
 
 <math display="block">
 <mn>1</mn><mtext> second</mtext><mo>×</mo><mn>1</mn><mtext> watt</mtext><mo>=</mo><mn>1</mn><mtext> Joule,</mtext>
 </math>
 
-a unit of energy. So
+a unit of energy,
 
 <math display="block">
 <mn>1</mn><mtext> GFLOP/s/watt</mtext><mo>=</mo><mn>1</mn><mtext> GFLOP/Joule,</mtext>
@@ -23,7 +25,7 @@ which measures the amount of work per unit of energy.
 The performance per watt should be measured over the _entire_ computing system, including CPUs, memory, networking, maybe even including the cooling system when it was involved.
 
 ## CPU with vector extension and GPUs
-Traditionally-designed CPU carries out one arithmetic or logical operation per clock cycle. Techniques were invented to accelerate marginally such as speculative [branch prediction](https://en.wikipedia.org/wiki/Branch_predictor), while introducing security risk such as [Spectre Attack](https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)).
+Traditionally-designed CPU carries out one arithmetic or logical operation per clock cycle. Techniques were invented to accelerate the execution marginally such as speculative [branch prediction](https://en.wikipedia.org/wiki/Branch_predictor), while introducing security risk such as [Spectre Attack](https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)).
 
 In contrast, CPUs with vector textension or GPUs can carry out multiple arithmetic operations per clock cycle, increasing the compute throughput by orders. The CPU state would be more deterministic, increasing introspectability and security.
 
