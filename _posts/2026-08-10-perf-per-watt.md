@@ -41,9 +41,9 @@ A wide range of algorithms are memory-bound, for example, partial derivative equ
 ## Compute-bound performance per watt
 As data is loaded once yet used many times for calculation, the energy cost of memory operation is ignorable in the limit, the whole-system performance per watt is bounded by that of the CPU or GPU alone.
 
-The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchmark for the (compute-bound) performance per watt. The official source code does compute in 64-bit. However Nvidia systems would run Nvidia's modified close source for the benchmark, which may or may not have reduced the precision of operands in flight. For Nvidia products, we deduce the performance per watt from the products' datasheets instead.
+The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchmark for the (compute-bound) performance per watt. The official source code does compute in 64-bit. However Nvidia systems would run Nvidia's closed source code for the benchmark, which may or may not have reduced the precision of operands in flight. For Nvidia products, we deduce the performance per watt from the products' datasheets instead for 64x64-bit multiplication.
 
-|  Package or System  | Architecture |  Watt  |  64x64-bit GFLOP/S/Watt  |
+|  Package or System  | Architecture |  Watt  |  GFLOP/S/Watt  |
 | --------- | ------------ | ------ | -------------------- |
 | LineShine | CPU with vector extension  |  42,200,000 |   52   |
 | A100 SXM  | GPU |  400  |   24        |
@@ -53,7 +53,7 @@ The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchm
 
 LineShine is currently the No. 1 supercomputer by total compute throughput. Note it is a CPU-only system with no GPU, which shows the potential of CPU with vector extension. The last two were research products by the Barcelona Supercomputing Centre and ETH Zurich respectively.
 
-If a 64-bit floating point unit consumes 10 pJ/FLOP, then the theoretical upper limit of 64x64-bit GFLOP/s/watt is
+What is the theoretical upper limit on the compute-bound performance per watt? If a 64-bit floating point unit consumes 10 pJ/FLOP, then the theoretical upper limit is
 
 <math display="block">
 <mfrac><mn>1</mn><mrow><mn>10</mn><mo>×</mo><msup><mn>10</mn><mn>-12</mn></msup><mtext> Joule/FLOP</mtext></mrow></mfrac>
@@ -63,7 +63,7 @@ If a 64-bit floating point unit consumes 10 pJ/FLOP, then the theoretical upper 
 <mn>100</mn><mtext> GFLOP/Joule,</mtext>
 </math>
 
-supposing the remaining circuit consumes minimal power.
+supposing the remaining circuit in the system consumes minimal power.
 
 ## Memory-bound performance per watt
 
