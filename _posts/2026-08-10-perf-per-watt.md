@@ -89,7 +89,7 @@ Below the GB/s are from Wikipedia pages, the watts are estimated by ChatGPT. Aga
 | LPDDR 5 |   0.8  |  32    |   4    |
 | LPDDR 5X  |  1.0 |  42    |  5.2   |
 
-[TOP500](https://www.top500.org) publishes a list for the HPCG benchmark which is memory-bound. If we consider the memory uses 25% of the whole system watts in those supercomputers, all leading systems on that list score 3.2 GFLOP/s/watt at the writing.
+[TOP500](https://www.top500.org) publishes a list for the HPCG benchmark which is memory-bound. If we consider the memory uses 25% of the whole system watts in those supercomputers, all leading systems on that list would perform at 3.2 GFLOP/s/watt as of the writing.
 
 ## References
 ARM A-profile architecture, [https://support.arm.com/architectures/a-profile-architecture](https://support.arm.com/architectures/a-profile-architecture)
