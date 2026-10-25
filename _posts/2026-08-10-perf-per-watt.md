@@ -43,7 +43,7 @@ As data is loaded once yet used many times for calculation, the energy cost of m
 
 The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchmark for the (compute-bound) performance per watt. The official source code does compute in 64-bit. However Nvidia systems would run Nvidia's closed source code for the benchmark, which may or may not have reduced the precision of operands in flight. For Nvidia products, we deduce the performance per watt from the products' datasheets instead for 64x64-bit multiplication.
 
-|  Package  | Arch. |  Watt  |  GFLOP/S/Watt  |
+|  Package or System  | Arch. |  Watt  |  GFLOP/S/Watt  |
 | --------- | ------------ | ------ | -------------------- |
 | LineShine | CPU |  42,200,000 |   52   |
 | A100 SXM  | GPU |  400  |   24        |
@@ -56,11 +56,20 @@ LineShine is currently the No. 1 supercomputer by total compute throughput. It i
 Most above hover around 50 GFLOP/s/watt. What is the theoretical upper limit on the compute-bound performance per watt? If a 64-bit floating point unit consumes 10 pJ/FLOP, then the theoretical upper limit is
 
 <math display="block">
-<mfrac><mn>1</mn><mrow><mn>10</mn><mo>×</mo><msup><mn>10</mn><mn>-12</mn></msup><mtext> Joule/FLOP</mtext></mrow></mfrac>
-<mo>=</mo>
-<msup><mn>10</mn><mn>11</mn></msup><mtext> FLOP/Joule</mtext>
-<mo>=</mo>
-<mn>100</mn><mtext> GFLOP/Joule,</mtext>
+<mtable>
+<mtr>
+<mtd></mtd>
+<mtd><mfrac><mn>1</mn><mrow><mn>10</mn><mo>×</mo><msup><mn>10</mn><mn>-12</mn></msup><mtext> Joule/FLOP</mtext></mrow></mfrac></mtd>
+</mtr>
+<mtr>
+<mtd><mo>=</mo></mtd>
+<mtd><msup><mn>10</mn><mn>11</mn></msup><mtext> FLOP/Joule</mtext></mtd>
+</mtr>
+<mtr>
+<mtd><mo>=</mo></mtd>
+<mtd><mn>100</mn><mtext> GFLOP/Joule,</mtext></mtd>
+</mtr>
+</mtable>
 </math>
 
 supposing the remaining circuit in the system consumes minimal power.
