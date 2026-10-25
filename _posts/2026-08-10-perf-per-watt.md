@@ -75,18 +75,10 @@ Most above hover around 50 GFLOP/s/watt. What is the theoretical upper limit on 
 supposing the remaining circuit consumes minimal power in the system.
 
 ## Memory-bound performance per watt
+To read 64-bit data from memory, usually it takes hundreds of pJoule, while to compute on it it takes only tens of pJoule, so from the memory GB/s/watt, we will deduce the upper limit on memory-bound GFLOP/s/watt.
 
-```
-              Energy efficiency
-                    ↓
+As a floating-point operation works on 64 bits, or 8 bytes, if the memory scores <math><mi>x</mi></math> GB/s/watt, the deduced upper limit on GFLOP/s/watt is <math><mi>x</mi><mo>/</mo><mn>8</mn></math> GFLOP/s/watt.
 
-HBM          ███████████████████████████  ~500 GB/s/W
-AXI          ████████                    ~50–150
-LPDDR        █████                       ~40–100
-NVLink       ████                        ~30–60
-GDDR         ███                         ~20–60
-Optical      ██                          ~5–30
-```
 
 ## References
 ARM A-profile architecture, [https://support.arm.com/architectures/a-profile-architecture](https://support.arm.com/architectures/a-profile-architecture)
