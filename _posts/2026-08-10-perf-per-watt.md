@@ -51,7 +51,7 @@ The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchm
 | Vitruvius+ | CPU | 0.45 |  47 |
 | AraXL 16-lane | CPU |  1.1 |  39 |
 
-LineShine is currently the No. 1 supercomputer by total compute throughput. It is a CPU-only system using [ARM instructions](https://support.arm.com/architectures/a-profile-architecture) with no GPU, which shows the potential of CPU with vector extension. The next two are Nvidia GPUs. The last two are research products by the Barcelona Supercomputing Centre and ETH Zurich respectively, using [RISC-V instructions](https://riscv.org/specifications/ratified/).
+LineShine is currently the No. 1 supercomputer by total compute throughput. It is a CPU-only system using [ARM instructions](https://support.arm.com/architectures/a-profile-architecture) with no GPU. The next two are Nvidia GPUs. The last two are research chips by the Barcelona Supercomputing Centre and ETH Zurich respectively, using [RISC-V instructions](https://riscv.org/specifications/ratified/).
 
 Most above hover around 50 GFLOP/s/watt. What is the theoretical upper limit on the compute-bound performance per watt? If a 64-bit floating point unit consumes 10 pJ/FLOP, then the theoretical upper limit is
 
@@ -72,7 +72,7 @@ Most above hover around 50 GFLOP/s/watt. What is the theoretical upper limit on 
 </mtable>
 </math>
 
-supposing the remaining circuit in the system consumes minimal power.
+supposing the remaining circuit consumes minimal power in the system.
 
 ## Memory-bound performance per watt
 
@@ -89,6 +89,10 @@ Optical      ██                          ~5–30
 ```
 
 ## References
+ARM A-profile architecture, [https://support.arm.com/architectures/a-profile-architecture](https://support.arm.com/architectures/a-profile-architecture)
+
+RISC-V Instruction Set Architecture Spectifications, [https://riscv.org/specifications/ratified/](https://riscv.org/specifications/ratified/)
+
 TOP500 supercomputer list, [https://www.top500.org/](https://www.top500.org/)
 
 Frequently asked questions on the Linpack benchmark and TOP500, [https://www.netlib.org/utk/people/JackDongarra/faq-linpack.html](https://www.netlib.org/utk/people/JackDongarra/faq-linpack.html)
@@ -128,5 +132,9 @@ AraXL: a physically scalable, ultra-wide RISC-V vector processor, [https://arxiv
 RiVEC benchmark suite on vector microarchitecture, [https://github.com/RALC88/riscv-vectorized-benchmark-suite](https://github.com/RALC88/riscv-vectorized-benchmark-suite)
 
 CPU vector extension and GPU benchmarking, [https://github.com/jli05/vbench](https://github.com/jli05/vbench)
+
+High Bandwidth Memory, [https://en.wikipedia.org/wiki/High_Bandwidth_Memory](https://en.wikipedia.org/wiki/High_Bandwidth_Memory)
+
+Low-Power Double Data Rate (LPDDR), [https://en.wikipedia.org/wiki/LPDDR](https://en.wikipedia.org/wiki/LPDDR)
 
 CS107 guide to x86-64, [https://web.stanford.edu/class/archive/cs/cs107/cs107.1202/guide/x86-64.html](https://web.stanford.edu/class/archive/cs/cs107/cs107.1202/guide/x86-64.html)
