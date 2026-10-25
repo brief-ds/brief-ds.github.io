@@ -43,17 +43,17 @@ As data is loaded once yet used many times for calculation, the energy cost of m
 
 The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchmark for the (compute-bound) performance per watt. The official source code does compute in 64-bit. However Nvidia systems would run Nvidia's closed source code for the benchmark, which may or may not have reduced the precision of operands in flight. For Nvidia products, we deduce the performance per watt from the products' datasheets instead for 64x64-bit multiplication.
 
-|  Package or System  | Architecture |  Watt  |  GFLOP/S/Watt  |
+|  Package  | Arch. |  Watt  |  GFLOP/S/Watt  |
 | --------- | ------------ | ------ | -------------------- |
-| LineShine | CPU with vector extension  |  42,200,000 |   52   |
+| LineShine | CPU |  42,200,000 |   52   |
 | A100 SXM  | GPU |  400  |   24        |
 | H100 SXM  | GPU |  700  |   48        |
-| Vitruvius+ 8-lane | CPU with vector extension  | 0.45 |  47 |
-| AraXL 16-lane | CPU with vector extension |  1.1 |  39 |
+| Vitruvius+ | CPU | 0.45 |  47 |
+| AraXL 16-lane | CPU |  1.1 |  39 |
 
-LineShine is currently the No. 1 supercomputer by total compute throughput. Note it is a CPU-only system with no GPU, which shows the potential of CPU with vector extension. The last two were research products by the Barcelona Supercomputing Centre and ETH Zurich respectively.
+LineShine is currently the No. 1 supercomputer by total compute throughput. It is a CPU-only system using [ARM instructions](https://support.arm.com/architectures/a-profile-architecture) with no GPU, which shows the potential of CPU with vector extension. The next two are Nvidia GPUs. The last two are research products by the Barcelona Supercomputing Centre and ETH Zurich respectively, using [RISC-V instructions](https://riscv.org/specifications/ratified/).
 
-What is the theoretical upper limit on the compute-bound performance per watt? If a 64-bit floating point unit consumes 10 pJ/FLOP, then the theoretical upper limit is
+Most above hover around 50 GFLOP/s/watt. What is the theoretical upper limit on the compute-bound performance per watt? If a 64-bit floating point unit consumes 10 pJ/FLOP, then the theoretical upper limit is
 
 <math display="block">
 <mfrac><mn>1</mn><mrow><mn>10</mn><mo>×</mo><msup><mn>10</mn><mn>-12</mn></msup><mtext> Joule/FLOP</mtext></mrow></mfrac>
