@@ -79,7 +79,7 @@ To read 64-bit data from memory, usually it takes hundreds of pJoule, while to c
 
 As a floating-point operation works on 64 bits, or 8 bytes, if the memory scores <math><mi>x</mi></math> GB/s/watt, the deduced upper limit on GFLOP/s/watt is <math><mi>x</mi><mo>/</mo><mn>8</mn></math> GFLOP/s/watt.
 
-Below the GB/s are from Wikipedia pages, the watts are estimated by ChatGPT. Again we will see from data centrei- to laptop- or wearable-level, the memory's GB/s/watt are comparable curiously. Under the hood, both the HBM and LPDDR are DRAM.
+Below the GB/s are from Wikipedia pages, the watts are estimated by ChatGPT. Again we will see from data centre- to laptop- or wearable-level, the memory's GB/s/watt are comparable curiously. Under the hood, both the HBM and LPDDR are DRAM.
 
 |   Memory   |   Watt |   GB/s/watt  | GFLOP/s/watt |
 | --------- | ---- | ------- | ------ |
