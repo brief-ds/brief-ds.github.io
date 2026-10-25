@@ -53,7 +53,7 @@ The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchm
 
 LineShine is currently the No. 1 supercomputer by total compute throughput. It is a CPU-only system using [ARM instructions](https://support.arm.com/architectures/a-profile-architecture) with no GPU. The next two are Nvidia GPUs. The last two are research chips by the Barcelona Supercomputing Centre and ETH Zurich respectively, using [RISC-V instructions](https://riscv.org/specifications/ratified/).
 
-Most above hover around 50 GFLOP/s/watt. What is the theoretical upper limit on the compute-bound performance per watt? If a 64-bit floating point unit consumes 10 pJ/FLOP, then the theoretical upper limit is
+Most above hover around **50 GFLOP/s/watt**. What is the theoretical upper limit on the compute-bound performance per watt? If a 64-bit floating point unit consumes 10 pJ/FLOP, then the theoretical upper limit is
 
 <math display="block">
 <mtable>
@@ -89,7 +89,7 @@ Below the GB/s are from Wikipedia pages, the watts are estimated by ChatGPT. Aga
 | LPDDR 5 |   0.8  |  32    |   4    |
 | LPDDR 5X  |  1.0 |  42    |  5.2   |
 
-[TOP500](https://www.top500.org) publishes a list for the HPCG benchmark which is memory-bound. If we consider the memory uses 25% of the whole system watts in those supercomputers, all leading systems on that list would perform at 3.2 GFLOP/s/watt as of the writing, just below the theoretical upper limit imposed by the HBM.
+[TOP500](https://www.top500.org) publishes a list for the HPCG benchmark which is memory-bound. If we consider the memory uses 25% of the whole system watts in those supercomputers, all leading systems on that list would perform at **3.2 GFLOP/s/watt** as of the writing, just below the theoretical upper limit imposed by the HBM.
 
 ## References
 ARM A-profile architecture, [https://support.arm.com/architectures/a-profile-architecture](https://support.arm.com/architectures/a-profile-architecture)
