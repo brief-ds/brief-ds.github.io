@@ -41,7 +41,7 @@ A wide range of algorithms are memory-bound, for example, partial derivative equ
 ## Compute-bound performance per watt
 As data is loaded once yet used many times for calculation, the energy cost of memory operation is ignorable in the limit, the whole-system performance per watt is bounded by that of the CPU or GPU alone.
 
-The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchmark for the (compute-bound) performance per watt. The official source code does compute in 64-bit. However Nvidia systems would run Nvidia's closed source code for the benchmark, which may or may not have reduced the precision of operands in flight. For Nvidia products, we deduce the performance per watt from the products' datasheets instead for 64x64-bit multiplication.
+Green500 ranks the [TOP500](https://www.top500.org) systems according to measured HPL performance per electrical power consumed. The official source code does compute in 64-bit. However Nvidia systems would run Nvidia's closed source code for the benchmark, which may or may not have reduced the precision of operands in flight. For Nvidia products, we deduce the performance per watt from the products' datasheets instead for 64x64-bit multiplication.
 
 |  Package or System  | Arch. |  Watt  |  GFLOP/S/Watt  |
 | --------- | ------------ | ------ | -------------------- |
@@ -51,9 +51,9 @@ The [TOP500 supercomputer list](https://www.top500.org) publishes a Green benchm
 | Vitruvius+ | CPU | 0.45 |  47 |
 | AraXL 16-lane | CPU |  1.1 |  39 |
 
-LineShine is currently the No. 1 supercomputer by total compute throughput. It is a CPU-only system using [ARM instructions](https://support.arm.com/architectures/a-profile-architecture) with no GPU. The next two are Nvidia GPUs. The last two are research chips by the Barcelona Supercomputing Centre and ETH Zurich respectively, using [RISC-V instructions](https://riscv.org/specifications/ratified/).
+LineShine is currently the No. 1 supercomputer by total compute throughput. It is a CPU-only system using [ARM instructions](https://support.arm.com/architectures/a-profile-architecture) with no GPU. The next two are Nvidia GPUs. The last two are research chips by the Barcelona Supercomputing Centre and ETH Zurich respectively, using [RISC-V instructions](https://riscv.org/specifications/ratified/). Apart from LineShine a complete system, the remaining four were CPU or GPU packages, whose performance per watt would constitute an upper limit on that of any system constructed with it.
 
-Most above hover around **50 GFLOP/s/watt**. What is the theoretical upper limit on the compute-bound performance per watt? If a 64-bit floating point unit consumes 10 pJ/FLOP, then the theoretical upper limit is
+Most above hover around **50 GFLOP/s/watt**. What is the highest upper limit on the compute-bound performance per watt? If a 64-bit floating point unit consumes 10 pJ/FLOP, then the highest upper limit is
 
 <math display="block">
 <mtable>
