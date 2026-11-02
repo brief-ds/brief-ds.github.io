@@ -1,5 +1,5 @@
 ---
-title: ARM64 load/store register instructions
+title: Aarch64 load/store register instructions
 layout: post
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: ARM64 branching instruction
+title: Aarch64 branching instruction
 layout: post
 ---
 

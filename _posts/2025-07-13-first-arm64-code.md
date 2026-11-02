@@ -1,5 +1,5 @@
 ---
-title: The first ARM64 assembly program
+title: The first Aarch64 assembly program
 layout: post
 ---
 
