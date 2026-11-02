@@ -15,7 +15,7 @@ ARM architecture defines three profiles:
 * M-profile (Microcontroller): Used in deeply embedded systems (e.g., Cortex-M).
 
 ## Aarch64 (ARM64)
-[Aarch64](https://en.wikipedia.org/wiki/AArch64), also known as ARM64, is the 64-bit architecture that debuted with ARMv8.
+[Aarch64](https://en.wikipedia.org/wiki/AArch64), also known as ARM64, is the 64-bit architecture that debuted with ARMv8. The A-profile and R-profile can run in Aarch64.
 
 ## Set up the toolchain
 A toolchain is the collection of assembler, compiler, and linker that translate any assembly, C programs in text to executable binary ones.
