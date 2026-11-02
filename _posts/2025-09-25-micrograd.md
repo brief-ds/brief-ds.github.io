@@ -1,5 +1,5 @@
 ---
-title: "TensorFlow, MLX and our micrograd"
+title: micrograd
 layout: post
 ---
 
