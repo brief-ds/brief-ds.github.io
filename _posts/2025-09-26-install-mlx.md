@@ -1,5 +1,5 @@
 ---
-title: "Install Apple's MLX machine learning library"
+title: Install MLX
 layout: post
 ---
 

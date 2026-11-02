@@ -1,5 +1,5 @@
 ---
-title: "TensorFlow, Apple's MLX and our micrograd"
+title: "TensorFlow, MLX and our micrograd"
 layout: post
 ---
 
