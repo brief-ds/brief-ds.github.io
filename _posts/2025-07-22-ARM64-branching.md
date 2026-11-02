@@ -1,5 +1,5 @@
 ---
-title: ARM64 branching (jump) instruction
+title: ARM64 branching instruction
 layout: post
 ---
 

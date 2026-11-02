@@ -1,5 +1,5 @@
 ---
-title: "Misspecification test, or the need for sparsity in a large model"
+title: Misspecification test
 layout: post
 ---
 
