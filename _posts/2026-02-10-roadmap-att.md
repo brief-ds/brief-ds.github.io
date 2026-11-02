@@ -1,5 +1,5 @@
 ---
-title: A roadmap to a simple attention mechanism
+title: Roadmap to a simple attention mechanism
 layout: post
 ---
 
