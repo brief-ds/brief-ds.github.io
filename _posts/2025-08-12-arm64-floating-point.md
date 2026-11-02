@@ -1,5 +1,5 @@
 ---
-title: Aarch64 floating point arithmetic
+title: Aarch64 floating-point arithmetic
 layout: post
 ---
 
